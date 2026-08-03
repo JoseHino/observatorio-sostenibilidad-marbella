@@ -1,0 +1,74 @@
+# Observatorio de Sostenibilidad Territorial de Marbella
+# Configuracion del pipeline (Capa A)
+# Las credenciales NUNCA figuran aqui: se leen de variables de entorno / .env
+
+ambito:
+  municipio: Marbella
+  codigo_ine: "29069"
+  codigo_nacional_cnig: "34012929069"   # nationalCode INSPIRE para el WFS del IGN
+  provincia: Malaga
+  comunidad: Andalucia
+
+crs:
+  calculo: 25830        # ETRS89 / UTM 30N — superficies y estadistica zonal en local
+  peticion_sh: 32630    # WGS84 / UTM 30N — impuesto por Sentinel Hub, rechaza 25830
+  publicacion: 4326     # solo para servir geometrias al frontend
+
+geometria:
+  fuente: CNIG
+  endpoint: "https://www.ign.es/wfs-inspire/unidades-administrativas"
+  typename: "au:AdministrativeUnit"
+  # El servicio NO admite CQL_FILTER (responde 504): se descarga por bbox y se filtra en local
+  bbox_descarga_4326: [36.45, -5.05, 36.62, -4.72]
+  fichero_salida: "data/processed/limite_municipal.geojson"
+  superficie_ha_referencia: 11714.2     # validada contra el PGOM 2025
+  tolerancia_simplificacion_m: 20       # solo para aligerar la peticion remota
+  buffer_marino_m: 2000                 # indicadores del Bloque 4
+
+serie:
+  fecha_inicio: "2017-01"
+  fecha_fin: dinamica
+
+unidades_analisis:
+  - municipio
+  - seccion_censal
+  - malla_500m
+
+fuentes:
+  copernicus_sh:
+    token_url: "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
+    statistics_url: "https://sh.dataspace.copernicus.eu/api/v1/statistics"
+    catalogo_odata: "https://catalogue.dataspace.copernicus.eu/odata/v1/Products"
+    env_client_id: CDSE_CLIENT_ID
+    env_client_secret: CDSE_CLIENT_SECRET
+    tile_sentinel2: T30SUF              # un unico tile cubre el municipio
+    cuota_pu_mensual: 10000
+
+  pvgis:
+    url: "https://re.jrc.ec.europa.eu/api/v5_3/MRcalc"
+    requiere_registro: false
+
+  ine:
+    base: "https://servicios.ine.es/wstempus/js/ES"
+    # El campo Fecha va en hora de Madrid; construir el periodo con Anyo + FK_Periodo
+    usar_campo_fecha: false
+
+  aemet:
+    base: "https://opendata.aemet.es/opendata/api"
+    env_api_key: AEMET_API_KEY          # pendiente de alta
+
+indicadores:
+  ndvi_municipal:
+    activo: true
+    coleccion: sentinel-2-l2a
+    bandas: [B04, B08, SCL]
+    resolucion_m: 20
+    intervalo: P1M
+    mosaico: leastCC
+    scl_validas: [4, 5, 7]              # vegetacion, suelo desnudo, sin clasificar
+    pu_estimado_por_mes: 5.1
+    salida: "data/processed/ndvi_municipal.json"
+
+calidad:
+  tamano_maximo_fichero_mb: 5
+  interpolar_huecos: false              # los huecos se publican como ausencia explicita

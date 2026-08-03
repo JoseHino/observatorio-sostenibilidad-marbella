@@ -1,0 +1,22 @@
+# Credenciales — NUNCA versionar
+.env
+*.env
+!.env.example
+
+# Datos crudos — no se versionan (rásters, GML, descargas)
+data/raw/
+*.tif
+*.tiff
+*.nc
+*.gml
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+desktop.ini
+.DS_Store

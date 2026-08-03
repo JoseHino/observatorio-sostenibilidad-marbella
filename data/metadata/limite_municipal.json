@@ -1,0 +1,25 @@
+{
+  "indicador": "limite_municipal",
+  "fuente": "CNIG — WFS INSPIRE Unidades Administrativas (au:AdministrativeUnit)",
+  "endpoint": "https://www.ign.es/wfs-inspire/unidades-administrativas",
+  "codigo_nacional": "34012929069",
+  "codigo_ine": "29069",
+  "superficie_ha": 11714.2,
+  "bbox_epsg25830": [
+    319549.0,
+    4036789.3,
+    345030.8,
+    4047224.7
+  ],
+  "bbox_epsg4326": [
+    -5.014667,
+    36.459531,
+    -4.730698,
+    36.554971
+  ],
+  "epsg_origen": 4326,
+  "epsg_calculo": 25830,
+  "validacion": "Superficie coincide con la cifra oficial del PGOM 2025 (11.714 ha)",
+  "limitaciones": "El WFS del IGN no admite CQL_FILTER (responde 504); se descarga por bbox y se filtra en local por nationalCode.",
+  "fecha_extraccion": "2026-08-03"
+}
