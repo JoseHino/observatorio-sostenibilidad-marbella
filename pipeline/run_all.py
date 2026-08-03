@@ -43,6 +43,24 @@ def sincronizar_web() -> None:
         shutil.copy2(f, destino_meta / f.name)
 
 
+def escribir_estado(telemetria: dict, caidas: list, fallos_qa: list) -> None:
+    """Marca de comprobacion y telemetria, para el sitio desplegado.
+
+    No se versiona: es lo que permite que una pasada sin dato nuevo no genere commit.
+    Llega al sitio publicado a traves del artefacto de despliegue, no del repositorio.
+    """
+    estado = {
+        "ultima_comprobacion": manifest.ahora_utc(),
+        "fuentes_con_error": caidas,
+        "incidencias_qa": fallos_qa,
+        "telemetria": telemetria,
+    }
+    WEB_DATA.mkdir(parents=True, exist_ok=True)
+    (WEB_DATA / "estado.json").write_text(
+        json.dumps(estado, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+
 def tarea_limite(cfg: dict, forzar: bool) -> list[str]:
     ficha = cnig.obtener_limite_municipal(cfg, forzar=forzar)
     log("cnig.limite", "OK", f"{ficha['superficie_ha']} ha")
@@ -67,14 +85,14 @@ def tarea_ndvi(cfg: dict, forzar: bool) -> list[str]:
     fallos = validate.validar_serie_ndvi(resultado)
     proc_ndvi.escribir(resultado, cfg)
 
+    tele = resultado["_telemetria"]
     previo = manifest.entrada("ndvi_municipal").get("ultima_fecha_dato")
     novedad = "sin cambios" if previo == resultado["ultimo_periodo"] else "dato nuevo"
     log(
         "ndvi",
         "OK",
         f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
-        f"hasta {resultado['ultimo_periodo']} ({novedad}), "
-        f"{resultado['pu_consumidas_ejecucion']} PU",
+        f"hasta {resultado['ultimo_periodo']} ({novedad}), {tele['pu_consumidas']} PU",
     )
     manifest.actualizar(
         "ndvi_municipal",
@@ -82,9 +100,13 @@ def tarea_ndvi(cfg: dict, forzar: bool) -> list[str]:
         n_periodos=resultado["n_periodos"],
         n_huecos=resultado["n_huecos"],
         hash_config=huella,
-        pu_ultima_ejecucion=resultado["pu_consumidas_ejecucion"],
     )
+    TELEMETRIA["ndvi_municipal"] = tele
     return fallos
+
+
+# Telemetria acumulada de la pasada, volcada a estado.json al final
+TELEMETRIA: dict = {}
 
 
 TAREAS = [
@@ -114,6 +136,7 @@ def main() -> int:
 
     fallos_qa.extend(validate.validar_tamanos())
     sincronizar_web()
+    escribir_estado(TELEMETRIA, caidas, fallos_qa)
 
     if fallos_qa:
         log("qa", "AVISO", f"{len(fallos_qa)} incidencia(s)")

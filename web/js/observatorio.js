@@ -239,10 +239,11 @@
   }
 
   /* ---------- Estado de frescura ---------- */
-  function pintarEstado(d, manifiesto) {
+  function pintarEstado(d, estado) {
     document.getElementById('estado-ultimo').textContent = etiquetaPeriodo(d.ultimo_periodo);
 
-    var comprobacion = manifiesto && manifiesto.ndvi_municipal && manifiesto.ndvi_municipal.ultima_ejecucion;
+    // La marca de comprobacion no se versiona: llega en estado.json con el despliegue
+    var comprobacion = estado && estado.ultima_comprobacion;
     document.getElementById('estado-comprobacion').textContent = comprobacion
       ? new Date(comprobacion).toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })
       : 'No disponible';
@@ -364,8 +365,8 @@
       pintarKpis(d);
       dibujarGraficos(d);
       pintarTabla(d);
-      json('data/metadata/manifest.json')
-        .then(function (m) { pintarEstado(d, m); })
+      json('data/estado.json')
+        .then(function (e) { pintarEstado(d, e); })
         .catch(function () { pintarEstado(d, null); });
     }).catch(function (e) {
       console.error(e);

@@ -3,6 +3,10 @@
 *.env
 !.env.example
 
+# Marca de comprobacion: cambia en cada pasada y forzaria commits sin dato nuevo.
+# Llega al sitio por el artefacto de despliegue, no por el repositorio.
+web/data/estado.json
+
 # Datos crudos — no se versionan (rásters, GML, descargas)
 data/raw/
 *.tif

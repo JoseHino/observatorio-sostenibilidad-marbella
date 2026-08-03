@@ -160,17 +160,22 @@ def _empaquetar(
         "n_huecos": len(serie) - len(con_dato),
         "pixeles_teoricos": int(pixeles_teoricos),
         "resolucion_m": resolucion,
-        "pu_consumidas_ejecucion": round(pu_total, 1),
-        "anios_descargados": anios_descargados,
         "serie": serie,
+        # La telemetria de ejecucion NO se publica: cambia en cada pasada y ensuciaria el
+        # diff, provocando un commit aunque no haya dato nuevo. Viaja aparte.
+        "_telemetria": {
+            "pu_consumidas": round(pu_total, 1),
+            "anios_descargados": anios_descargados,
+        },
     }
 
 
 def escribir(resultado: dict, cfg: dict) -> None:
     """Vuelca la serie y su ficha de metadatos."""
     ind = cfg["indicadores"]["ndvi_municipal"]
+    publicable = {k: v for k, v in resultado.items() if not k.startswith("_")}
     (DIR_PROCESSED / "ndvi_municipal.json").write_text(
-        json.dumps(resultado, ensure_ascii=False, indent=1), encoding="utf-8"
+        json.dumps(publicable, ensure_ascii=False, indent=1), encoding="utf-8"
     )
 
     con_dato = [r for r in resultado["serie"] if r["valor"] is not None]

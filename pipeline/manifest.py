@@ -42,11 +42,18 @@ def entrada(indicador: str) -> dict:
 
 
 def actualizar(indicador: str, **campos) -> None:
-    """Actualiza la entrada de un indicador conservando el resto del manifiesto."""
+    """Actualiza la entrada de un indicador conservando el resto del manifiesto.
+
+    El manifiesto se versiona, asi que solo puede contener campos derivados del dato.
+    Un sello de tiempo de ejecucion cambiaria en cada pasada y forzaria un commit aunque
+    no hubiera dato nuevo: la marca de comprobacion viaja en estado.json, que no se versiona.
+    """
     m = leer()
     registro = m.get(indicador, {})
     registro.update(campos)
-    registro["ultima_ejecucion"] = ahora_utc()
+    # Se purgan las claves volatiles que pudieran arrastrarse de versiones anteriores
+    for volatil in ("ultima_ejecucion", "pu_ultima_ejecucion"):
+        registro.pop(volatil, None)
     m[indicador] = registro
     RUTA_MANIFIESTO.write_text(
         json.dumps(m, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8"
