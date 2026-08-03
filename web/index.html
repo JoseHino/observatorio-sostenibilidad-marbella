@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observatorio de Sostenibilidad Territorial de Marbella</title>
+<meta name="description" content="Indicadores ambientales del término municipal de Marbella derivados de observación de la Tierra y series estadísticas oficiales.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<a class="salto-contenido" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="contenedor cabecera-fila">
+    <div>
+      <p class="cabecera-supra">Marbella · Código INE 29069 · Provincia de Málaga</p>
+      <h1>Observatorio de Sostenibilidad Territorial</h1>
+      <p class="cabecera-sub">Indicadores ambientales derivados de observación de la Tierra y de series estadísticas oficiales</p>
+    </div>
+    <button type="button" id="btn-tema" class="btn-icono" aria-label="Cambiar entre tema claro y oscuro">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36-6.36-1.42 1.42M7.06 16.94l-1.42 1.42m12.72 0-1.42-1.42M7.06 7.06 5.64 5.64"/><circle cx="12" cy="12" r="4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="contenido" class="contenedor">
+
+  <!-- Estado de actualización -->
+  <section class="banda-estado" aria-labelledby="t-estado">
+    <h2 id="t-estado" class="sr-only">Estado de actualización</h2>
+    <div class="estado-item">
+      <span class="estado-etiqueta">Último dato</span>
+      <span class="estado-valor" id="estado-ultimo">—</span>
+    </div>
+    <div class="estado-item">
+      <span class="estado-etiqueta">Última comprobación</span>
+      <span class="estado-valor" id="estado-comprobacion">—</span>
+    </div>
+    <div class="estado-item">
+      <span class="estado-etiqueta">Frescura</span>
+      <span class="estado-valor"><span id="estado-frescura" class="pastilla">—</span></span>
+    </div>
+  </section>
+
+  <!-- Indicador NDVI -->
+  <section class="bloque" aria-labelledby="t-ndvi">
+    <div class="bloque-cabecera">
+      <div>
+        <p class="bloque-supra">Bloque 1 · Vegetación y espacios verdes</p>
+        <h2 id="t-ndvi">NDVI medio municipal</h2>
+        <p class="bloque-desc">Índice de vegetación de diferencia normalizada promediado sobre el término municipal, en compuesto mensual a partir de Sentinel-2.</p>
+      </div>
+    </div>
+
+    <div class="rejilla-kpi" id="kpis"></div>
+
+    <!-- Serie completa -->
+    <figure class="figura">
+      <figcaption>
+        <h3>Serie mensual completa</h3>
+        <p>Valor medio municipal por mes. Los meses sin observación válida se representan como discontinuidad; no se interpolan.</p>
+      </figcaption>
+      <div class="lienzo"><canvas id="g-serie" role="img" aria-label="Serie mensual del NDVI medio municipal de Marbella"></canvas></div>
+    </figure>
+
+    <div class="rejilla-dos">
+      <figure class="figura">
+        <figcaption>
+          <h3>Ciclo estacional medio</h3>
+          <p>Promedio de cada mes en el conjunto de la serie. La banda representa el recorrido entre el mínimo y el máximo observados.</p>
+        </figcaption>
+        <div class="lienzo lienzo-bajo"><canvas id="g-estacional" role="img" aria-label="Ciclo estacional medio del NDVI"></canvas></div>
+      </figure>
+
+      <figure class="figura">
+        <figcaption>
+          <h3>Media anual</h3>
+          <p>Promedio de los meses disponibles en cada año. El año en curso es parcial.</p>
+        </figcaption>
+        <div class="lienzo lienzo-bajo"><canvas id="g-anual" role="img" aria-label="Media anual del NDVI"></canvas></div>
+      </figure>
+    </div>
+
+    <!-- Vista de tabla -->
+    <div class="bloque-acciones">
+      <button type="button" id="btn-tabla" class="btn" aria-expanded="false" aria-controls="tabla-datos">Ver los datos en tabla</button>
+    </div>
+    <div id="tabla-datos" class="envoltura-tabla" hidden>
+      <table>
+        <caption class="sr-only">Serie mensual del NDVI medio municipal de Marbella</caption>
+        <thead>
+          <tr><th scope="col">Periodo</th><th scope="col">NDVI medio</th><th scope="col">Mediana</th><th scope="col">P25</th><th scope="col">P75</th><th scope="col">Cobertura</th><th scope="col">Observaciones</th></tr>
+        </thead>
+        <tbody id="tabla-cuerpo"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Ámbito territorial -->
+  <section class="bloque" aria-labelledby="t-mapa">
+    <div class="bloque-cabecera">
+      <div>
+        <p class="bloque-supra">Ámbito territorial</p>
+        <h2 id="t-mapa">Término municipal</h2>
+        <p class="bloque-desc">Límite oficial obtenido del Centro Nacional de Información Geográfica. Las capas ambientales se sirven por WMS bajo demanda.</p>
+      </div>
+    </div>
+    <div id="mapa" class="mapa"></div>
+    <div class="rejilla-dato" id="datos-ambito"></div>
+  </section>
+
+  <!-- Ficha de metadatos -->
+  <section class="bloque" aria-labelledby="t-ficha">
+    <div class="bloque-cabecera">
+      <div>
+        <p class="bloque-supra">Trazabilidad</p>
+        <h2 id="t-ficha">Ficha del indicador</h2>
+        <p class="bloque-desc">Toda cifra publicada debe poder reconstruirse desde la fuente original con el código del repositorio.</p>
+      </div>
+    </div>
+    <dl class="ficha" id="ficha"></dl>
+    <div class="aviso" id="limitaciones">
+      <h3>Limitaciones declaradas</h3>
+      <ul id="lista-limitaciones"></ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <p class="pie-titulo">Fuentes y atribución</p>
+    <ul class="pie-lista">
+      <li>Contiene datos Copernicus modificados 2026</li>
+      <li>Centro Nacional de Información Geográfica · CC BY 4.0 scne.es</li>
+      <li>Instituto Nacional de Estadística</li>
+      <li>REDIAM · Consejería de Sostenibilidad y Medio Ambiente · Junta de Andalucía</li>
+      <li>PVGIS · Joint Research Centre, Comisión Europea</li>
+      <li>Agencia Estatal de Meteorología</li>
+    </ul>
+    <p class="pie-legal">Código bajo licencia MIT. Datos elaborados bajo CC BY 4.0, sin perjuicio de las condiciones propias de cada fuente de origen.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/observatorio.js"></script>
+</body>
+</html>

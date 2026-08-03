@@ -1,0 +1,1170 @@
+{
+ "indicador": "ndvi_municipal",
+ "titulo": "NDVI medio municipal",
+ "unidad_analisis": "municipio",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "mensual",
+ "ultimo_periodo": "2026-07",
+ "n_periodos": 115,
+ "n_huecos": 0,
+ "pixeles_teoricos": 292855,
+ "resolucion_m": 20,
+ "pu_consumidas_ejecucion": 35.5,
+ "anios_descargados": [
+  2026
+ ],
+ "serie": [
+  {
+   "periodo": "2017-01",
+   "valor": 0.5587,
+   "mediana": 0.6166,
+   "p25": 0.3999,
+   "p75": 0.7472,
+   "desviacion": 0.2319,
+   "pixeles_validos": 285751,
+   "cobertura_pct": 97.6
+  },
+  {
+   "periodo": "2017-02",
+   "valor": 0.4948,
+   "mediana": 0.5341,
+   "p25": 0.3041,
+   "p75": 0.7065,
+   "desviacion": 0.2479,
+   "pixeles_validos": 100746,
+   "cobertura_pct": 34.4,
+   "aviso": "cobertura baja: dato menos representativo"
+  },
+  {
+   "periodo": "2017-03",
+   "valor": 0.5683,
+   "mediana": 0.633,
+   "p25": 0.3951,
+   "p75": 0.7673,
+   "desviacion": 0.2389,
+   "pixeles_validos": 291207,
+   "cobertura_pct": 99.4
+  },
+  {
+   "periodo": "2017-04",
+   "valor": 0.55,
+   "mediana": 0.6035,
+   "p25": 0.3752,
+   "p75": 0.7455,
+   "desviacion": 0.2371,
+   "pixeles_validos": 291608,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2017-05",
+   "valor": 0.52,
+   "mediana": 0.5547,
+   "p25": 0.3771,
+   "p75": 0.6896,
+   "desviacion": 0.2124,
+   "pixeles_validos": 227303,
+   "cobertura_pct": 77.6
+  },
+  {
+   "periodo": "2017-06",
+   "valor": 0.4244,
+   "mediana": 0.4196,
+   "p25": 0.2695,
+   "p75": 0.5813,
+   "desviacion": 0.2179,
+   "pixeles_validos": 292020,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2017-07",
+   "valor": 0.4179,
+   "mediana": 0.4111,
+   "p25": 0.2647,
+   "p75": 0.5717,
+   "desviacion": 0.213,
+   "pixeles_validos": 292102,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2017-08",
+   "valor": 0.3763,
+   "mediana": 0.3753,
+   "p25": 0.2653,
+   "p75": 0.4898,
+   "desviacion": 0.1581,
+   "pixeles_validos": 292580,
+   "cobertura_pct": 99.9
+  },
+  {
+   "periodo": "2017-09",
+   "valor": 0.4316,
+   "mediana": 0.4263,
+   "p25": 0.2779,
+   "p75": 0.5897,
+   "desviacion": 0.2118,
+   "pixeles_validos": 288986,
+   "cobertura_pct": 98.7
+  },
+  {
+   "periodo": "2017-10",
+   "valor": 0.4306,
+   "mediana": 0.4272,
+   "p25": 0.2796,
+   "p75": 0.5874,
+   "desviacion": 0.2086,
+   "pixeles_validos": 283343,
+   "cobertura_pct": 96.8
+  },
+  {
+   "periodo": "2017-11",
+   "valor": 0.5269,
+   "mediana": 0.5549,
+   "p25": 0.3699,
+   "p75": 0.7108,
+   "desviacion": 0.2276,
+   "pixeles_validos": 291575,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2017-12",
+   "valor": 0.549,
+   "mediana": 0.5936,
+   "p25": 0.399,
+   "p75": 0.7313,
+   "desviacion": 0.2254,
+   "pixeles_validos": 289753,
+   "cobertura_pct": 98.9
+  },
+  {
+   "periodo": "2018-01",
+   "valor": 0.5705,
+   "mediana": 0.6259,
+   "p25": 0.4149,
+   "p75": 0.7586,
+   "desviacion": 0.232,
+   "pixeles_validos": 290285,
+   "cobertura_pct": 99.1
+  },
+  {
+   "periodo": "2018-02",
+   "valor": 0.5551,
+   "mediana": 0.6036,
+   "p25": 0.3918,
+   "p75": 0.747,
+   "desviacion": 0.2329,
+   "pixeles_validos": 291449,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2018-03",
+   "valor": 0.5482,
+   "mediana": 0.6016,
+   "p25": 0.3729,
+   "p75": 0.7449,
+   "desviacion": 0.2355,
+   "pixeles_validos": 290651,
+   "cobertura_pct": 99.2
+  },
+  {
+   "periodo": "2018-04",
+   "valor": 0.5237,
+   "mediana": 0.5756,
+   "p25": 0.3585,
+   "p75": 0.7087,
+   "desviacion": 0.2271,
+   "pixeles_validos": 291831,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2018-05",
+   "valor": 0.5051,
+   "mediana": 0.5547,
+   "p25": 0.3337,
+   "p75": 0.6944,
+   "desviacion": 0.2346,
+   "pixeles_validos": 279246,
+   "cobertura_pct": 95.4
+  },
+  {
+   "periodo": "2018-06",
+   "valor": 0.3791,
+   "mediana": 0.3835,
+   "p25": 0.2677,
+   "p75": 0.4956,
+   "desviacion": 0.1605,
+   "pixeles_validos": 292174,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2018-07",
+   "valor": 0.4186,
+   "mediana": 0.4091,
+   "p25": 0.2581,
+   "p75": 0.578,
+   "desviacion": 0.2199,
+   "pixeles_validos": 291875,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2018-08",
+   "valor": 0.4135,
+   "mediana": 0.402,
+   "p25": 0.2488,
+   "p75": 0.5748,
+   "desviacion": 0.2253,
+   "pixeles_validos": 292214,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2018-09",
+   "valor": 0.4429,
+   "mediana": 0.4451,
+   "p25": 0.2803,
+   "p75": 0.6153,
+   "desviacion": 0.2178,
+   "pixeles_validos": 289468,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2018-10",
+   "valor": 0.4539,
+   "mediana": 0.4575,
+   "p25": 0.293,
+   "p75": 0.6245,
+   "desviacion": 0.2174,
+   "pixeles_validos": 289041,
+   "cobertura_pct": 98.7
+  },
+  {
+   "periodo": "2018-11",
+   "valor": 0.6043,
+   "mediana": 0.6727,
+   "p25": 0.4569,
+   "p75": 0.7871,
+   "desviacion": 0.2279,
+   "pixeles_validos": 289752,
+   "cobertura_pct": 98.9
+  },
+  {
+   "periodo": "2018-12",
+   "valor": 0.5877,
+   "mediana": 0.659,
+   "p25": 0.4296,
+   "p75": 0.7808,
+   "desviacion": 0.2397,
+   "pixeles_validos": 288833,
+   "cobertura_pct": 98.6
+  },
+  {
+   "periodo": "2019-01",
+   "valor": 0.5907,
+   "mediana": 0.6605,
+   "p25": 0.4227,
+   "p75": 0.792,
+   "desviacion": 0.2468,
+   "pixeles_validos": 289578,
+   "cobertura_pct": 98.9
+  },
+  {
+   "periodo": "2019-02",
+   "valor": 0.5879,
+   "mediana": 0.6551,
+   "p25": 0.4193,
+   "p75": 0.7861,
+   "desviacion": 0.2388,
+   "pixeles_validos": 291045,
+   "cobertura_pct": 99.4
+  },
+  {
+   "periodo": "2019-03",
+   "valor": 0.5392,
+   "mediana": 0.5833,
+   "p25": 0.3642,
+   "p75": 0.739,
+   "desviacion": 0.2389,
+   "pixeles_validos": 291273,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2019-04",
+   "valor": 0.5176,
+   "mediana": 0.5532,
+   "p25": 0.3463,
+   "p75": 0.709,
+   "desviacion": 0.2291,
+   "pixeles_validos": 292135,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2019-05",
+   "valor": 0.4393,
+   "mediana": 0.4463,
+   "p25": 0.2877,
+   "p75": 0.5973,
+   "desviacion": 0.2082,
+   "pixeles_validos": 292015,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2019-06",
+   "valor": 0.4133,
+   "mediana": 0.4082,
+   "p25": 0.2558,
+   "p75": 0.5695,
+   "desviacion": 0.2155,
+   "pixeles_validos": 291880,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2019-07",
+   "valor": 0.3939,
+   "mediana": 0.3845,
+   "p25": 0.2351,
+   "p75": 0.5485,
+   "desviacion": 0.2166,
+   "pixeles_validos": 292082,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2019-08",
+   "valor": 0.3478,
+   "mediana": 0.347,
+   "p25": 0.2371,
+   "p75": 0.4579,
+   "desviacion": 0.1574,
+   "pixeles_validos": 293111,
+   "cobertura_pct": 100.1
+  },
+  {
+   "periodo": "2019-09",
+   "valor": 0.4634,
+   "mediana": 0.4705,
+   "p25": 0.301,
+   "p75": 0.6389,
+   "desviacion": 0.2168,
+   "pixeles_validos": 290034,
+   "cobertura_pct": 99.0
+  },
+  {
+   "periodo": "2019-10",
+   "valor": 0.4653,
+   "mediana": 0.4768,
+   "p25": 0.3044,
+   "p75": 0.6401,
+   "desviacion": 0.2203,
+   "pixeles_validos": 291990,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2019-11",
+   "valor": 0.4928,
+   "mediana": 0.5154,
+   "p25": 0.3385,
+   "p75": 0.666,
+   "desviacion": 0.2162,
+   "pixeles_validos": 291350,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2019-12",
+   "valor": 0.5322,
+   "mediana": 0.5756,
+   "p25": 0.3807,
+   "p75": 0.7128,
+   "desviacion": 0.2205,
+   "pixeles_validos": 289317,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2020-01",
+   "valor": 0.553,
+   "mediana": 0.6118,
+   "p25": 0.3878,
+   "p75": 0.7429,
+   "desviacion": 0.2303,
+   "pixeles_validos": 270541,
+   "cobertura_pct": 92.4
+  },
+  {
+   "periodo": "2020-02",
+   "valor": 0.5591,
+   "mediana": 0.6205,
+   "p25": 0.3772,
+   "p75": 0.7645,
+   "desviacion": 0.2421,
+   "pixeles_validos": 292019,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2020-03",
+   "valor": 0.5499,
+   "mediana": 0.6069,
+   "p25": 0.3649,
+   "p75": 0.759,
+   "desviacion": 0.2466,
+   "pixeles_validos": 292081,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2020-04",
+   "valor": 0.5487,
+   "mediana": 0.6146,
+   "p25": 0.3544,
+   "p75": 0.7614,
+   "desviacion": 0.2519,
+   "pixeles_validos": 273662,
+   "cobertura_pct": 93.4
+  },
+  {
+   "periodo": "2020-05",
+   "valor": 0.4913,
+   "mediana": 0.5246,
+   "p25": 0.3323,
+   "p75": 0.6727,
+   "desviacion": 0.221,
+   "pixeles_validos": 290667,
+   "cobertura_pct": 99.3
+  },
+  {
+   "periodo": "2020-06",
+   "valor": 0.4462,
+   "mediana": 0.4534,
+   "p25": 0.2909,
+   "p75": 0.6115,
+   "desviacion": 0.2141,
+   "pixeles_validos": 291998,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2020-07",
+   "valor": 0.4049,
+   "mediana": 0.4089,
+   "p25": 0.2743,
+   "p75": 0.5409,
+   "desviacion": 0.1814,
+   "pixeles_validos": 292301,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2020-08",
+   "valor": 0.4313,
+   "mediana": 0.4289,
+   "p25": 0.2732,
+   "p75": 0.5936,
+   "desviacion": 0.2148,
+   "pixeles_validos": 292084,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2020-09",
+   "valor": 0.4545,
+   "mediana": 0.4577,
+   "p25": 0.2961,
+   "p75": 0.6207,
+   "desviacion": 0.2135,
+   "pixeles_validos": 289409,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2020-10",
+   "valor": 0.4568,
+   "mediana": 0.4612,
+   "p25": 0.2966,
+   "p75": 0.6266,
+   "desviacion": 0.2167,
+   "pixeles_validos": 292212,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2020-11",
+   "valor": 0.4905,
+   "mediana": 0.52,
+   "p25": 0.3396,
+   "p75": 0.6641,
+   "desviacion": 0.2114,
+   "pixeles_validos": 289202,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2020-12",
+   "valor": 0.5522,
+   "mediana": 0.5993,
+   "p25": 0.4004,
+   "p75": 0.7367,
+   "desviacion": 0.2259,
+   "pixeles_validos": 289516,
+   "cobertura_pct": 98.9
+  },
+  {
+   "periodo": "2021-01",
+   "valor": 0.5445,
+   "mediana": 0.5977,
+   "p25": 0.39,
+   "p75": 0.729,
+   "desviacion": 0.2282,
+   "pixeles_validos": 289285,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2021-02",
+   "valor": 0.5695,
+   "mediana": 0.631,
+   "p25": 0.4005,
+   "p75": 0.7678,
+   "desviacion": 0.2416,
+   "pixeles_validos": 290429,
+   "cobertura_pct": 99.2
+  },
+  {
+   "periodo": "2021-03",
+   "valor": 0.561,
+   "mediana": 0.6287,
+   "p25": 0.3772,
+   "p75": 0.7651,
+   "desviacion": 0.2452,
+   "pixeles_validos": 291457,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2021-04",
+   "valor": 0.5028,
+   "mediana": 0.5434,
+   "p25": 0.3191,
+   "p75": 0.7005,
+   "desviacion": 0.2297,
+   "pixeles_validos": 247035,
+   "cobertura_pct": 84.4
+  },
+  {
+   "periodo": "2021-05",
+   "valor": 0.5052,
+   "mediana": 0.5458,
+   "p25": 0.3394,
+   "p75": 0.6905,
+   "desviacion": 0.224,
+   "pixeles_validos": 291920,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2021-06",
+   "valor": 0.4382,
+   "mediana": 0.4401,
+   "p25": 0.2765,
+   "p75": 0.6063,
+   "desviacion": 0.2187,
+   "pixeles_validos": 291990,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2021-07",
+   "valor": 0.3703,
+   "mediana": 0.3733,
+   "p25": 0.2599,
+   "p75": 0.4844,
+   "desviacion": 0.1546,
+   "pixeles_validos": 292189,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2021-08",
+   "valor": 0.4196,
+   "mediana": 0.412,
+   "p25": 0.2519,
+   "p75": 0.5884,
+   "desviacion": 0.2252,
+   "pixeles_validos": 291994,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2021-09",
+   "valor": 0.4135,
+   "mediana": 0.4088,
+   "p25": 0.2558,
+   "p75": 0.5745,
+   "desviacion": 0.213,
+   "pixeles_validos": 291619,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2021-10",
+   "valor": 0.4313,
+   "mediana": 0.4374,
+   "p25": 0.2801,
+   "p75": 0.5917,
+   "desviacion": 0.2049,
+   "pixeles_validos": 291731,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2021-11",
+   "valor": 0.4482,
+   "mediana": 0.4552,
+   "p25": 0.2921,
+   "p75": 0.6155,
+   "desviacion": 0.2141,
+   "pixeles_validos": 291247,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2021-12",
+   "valor": 0.465,
+   "mediana": 0.4781,
+   "p25": 0.3103,
+   "p75": 0.6328,
+   "desviacion": 0.2157,
+   "pixeles_validos": 287576,
+   "cobertura_pct": 98.2
+  },
+  {
+   "periodo": "2022-01",
+   "valor": 0.3839,
+   "mediana": 0.4079,
+   "p25": 0.3017,
+   "p75": 0.4789,
+   "desviacion": 0.1292,
+   "pixeles_validos": 290835,
+   "cobertura_pct": 99.3
+  },
+  {
+   "periodo": "2022-02",
+   "valor": 0.5123,
+   "mediana": 0.5488,
+   "p25": 0.3537,
+   "p75": 0.6948,
+   "desviacion": 0.2261,
+   "pixeles_validos": 290444,
+   "cobertura_pct": 99.2
+  },
+  {
+   "periodo": "2022-03",
+   "valor": 0.5149,
+   "mediana": 0.5536,
+   "p25": 0.3509,
+   "p75": 0.6977,
+   "desviacion": 0.222,
+   "pixeles_validos": 291722,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2022-04",
+   "valor": 0.498,
+   "mediana": 0.5484,
+   "p25": 0.3384,
+   "p75": 0.6691,
+   "desviacion": 0.2088,
+   "pixeles_validos": 291892,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2022-05",
+   "valor": 0.4495,
+   "mediana": 0.4607,
+   "p25": 0.2908,
+   "p75": 0.6197,
+   "desviacion": 0.2137,
+   "pixeles_validos": 292520,
+   "cobertura_pct": 99.9
+  },
+  {
+   "periodo": "2022-06",
+   "valor": 0.4385,
+   "mediana": 0.4408,
+   "p25": 0.2802,
+   "p75": 0.6044,
+   "desviacion": 0.2141,
+   "pixeles_validos": 292101,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2022-07",
+   "valor": 0.3815,
+   "mediana": 0.3768,
+   "p25": 0.2467,
+   "p75": 0.5167,
+   "desviacion": 0.1845,
+   "pixeles_validos": 292595,
+   "cobertura_pct": 99.9
+  },
+  {
+   "periodo": "2022-08",
+   "valor": 0.4069,
+   "mediana": 0.3977,
+   "p25": 0.2521,
+   "p75": 0.5621,
+   "desviacion": 0.2115,
+   "pixeles_validos": 292328,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2022-09",
+   "valor": 0.4203,
+   "mediana": 0.414,
+   "p25": 0.2648,
+   "p75": 0.5793,
+   "desviacion": 0.2111,
+   "pixeles_validos": 291575,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2022-10",
+   "valor": 0.4098,
+   "mediana": 0.4085,
+   "p25": 0.2671,
+   "p75": 0.5585,
+   "desviacion": 0.1985,
+   "pixeles_validos": 292237,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2022-11",
+   "valor": 0.4328,
+   "mediana": 0.4321,
+   "p25": 0.2802,
+   "p75": 0.5934,
+   "desviacion": 0.2094,
+   "pixeles_validos": 291427,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2022-12",
+   "valor": 0.5133,
+   "mediana": 0.5502,
+   "p25": 0.3573,
+   "p75": 0.6979,
+   "desviacion": 0.2289,
+   "pixeles_validos": 288082,
+   "cobertura_pct": 98.4
+  },
+  {
+   "periodo": "2023-01",
+   "valor": 0.5553,
+   "mediana": 0.6117,
+   "p25": 0.3951,
+   "p75": 0.7426,
+   "desviacion": 0.2327,
+   "pixeles_validos": 289232,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2023-02",
+   "valor": 0.5106,
+   "mediana": 0.5659,
+   "p25": 0.3622,
+   "p75": 0.6771,
+   "desviacion": 0.2048,
+   "pixeles_validos": 291724,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2023-03",
+   "valor": 0.5536,
+   "mediana": 0.6171,
+   "p25": 0.3711,
+   "p75": 0.7542,
+   "desviacion": 0.2397,
+   "pixeles_validos": 290923,
+   "cobertura_pct": 99.3
+  },
+  {
+   "periodo": "2023-04",
+   "valor": 0.4755,
+   "mediana": 0.4931,
+   "p25": 0.3163,
+   "p75": 0.6494,
+   "desviacion": 0.2152,
+   "pixeles_validos": 291965,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2023-05",
+   "valor": 0.4436,
+   "mediana": 0.453,
+   "p25": 0.292,
+   "p75": 0.6058,
+   "desviacion": 0.2075,
+   "pixeles_validos": 292992,
+   "cobertura_pct": 100.0
+  },
+  {
+   "periodo": "2023-06",
+   "valor": 0.4241,
+   "mediana": 0.4288,
+   "p25": 0.2684,
+   "p75": 0.5849,
+   "desviacion": 0.2105,
+   "pixeles_validos": 292243,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2023-07",
+   "valor": 0.387,
+   "mediana": 0.3914,
+   "p25": 0.2613,
+   "p75": 0.5153,
+   "desviacion": 0.1754,
+   "pixeles_validos": 292353,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2023-08",
+   "valor": 0.4039,
+   "mediana": 0.3961,
+   "p25": 0.2404,
+   "p75": 0.5659,
+   "desviacion": 0.2191,
+   "pixeles_validos": 291941,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2023-09",
+   "valor": 0.413,
+   "mediana": 0.4104,
+   "p25": 0.2556,
+   "p75": 0.574,
+   "desviacion": 0.2125,
+   "pixeles_validos": 291223,
+   "cobertura_pct": 99.4
+  },
+  {
+   "periodo": "2023-10",
+   "valor": 0.4635,
+   "mediana": 0.4764,
+   "p25": 0.3006,
+   "p75": 0.6397,
+   "desviacion": 0.2176,
+   "pixeles_validos": 291662,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2023-11",
+   "valor": 0.4777,
+   "mediana": 0.4911,
+   "p25": 0.3229,
+   "p75": 0.6469,
+   "desviacion": 0.215,
+   "pixeles_validos": 290549,
+   "cobertura_pct": 99.2
+  },
+  {
+   "periodo": "2023-12",
+   "valor": 0.4631,
+   "mediana": 0.4783,
+   "p25": 0.3104,
+   "p75": 0.6299,
+   "desviacion": 0.2115,
+   "pixeles_validos": 288129,
+   "cobertura_pct": 98.4
+  },
+  {
+   "periodo": "2024-01",
+   "valor": 0.4502,
+   "mediana": 0.4607,
+   "p25": 0.2915,
+   "p75": 0.6202,
+   "desviacion": 0.2212,
+   "pixeles_validos": 287560,
+   "cobertura_pct": 98.2
+  },
+  {
+   "periodo": "2024-02",
+   "valor": 0.5093,
+   "mediana": 0.5479,
+   "p25": 0.3492,
+   "p75": 0.6901,
+   "desviacion": 0.2218,
+   "pixeles_validos": 291669,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2024-03",
+   "valor": 0.5123,
+   "mediana": 0.5542,
+   "p25": 0.3474,
+   "p75": 0.6957,
+   "desviacion": 0.2239,
+   "pixeles_validos": 287156,
+   "cobertura_pct": 98.1
+  },
+  {
+   "periodo": "2024-04",
+   "valor": 0.5141,
+   "mediana": 0.5683,
+   "p25": 0.3452,
+   "p75": 0.6962,
+   "desviacion": 0.2242,
+   "pixeles_validos": 291535,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2024-05",
+   "valor": 0.4422,
+   "mediana": 0.4492,
+   "p25": 0.2811,
+   "p75": 0.6122,
+   "desviacion": 0.2152,
+   "pixeles_validos": 291954,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2024-06",
+   "valor": 0.403,
+   "mediana": 0.3939,
+   "p25": 0.2425,
+   "p75": 0.5631,
+   "desviacion": 0.2156,
+   "pixeles_validos": 291647,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2024-07",
+   "valor": 0.3376,
+   "mediana": 0.3351,
+   "p25": 0.2277,
+   "p75": 0.4473,
+   "desviacion": 0.1525,
+   "pixeles_validos": 292395,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2024-08",
+   "valor": 0.3555,
+   "mediana": 0.3515,
+   "p25": 0.2326,
+   "p75": 0.4782,
+   "desviacion": 0.1683,
+   "pixeles_validos": 292027,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2024-09",
+   "valor": 0.4075,
+   "mediana": 0.3991,
+   "p25": 0.2471,
+   "p75": 0.5711,
+   "desviacion": 0.2147,
+   "pixeles_validos": 291697,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2024-10",
+   "valor": 0.4959,
+   "mediana": 0.5144,
+   "p25": 0.3294,
+   "p75": 0.6821,
+   "desviacion": 0.2254,
+   "pixeles_validos": 264375,
+   "cobertura_pct": 90.3
+  },
+  {
+   "periodo": "2024-11",
+   "valor": 0.5153,
+   "mediana": 0.5632,
+   "p25": 0.3603,
+   "p75": 0.6942,
+   "desviacion": 0.2191,
+   "pixeles_validos": 289629,
+   "cobertura_pct": 98.9
+  },
+  {
+   "periodo": "2024-12",
+   "valor": 0.5791,
+   "mediana": 0.6506,
+   "p25": 0.4137,
+   "p75": 0.7739,
+   "desviacion": 0.2424,
+   "pixeles_validos": 288888,
+   "cobertura_pct": 98.6
+  },
+  {
+   "periodo": "2025-01",
+   "valor": 0.5926,
+   "mediana": 0.6685,
+   "p25": 0.4255,
+   "p75": 0.7895,
+   "desviacion": 0.2445,
+   "pixeles_validos": 289649,
+   "cobertura_pct": 98.9
+  },
+  {
+   "periodo": "2025-02",
+   "valor": 0.5899,
+   "mediana": 0.6662,
+   "p25": 0.4105,
+   "p75": 0.7938,
+   "desviacion": 0.2455,
+   "pixeles_validos": 291658,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2025-03",
+   "valor": 0.558,
+   "mediana": 0.6324,
+   "p25": 0.3716,
+   "p75": 0.7635,
+   "desviacion": 0.246,
+   "pixeles_validos": 291432,
+   "cobertura_pct": 99.5
+  },
+  {
+   "periodo": "2025-04",
+   "valor": 0.5566,
+   "mediana": 0.6313,
+   "p25": 0.3653,
+   "p75": 0.7659,
+   "desviacion": 0.2516,
+   "pixeles_validos": 290035,
+   "cobertura_pct": 99.0
+  },
+  {
+   "periodo": "2025-05",
+   "valor": 0.4504,
+   "mediana": 0.4629,
+   "p25": 0.288,
+   "p75": 0.6236,
+   "desviacion": 0.2183,
+   "pixeles_validos": 292330,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2025-06",
+   "valor": 0.4326,
+   "mediana": 0.4292,
+   "p25": 0.2641,
+   "p75": 0.605,
+   "desviacion": 0.226,
+   "pixeles_validos": 291914,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2025-07",
+   "valor": 0.4194,
+   "mediana": 0.4108,
+   "p25": 0.253,
+   "p75": 0.5875,
+   "desviacion": 0.2237,
+   "pixeles_validos": 292100,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2025-08",
+   "valor": 0.4058,
+   "mediana": 0.4017,
+   "p25": 0.2642,
+   "p75": 0.5505,
+   "desviacion": 0.1926,
+   "pixeles_validos": 291647,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2025-09",
+   "valor": 0.4218,
+   "mediana": 0.4151,
+   "p25": 0.2698,
+   "p75": 0.5767,
+   "desviacion": 0.205,
+   "pixeles_validos": 291776,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2025-10",
+   "valor": 0.4305,
+   "mediana": 0.4264,
+   "p25": 0.264,
+   "p75": 0.6051,
+   "desviacion": 0.2273,
+   "pixeles_validos": 291691,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2025-11",
+   "valor": 0.5252,
+   "mediana": 0.5574,
+   "p25": 0.3643,
+   "p75": 0.7139,
+   "desviacion": 0.228,
+   "pixeles_validos": 290471,
+   "cobertura_pct": 99.2
+  },
+  {
+   "periodo": "2025-12",
+   "valor": 0.543,
+   "mediana": 0.5922,
+   "p25": 0.384,
+   "p75": 0.7353,
+   "desviacion": 0.2354,
+   "pixeles_validos": 285077,
+   "cobertura_pct": 97.3
+  },
+  {
+   "periodo": "2026-01",
+   "valor": 0.5647,
+   "mediana": 0.6205,
+   "p25": 0.4066,
+   "p75": 0.7553,
+   "desviacion": 0.2347,
+   "pixeles_validos": 289445,
+   "cobertura_pct": 98.8
+  },
+  {
+   "periodo": "2026-02",
+   "valor": 0.568,
+   "mediana": 0.6357,
+   "p25": 0.389,
+   "p75": 0.7727,
+   "desviacion": 0.2466,
+   "pixeles_validos": 291749,
+   "cobertura_pct": 99.6
+  },
+  {
+   "periodo": "2026-03",
+   "valor": 0.5648,
+   "mediana": 0.6356,
+   "p25": 0.3752,
+   "p75": 0.7705,
+   "desviacion": 0.2457,
+   "pixeles_validos": 290909,
+   "cobertura_pct": 99.3
+  },
+  {
+   "periodo": "2026-04",
+   "valor": 0.5096,
+   "mediana": 0.5604,
+   "p25": 0.3251,
+   "p75": 0.7076,
+   "desviacion": 0.238,
+   "pixeles_validos": 292257,
+   "cobertura_pct": 99.8
+  },
+  {
+   "periodo": "2026-05",
+   "valor": 0.4675,
+   "mediana": 0.4768,
+   "p25": 0.2979,
+   "p75": 0.6502,
+   "desviacion": 0.2238,
+   "pixeles_validos": 292082,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2026-06",
+   "valor": 0.3985,
+   "mediana": 0.3974,
+   "p25": 0.2455,
+   "p75": 0.5564,
+   "desviacion": 0.202,
+   "pixeles_validos": 292016,
+   "cobertura_pct": 99.7
+  },
+  {
+   "periodo": "2026-07",
+   "valor": 0.4254,
+   "mediana": 0.4143,
+   "p25": 0.2523,
+   "p75": 0.5983,
+   "desviacion": 0.2282,
+   "pixeles_validos": 292347,
+   "cobertura_pct": 99.8
+  }
+ ]
+}

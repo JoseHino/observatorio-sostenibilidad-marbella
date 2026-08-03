@@ -1,0 +1,28 @@
+{
+  "indicador": "ndvi_municipal",
+  "titulo": "NDVI medio municipal",
+  "descripcion": "Índice de vegetación de diferencia normalizada promediado sobre el término municipal, en compuesto mensual.",
+  "fuente": "Copernicus Sentinel-2 L2A vía Sentinel Hub Statistical API (CDSE)",
+  "formula": "NDVI = (B08 - B04) / (B08 + B04)",
+  "resolucion_espacial": "20 m",
+  "resolucion_temporal": "mensual (compuesto)",
+  "metodo": "Agregación zonal en servidor sobre el polígono municipal. Mosaico mensual con criterio leastCC: para cada píxel se toma la observación menos nubosa del mes.",
+  "enmascaramiento": "Banda SCL del producto L2A. Clases válidas: 4 vegetación, 5 suelo desnudo, 7 sin clasificar. Se excluyen nubes, cirros, sombras, agua, nieve y saturados.",
+  "epsg_peticion": 32630,
+  "epsg_calculo": 25830,
+  "serie_desde": "2017-01",
+  "serie_hasta": "2026-07",
+  "n_periodos": 115,
+  "n_huecos": 0,
+  "limitaciones": [
+    "El valor mensual es un compuesto, no una observación de fecha única.",
+    "La media municipal enmascara el fuerte gradiente altitudinal entre la costa y Sierra Blanca; su lectura exige estratificación por altitud.",
+    "Los meses sin observación válida se publican como hueco. No se interpolan.",
+    "El servicio Sentinel Hub no admite EPSG:25830; la petición se formula en EPSG:32630. Las superficies se calculan aparte en EPSG:25830.",
+    "La cobertura de 2017 es menor: hasta marzo de 2017 solo operaba la unidad S2A, con revisita de 10 días. Febrero de 2017 queda marcado por cobertura baja."
+  ],
+  "valor_minimo_serie": 0.3376,
+  "valor_maximo_serie": 0.6043,
+  "licencia": "Contiene datos Copernicus modificados",
+  "ruta_datos": "data/processed/ndvi_municipal.json"
+}

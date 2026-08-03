@@ -1,0 +1,15 @@
+{
+  "limite_municipal": {
+    "fuente": "CNIG WFS INSPIRE",
+    "superficie_ha": 11714.2,
+    "ultima_ejecucion": "2026-08-03T13:07:21Z"
+  },
+  "ndvi_municipal": {
+    "hash_config": "31d696c496d99947",
+    "n_huecos": 0,
+    "n_periodos": 115,
+    "pu_ultima_ejecucion": 35.5,
+    "ultima_ejecucion": "2026-08-03T13:07:26Z",
+    "ultima_fecha_dato": "2026-07"
+  }
+}
