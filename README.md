@@ -1,8 +1,13 @@
 # Observatorio de Sostenibilidad Territorial de Marbella
 
+[![Actualización semanal](https://github.com/JoseHino/observatorio-sostenibilidad-marbella/actions/workflows/weekly.yml/badge.svg)](https://github.com/JoseHino/observatorio-sostenibilidad-marbella/actions/workflows/weekly.yml)
+[![GitHub Pages](https://github.com/JoseHino/observatorio-sostenibilidad-marbella/actions/workflows/pages.yml/badge.svg)](https://github.com/JoseHino/observatorio-sostenibilidad-marbella/actions/workflows/pages.yml)
+
 Indicadores ambientales del término municipal de Marbella (código INE 29069) derivados de
 fuentes de observación de la Tierra y series estadísticas oficiales, publicados como sitio
 estático.
+
+**Sitio publicado: <https://josehino.github.io/observatorio-sostenibilidad-marbella/>**
 
 ## Estado
 
@@ -13,10 +18,20 @@ estático.
 - 11 endpoints verificados mediante consulta real.
 - Viabilidad evaluada indicador por indicador: 10 viables, 11 viables con reservas,
   3 pendientes de resolver fuente, 3 no viables tal como se plantearon.
-- Acceso a Copernicus operativo y consumo de cuota medido: 5,1 PU por mes de serie NDVI,
-  sobre una cuota mensual de 10.000 PU. Sin riesgo de gasto.
+- Acceso a Copernicus operativo y consumo de cuota medido sobre una cuota mensual de
+  10.000 PU. Sin riesgo de gasto.
 
-Fase 1 (piloto vertical NDVI) en curso.
+**Fase 1 — Piloto vertical NDVI: cerrada.**
+
+- Serie NDVI mensual municipal **2017-01 a 2026-07: 115 periodos, sin huecos**.
+- Coste: 583,5 PU la carga histórica completa, **35,5 PU la actualización incremental**.
+- Ciclo estacional mediterráneo: máximo en marzo (0,547) y mínimo en julio y agosto (0,396).
+  El mínimo interanual corresponde a 2022 (0,447), año de sequía severa en Andalucía.
+- Automatización verificada en CI: si no hay dato nuevo, no se genera commit; el sitio se
+  redespliega igualmente para refrescar la fecha de comprobación.
+
+Fase 2 (bloques de vegetación y clima urbano) pendiente de las decisiones abiertas
+recogidas en [`docs/matriz-viabilidad.md`](docs/matriz-viabilidad.md).
 
 ## Arquitectura
 
