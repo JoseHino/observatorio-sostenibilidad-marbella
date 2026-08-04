@@ -1,0 +1,1154 @@
+{
+ "indicador": "presion_turistica",
+ "titulo": "Presión turística y variables ambientales",
+ "unidad_analisis": "municipio",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "mensual",
+ "ultimo_periodo": "2026-06",
+ "n_periodos": 115,
+ "cruces": [
+  {
+   "variable": "ndvi",
+   "titulo": "NDVI medio municipal",
+   "n_meses_comunes": 100,
+   "desde": "2018-01",
+   "hasta": "2026-06",
+   "correlacion_pearson": -0.699
+  },
+  {
+   "variable": "lst",
+   "titulo": "Temperatura superficial terrestre",
+   "n_meses_comunes": 88,
+   "desde": "2018-01",
+   "hasta": "2026-06",
+   "correlacion_pearson": 0.84
+  }
+ ],
+ "perfil_estacional_normalizado": {
+  "pernoctaciones": [
+   0.0395,
+   0.0802,
+   0.2472,
+   0.4591,
+   0.6696,
+   0.7548,
+   0.8555,
+   1.0,
+   0.6761,
+   0.5648,
+   0.0903,
+   0.0
+  ],
+  "ndvi": [
+   0.93,
+   0.9908,
+   1.0,
+   0.8197,
+   0.5007,
+   0.1598,
+   0.0007,
+   0.0,
+   0.2259,
+   0.3501,
+   0.6995,
+   0.8983
+  ],
+  "lst": [
+   0.0,
+   0.0922,
+   0.2636,
+   0.4153,
+   0.7522,
+   0.9096,
+   0.9882,
+   1.0,
+   0.7674,
+   0.5065,
+   0.2036,
+   0.0403
+  ]
+ },
+ "perfil_estacional_crudo": {
+  "pernoctaciones": [
+   87385.1111,
+   98343.5556,
+   143258.0,
+   200272.2222,
+   256879.125,
+   279798.25,
+   306898.375,
+   345763.0,
+   258630.0,
+   228687.5,
+   101062.5,
+   76763.25
+  ],
+  "ndvi": [
+   0.5364,
+   0.5456,
+   0.547,
+   0.5197,
+   0.4714,
+   0.4198,
+   0.3957,
+   0.3956,
+   0.4298,
+   0.4486,
+   0.5015,
+   0.5316
+  ],
+  "lst": [
+   17.057,
+   19.0444,
+   22.7357,
+   26.004,
+   33.2644,
+   36.6544,
+   38.349,
+   38.6025,
+   33.5917,
+   27.97,
+   21.4443,
+   17.9262
+  ]
+ },
+ "coincidencias": {
+  "mes_maxima_ocupacion": "Ago",
+  "mes_minimo_ndvi": "Ago",
+  "mes_maxima_lst": "Ago"
+ },
+ "serie": [
+  {
+   "periodo": "2017-01",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 9536.0,
+   "ndvi": 0.5587,
+   "lst": 19.81
+  },
+  {
+   "periodo": "2017-02",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 11169.0,
+   "ndvi": 0.4948,
+   "lst": null
+  },
+  {
+   "periodo": "2017-03",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 12871.0,
+   "ndvi": 0.5683,
+   "lst": 16.42
+  },
+  {
+   "periodo": "2017-04",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 16426.0,
+   "ndvi": 0.55,
+   "lst": 28.3
+  },
+  {
+   "periodo": "2017-05",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 17034.0,
+   "ndvi": 0.52,
+   "lst": 32.36
+  },
+  {
+   "periodo": "2017-06",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 17034.0,
+   "ndvi": 0.4244,
+   "lst": 41.7
+  },
+  {
+   "periodo": "2017-07",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 17025.0,
+   "ndvi": 0.4179,
+   "lst": 38.17
+  },
+  {
+   "periodo": "2017-08",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 17037.0,
+   "ndvi": 0.3763,
+   "lst": 35.44
+  },
+  {
+   "periodo": "2017-09",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 17037.0,
+   "ndvi": 0.4316,
+   "lst": 31.71
+  },
+  {
+   "periodo": "2017-10",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 16640.0,
+   "ndvi": 0.4306,
+   "lst": null
+  },
+  {
+   "periodo": "2017-11",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 10513.0,
+   "ndvi": 0.5269,
+   "lst": 21.24
+  },
+  {
+   "periodo": "2017-12",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": 9953.0,
+   "ndvi": 0.549,
+   "lst": 16.88
+  },
+  {
+   "periodo": "2018-01",
+   "pernoctaciones": 101627.0,
+   "viajeros": 28695.0,
+   "plazas": 10068.0,
+   "ndvi": 0.5705,
+   "lst": 17.93,
+   "pernoctaciones_por_plaza_dia": 0.332
+  },
+  {
+   "periodo": "2018-02",
+   "pernoctaciones": 108891.0,
+   "viajeros": 33660.0,
+   "plazas": 11153.0,
+   "ndvi": 0.5551,
+   "lst": 16.53,
+   "pernoctaciones_por_plaza_dia": 0.321
+  },
+  {
+   "periodo": "2018-03",
+   "pernoctaciones": 171105.0,
+   "viajeros": 48843.0,
+   "plazas": 13739.0,
+   "ndvi": 0.5482,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.41
+  },
+  {
+   "periodo": "2018-04",
+   "pernoctaciones": 244572.0,
+   "viajeros": 70901.0,
+   "plazas": 16998.0,
+   "ndvi": 0.5237,
+   "lst": 27.9,
+   "pernoctaciones_por_plaza_dia": 0.473
+  },
+  {
+   "periodo": "2018-05",
+   "pernoctaciones": 282163.0,
+   "viajeros": 80939.0,
+   "plazas": 17063.0,
+   "ndvi": 0.5051,
+   "lst": 30.33,
+   "pernoctaciones_por_plaza_dia": 0.544
+  },
+  {
+   "periodo": "2018-06",
+   "pernoctaciones": 331860.0,
+   "viajeros": 108514.0,
+   "plazas": 17369.0,
+   "ndvi": 0.3791,
+   "lst": 37.2,
+   "pernoctaciones_por_plaza_dia": 0.629
+  },
+  {
+   "periodo": "2018-07",
+   "pernoctaciones": 368004.0,
+   "viajeros": 97401.0,
+   "plazas": 17319.0,
+   "ndvi": 0.4186,
+   "lst": 38.44,
+   "pernoctaciones_por_plaza_dia": 0.699
+  },
+  {
+   "periodo": "2018-08",
+   "pernoctaciones": 400071.0,
+   "viajeros": 95991.0,
+   "plazas": 17319.0,
+   "ndvi": 0.4135,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.76
+  },
+  {
+   "periodo": "2018-09",
+   "pernoctaciones": 305650.0,
+   "viajeros": 92272.0,
+   "plazas": 17319.0,
+   "ndvi": 0.4429,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.581
+  },
+  {
+   "periodo": "2018-10",
+   "pernoctaciones": 265609.0,
+   "viajeros": 70579.0,
+   "plazas": 16521.0,
+   "ndvi": 0.4539,
+   "lst": 25.95,
+   "pernoctaciones_por_plaza_dia": 0.529
+  },
+  {
+   "periodo": "2018-11",
+   "pernoctaciones": 109522.0,
+   "viajeros": 33376.0,
+   "plazas": 10769.0,
+   "ndvi": 0.6043,
+   "lst": 19.63,
+   "pernoctaciones_por_plaza_dia": 0.335
+  },
+  {
+   "periodo": "2018-12",
+   "pernoctaciones": 90905.0,
+   "viajeros": 27921.0,
+   "plazas": 9743.0,
+   "ndvi": 0.5877,
+   "lst": 18.79,
+   "pernoctaciones_por_plaza_dia": 0.307
+  },
+  {
+   "periodo": "2019-01",
+   "pernoctaciones": 102873.0,
+   "viajeros": 28301.0,
+   "plazas": 10164.0,
+   "ndvi": 0.5907,
+   "lst": 16.79,
+   "pernoctaciones_por_plaza_dia": 0.333
+  },
+  {
+   "periodo": "2019-02",
+   "pernoctaciones": 108368.0,
+   "viajeros": 35181.0,
+   "plazas": 11717.0,
+   "ndvi": 0.5879,
+   "lst": 19.8,
+   "pernoctaciones_por_plaza_dia": 0.304
+  },
+  {
+   "periodo": "2019-03",
+   "pernoctaciones": 163424.0,
+   "viajeros": 49480.0,
+   "plazas": 13327.0,
+   "ndvi": 0.5392,
+   "lst": 23.38,
+   "pernoctaciones_por_plaza_dia": 0.403
+  },
+  {
+   "periodo": "2019-04",
+   "pernoctaciones": 246117.0,
+   "viajeros": 71446.0,
+   "plazas": 15511.0,
+   "ndvi": 0.5176,
+   "lst": 28.97,
+   "pernoctaciones_por_plaza_dia": 0.522
+  },
+  {
+   "periodo": "2019-05",
+   "pernoctaciones": 284041.0,
+   "viajeros": 81945.0,
+   "plazas": 16489.0,
+   "ndvi": 0.4393,
+   "lst": 33.97,
+   "pernoctaciones_por_plaza_dia": 0.567
+  },
+  {
+   "periodo": "2019-06",
+   "pernoctaciones": 323855.0,
+   "viajeros": 86486.0,
+   "plazas": 16700.0,
+   "ndvi": 0.4133,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.638
+  },
+  {
+   "periodo": "2019-07",
+   "pernoctaciones": 366744.0,
+   "viajeros": 95039.0,
+   "plazas": 16961.0,
+   "ndvi": 0.3939,
+   "lst": 36.66,
+   "pernoctaciones_por_plaza_dia": 0.711
+  },
+  {
+   "periodo": "2019-08",
+   "pernoctaciones": 404449.0,
+   "viajeros": 89179.0,
+   "plazas": 16961.0,
+   "ndvi": 0.3478,
+   "lst": 39.5,
+   "pernoctaciones_por_plaza_dia": 0.784
+  },
+  {
+   "periodo": "2019-09",
+   "pernoctaciones": 321354.0,
+   "viajeros": 87845.0,
+   "plazas": 16961.0,
+   "ndvi": 0.4634,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.623
+  },
+  {
+   "periodo": "2019-10",
+   "pernoctaciones": 270367.0,
+   "viajeros": 73258.0,
+   "plazas": 16401.0,
+   "ndvi": 0.4653,
+   "lst": 26.54,
+   "pernoctaciones_por_plaza_dia": 0.542
+  },
+  {
+   "periodo": "2019-11",
+   "pernoctaciones": 112801.0,
+   "viajeros": 34144.0,
+   "plazas": 10888.0,
+   "ndvi": 0.4928,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.341
+  },
+  {
+   "periodo": "2019-12",
+   "pernoctaciones": 91608.0,
+   "viajeros": 29157.0,
+   "plazas": 9827.0,
+   "ndvi": 0.5322,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.307
+  },
+  {
+   "periodo": "2020-01",
+   "pernoctaciones": 123669.0,
+   "viajeros": 37996.0,
+   "plazas": 9807.0,
+   "ndvi": 0.553,
+   "lst": 16.66,
+   "pernoctaciones_por_plaza_dia": 0.415
+  },
+  {
+   "periodo": "2020-02",
+   "pernoctaciones": 141190.0,
+   "viajeros": 47280.0,
+   "plazas": 11591.0,
+   "ndvi": 0.5591,
+   "lst": 21.84,
+   "pernoctaciones_por_plaza_dia": 0.401
+  },
+  {
+   "periodo": "2020-03",
+   "pernoctaciones": 75202.0,
+   "viajeros": 21780.0,
+   "plazas": 8629.0,
+   "ndvi": 0.5499,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.287
+  },
+  {
+   "periodo": "2020-04",
+   "pernoctaciones": 0.0,
+   "viajeros": 0.0,
+   "plazas": 0.0,
+   "ndvi": 0.5487,
+   "lst": 22.86
+  },
+  {
+   "periodo": "2020-05",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": null,
+   "ndvi": 0.4913,
+   "lst": 32.89
+  },
+  {
+   "periodo": "2020-06",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": null,
+   "ndvi": 0.4462,
+   "lst": 33.64
+  },
+  {
+   "periodo": "2020-07",
+   "pernoctaciones": 122992.0,
+   "viajeros": 38745.0,
+   "plazas": 11225.0,
+   "ndvi": 0.4049,
+   "lst": 38.18,
+   "pernoctaciones_por_plaza_dia": 0.36
+  },
+  {
+   "periodo": "2020-08",
+   "pernoctaciones": 185019.0,
+   "viajeros": 52484.0,
+   "plazas": 12850.0,
+   "ndvi": 0.4313,
+   "lst": 39.07,
+   "pernoctaciones_por_plaza_dia": 0.474
+  },
+  {
+   "periodo": "2020-09",
+   "pernoctaciones": 68473.0,
+   "viajeros": 21273.0,
+   "plazas": 11171.0,
+   "ndvi": 0.4545,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.202
+  },
+  {
+   "periodo": "2020-10",
+   "pernoctaciones": 38743.0,
+   "viajeros": 15573.0,
+   "plazas": 6758.0,
+   "ndvi": 0.4568,
+   "lst": 26.44,
+   "pernoctaciones_por_plaza_dia": 0.189
+  },
+  {
+   "periodo": "2020-11",
+   "pernoctaciones": 19692.0,
+   "viajeros": 7850.0,
+   "plazas": 5870.0,
+   "ndvi": 0.4905,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.11
+  },
+  {
+   "periodo": "2020-12",
+   "pernoctaciones": 20741.0,
+   "viajeros": 9313.0,
+   "plazas": 5052.0,
+   "ndvi": 0.5522,
+   "lst": 16.01,
+   "pernoctaciones_por_plaza_dia": 0.135
+  },
+  {
+   "periodo": "2021-01",
+   "pernoctaciones": 26922.0,
+   "viajeros": 9263.0,
+   "plazas": 6328.0,
+   "ndvi": 0.5445,
+   "lst": 16.93,
+   "pernoctaciones_por_plaza_dia": 0.14
+  },
+  {
+   "periodo": "2021-02",
+   "pernoctaciones": 25063.0,
+   "viajeros": 9392.0,
+   "plazas": 5557.0,
+   "ndvi": 0.5695,
+   "lst": 20.19,
+   "pernoctaciones_por_plaza_dia": 0.148
+  },
+  {
+   "periodo": "2021-03",
+   "pernoctaciones": 41916.0,
+   "viajeros": 16892.0,
+   "plazas": 7854.0,
+   "ndvi": 0.561,
+   "lst": 22.66,
+   "pernoctaciones_por_plaza_dia": 0.176
+  },
+  {
+   "periodo": "2021-04",
+   "pernoctaciones": 44114.0,
+   "viajeros": 16462.0,
+   "plazas": 5890.0,
+   "ndvi": 0.5028,
+   "lst": 25.2,
+   "pernoctaciones_por_plaza_dia": 0.246
+  },
+  {
+   "periodo": "2021-05",
+   "pernoctaciones": 94664.0,
+   "viajeros": 30132.0,
+   "plazas": 8458.0,
+   "ndvi": 0.5052,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.368
+  },
+  {
+   "periodo": "2021-06",
+   "pernoctaciones": 155414.0,
+   "viajeros": 46972.0,
+   "plazas": 12969.0,
+   "ndvi": 0.4382,
+   "lst": 35.93,
+   "pernoctaciones_por_plaza_dia": 0.394
+  },
+  {
+   "periodo": "2021-07",
+   "pernoctaciones": 283265.0,
+   "viajeros": 79152.0,
+   "plazas": 15435.0,
+   "ndvi": 0.3703,
+   "lst": 35.18,
+   "pernoctaciones_por_plaza_dia": 0.604
+  },
+  {
+   "periodo": "2021-08",
+   "pernoctaciones": 362072.0,
+   "viajeros": 87125.0,
+   "plazas": 15457.0,
+   "ndvi": 0.4196,
+   "lst": 39.23,
+   "pernoctaciones_por_plaza_dia": 0.771
+  },
+  {
+   "periodo": "2021-09",
+   "pernoctaciones": 265800.0,
+   "viajeros": 63545.0,
+   "plazas": 14915.0,
+   "ndvi": 0.4135,
+   "lst": 33.39,
+   "pernoctaciones_por_plaza_dia": 0.586
+  },
+  {
+   "periodo": "2021-10",
+   "pernoctaciones": 241562.0,
+   "viajeros": 57705.0,
+   "plazas": 13849.0,
+   "ndvi": 0.4313,
+   "lst": 25.77,
+   "pernoctaciones_por_plaza_dia": 0.574
+  },
+  {
+   "periodo": "2021-11",
+   "pernoctaciones": 113599.0,
+   "viajeros": 36638.0,
+   "plazas": 9632.0,
+   "ndvi": 0.4482,
+   "lst": 16.19,
+   "pernoctaciones_por_plaza_dia": 0.388
+  },
+  {
+   "periodo": "2021-12",
+   "pernoctaciones": 78032.0,
+   "viajeros": 29970.0,
+   "plazas": 8455.0,
+   "ndvi": 0.465,
+   "lst": 18.76,
+   "pernoctaciones_por_plaza_dia": 0.304
+  },
+  {
+   "periodo": "2022-01",
+   "pernoctaciones": 85193.0,
+   "viajeros": 25891.0,
+   "plazas": 9084.0,
+   "ndvi": 0.3839,
+   "lst": 17.57,
+   "pernoctaciones_por_plaza_dia": 0.308
+  },
+  {
+   "periodo": "2022-02",
+   "pernoctaciones": 103555.0,
+   "viajeros": 32982.0,
+   "plazas": 9974.0,
+   "ndvi": 0.5123,
+   "lst": 21.02,
+   "pernoctaciones_por_plaza_dia": 0.342
+  },
+  {
+   "periodo": "2022-03",
+   "pernoctaciones": 135235.0,
+   "viajeros": 39663.0,
+   "plazas": 11397.0,
+   "ndvi": 0.5149,
+   "lst": null,
+   "pernoctaciones_por_plaza_dia": 0.39
+  },
+  {
+   "periodo": "2022-04",
+   "pernoctaciones": 248443.0,
+   "viajeros": 71243.0,
+   "plazas": 13947.0,
+   "ndvi": 0.498,
+   "lst": 24.67,
+   "pernoctaciones_por_plaza_dia": 0.586
+  },
+  {
+   "periodo": "2022-05",
+   "pernoctaciones": 263496.0,
+   "viajeros": 69638.0,
+   "plazas": 14153.0,
+   "ndvi": 0.4495,
+   "lst": 33.28,
+   "pernoctaciones_por_plaza_dia": 0.612
+  },
+  {
+   "periodo": "2022-06",
+   "pernoctaciones": 272252.0,
+   "viajeros": 72439.0,
+   "plazas": 14537.0,
+   "ndvi": 0.4385,
+   "lst": 36.81,
+   "pernoctaciones_por_plaza_dia": 0.616
+  },
+  {
+   "periodo": "2022-07",
+   "pernoctaciones": 336625.0,
+   "viajeros": 85002.0,
+   "plazas": 14934.0,
+   "ndvi": 0.3815,
+   "lst": 41.67,
+   "pernoctaciones_por_plaza_dia": 0.741
+  },
+  {
+   "periodo": "2022-08",
+   "pernoctaciones": 351148.0,
+   "viajeros": 86809.0,
+   "plazas": 15000.0,
+   "ndvi": 0.4069,
+   "lst": 40.49,
+   "pernoctaciones_por_plaza_dia": 0.77
+  },
+  {
+   "periodo": "2022-09",
+   "pernoctaciones": 256760.0,
+   "viajeros": 75526.0,
+   "plazas": 14875.0,
+   "ndvi": 0.4203,
+   "lst": 31.73,
+   "pernoctaciones_por_plaza_dia": 0.568
+  },
+  {
+   "periodo": "2022-10",
+   "pernoctaciones": 239998.0,
+   "viajeros": 55713.0,
+   "plazas": 14585.0,
+   "ndvi": 0.4098,
+   "lst": 30.7,
+   "pernoctaciones_por_plaza_dia": 0.541
+  },
+  {
+   "periodo": "2022-11",
+   "pernoctaciones": 105715.0,
+   "viajeros": 31120.0,
+   "plazas": 9661.0,
+   "ndvi": 0.4328,
+   "lst": 24.16,
+   "pernoctaciones_por_plaza_dia": 0.36
+  },
+  {
+   "periodo": "2022-12",
+   "pernoctaciones": 81633.0,
+   "viajeros": 25336.0,
+   "plazas": 8559.0,
+   "ndvi": 0.5133,
+   "lst": 18.26,
+   "pernoctaciones_por_plaza_dia": 0.314
+  },
+  {
+   "periodo": "2023-01",
+   "pernoctaciones": 93948.0,
+   "viajeros": 29695.0,
+   "plazas": 8994.0,
+   "ndvi": 0.5553,
+   "lst": 16.79,
+   "pernoctaciones_por_plaza_dia": 0.344
+  },
+  {
+   "periodo": "2023-02",
+   "pernoctaciones": 97880.0,
+   "viajeros": 31300.0,
+   "plazas": 9066.0,
+   "ndvi": 0.5106,
+   "lst": 18.77,
+   "pernoctaciones_por_plaza_dia": 0.355
+  },
+  {
+   "periodo": "2023-03",
+   "pernoctaciones": 157313.0,
+   "viajeros": 55036.0,
+   "plazas": 12138.0,
+   "ndvi": 0.5536,
+   "lst": 28.52,
+   "pernoctaciones_por_plaza_dia": 0.426
+  },
+  {
+   "periodo": "2023-04",
+   "pernoctaciones": 283958.0,
+   "viajeros": 77449.0,
+   "plazas": 14926.0,
+   "ndvi": 0.4755,
+   "lst": 30.03,
+   "pernoctaciones_por_plaza_dia": 0.626
+  },
+  {
+   "periodo": "2023-05",
+   "pernoctaciones": 302696.0,
+   "viajeros": 76686.0,
+   "plazas": 15265.0,
+   "ndvi": 0.4436,
+   "lst": 38.4,
+   "pernoctaciones_por_plaza_dia": 0.652
+  },
+  {
+   "periodo": "2023-06",
+   "pernoctaciones": 302852.0,
+   "viajeros": 79264.0,
+   "plazas": 16004.0,
+   "ndvi": 0.4241,
+   "lst": 37.52,
+   "pernoctaciones_por_plaza_dia": 0.622
+  },
+  {
+   "periodo": "2023-07",
+   "pernoctaciones": 352386.0,
+   "viajeros": 82636.0,
+   "plazas": 16028.0,
+   "ndvi": 0.387,
+   "lst": 38.97,
+   "pernoctaciones_por_plaza_dia": 0.723
+  },
+  {
+   "periodo": "2023-08",
+   "pernoctaciones": 380984.0,
+   "viajeros": 97049.0,
+   "plazas": 16028.0,
+   "ndvi": 0.4039,
+   "lst": 38.1,
+   "pernoctaciones_por_plaza_dia": 0.782
+  },
+  {
+   "periodo": "2023-09",
+   "pernoctaciones": 302052.0,
+   "viajeros": 80002.0,
+   "plazas": 16028.0,
+   "ndvi": 0.413,
+   "lst": 34.05,
+   "pernoctaciones_por_plaza_dia": 0.62
+  },
+  {
+   "periodo": "2023-10",
+   "pernoctaciones": 273454.0,
+   "viajeros": 70508.0,
+   "plazas": 15166.0,
+   "ndvi": 0.4635,
+   "lst": 31.66,
+   "pernoctaciones_por_plaza_dia": 0.593
+  },
+  {
+   "periodo": "2023-11",
+   "pernoctaciones": 111485.0,
+   "viajeros": 33400.0,
+   "plazas": 10035.0,
+   "ndvi": 0.4777,
+   "lst": 23.26,
+   "pernoctaciones_por_plaza_dia": 0.365
+  },
+  {
+   "periodo": "2023-12",
+   "pernoctaciones": 91645.0,
+   "viajeros": 29146.0,
+   "plazas": 9322.0,
+   "ndvi": 0.4631,
+   "lst": 18.41,
+   "pernoctaciones_por_plaza_dia": 0.323
+  },
+  {
+   "periodo": "2024-01",
+   "pernoctaciones": 89501.0,
+   "viajeros": 28654.0,
+   "plazas": 8894.0,
+   "ndvi": 0.4502,
+   "lst": 16.08,
+   "pernoctaciones_por_plaza_dia": 0.331
+  },
+  {
+   "periodo": "2024-02",
+   "pernoctaciones": 105405.0,
+   "viajeros": 32928.0,
+   "plazas": 9564.0,
+   "ndvi": 0.5093,
+   "lst": 14.72,
+   "pernoctaciones_por_plaza_dia": 0.363
+  },
+  {
+   "periodo": "2024-03",
+   "pernoctaciones": 220575.0,
+   "viajeros": 62006.0,
+   "plazas": 14949.0,
+   "ndvi": 0.5123,
+   "lst": 20.52,
+   "pernoctaciones_por_plaza_dia": 0.485
+  },
+  {
+   "periodo": "2024-04",
+   "pernoctaciones": 240467.0,
+   "viajeros": 69905.0,
+   "plazas": 14961.0,
+   "ndvi": 0.5141,
+   "lst": 25.76,
+   "pernoctaciones_por_plaza_dia": 0.529
+  },
+  {
+   "periodo": "2024-05",
+   "pernoctaciones": 273365.0,
+   "viajeros": 77686.0,
+   "plazas": 14496.0,
+   "ndvi": 0.4422,
+   "lst": 31.85,
+   "pernoctaciones_por_plaza_dia": 0.62
+  },
+  {
+   "periodo": "2024-06",
+   "pernoctaciones": 287271.0,
+   "viajeros": 76831.0,
+   "plazas": 14873.0,
+   "ndvi": 0.403,
+   "lst": 35.21,
+   "pernoctaciones_por_plaza_dia": 0.635
+  },
+  {
+   "periodo": "2024-07",
+   "pernoctaciones": 299432.0,
+   "viajeros": 76597.0,
+   "plazas": 14720.0,
+   "ndvi": 0.3376,
+   "lst": 39.38,
+   "pernoctaciones_por_plaza_dia": 0.669
+  },
+  {
+   "periodo": "2024-08",
+   "pernoctaciones": 331995.0,
+   "viajeros": 86984.0,
+   "plazas": 14858.0,
+   "ndvi": 0.3555,
+   "lst": 39.05,
+   "pernoctaciones_por_plaza_dia": 0.735
+  },
+  {
+   "periodo": "2024-09",
+   "pernoctaciones": 277403.0,
+   "viajeros": 73879.0,
+   "plazas": 15015.0,
+   "ndvi": 0.4075,
+   "lst": 34.04,
+   "pernoctaciones_por_plaza_dia": 0.608
+  },
+  {
+   "periodo": "2024-10",
+   "pernoctaciones": 253534.0,
+   "viajeros": 71793.0,
+   "plazas": 13952.0,
+   "ndvi": 0.4959,
+   "lst": 27.28,
+   "pernoctaciones_por_plaza_dia": 0.598
+  },
+  {
+   "periodo": "2024-11",
+   "pernoctaciones": 100366.0,
+   "viajeros": 31977.0,
+   "plazas": 10339.0,
+   "ndvi": 0.5153,
+   "lst": 22.94,
+   "pernoctaciones_por_plaza_dia": 0.319
+  },
+  {
+   "periodo": "2024-12",
+   "pernoctaciones": 74169.0,
+   "viajeros": 25286.0,
+   "plazas": 8747.0,
+   "ndvi": 0.5791,
+   "lst": 19.03,
+   "pernoctaciones_por_plaza_dia": 0.279
+  },
+  {
+   "periodo": "2025-01",
+   "pernoctaciones": 91460.0,
+   "viajeros": 30003.0,
+   "plazas": 9316.0,
+   "ndvi": 0.5926,
+   "lst": 15.97,
+   "pernoctaciones_por_plaza_dia": 0.323
+  },
+  {
+   "periodo": "2025-02",
+   "pernoctaciones": 103193.0,
+   "viajeros": 40212.0,
+   "plazas": 8848.0,
+   "ndvi": 0.5899,
+   "lst": 19.03,
+   "pernoctaciones_por_plaza_dia": 0.384
+  },
+  {
+   "periodo": "2025-03",
+   "pernoctaciones": 152092.0,
+   "viajeros": 49953.0,
+   "plazas": 12221.0,
+   "ndvi": 0.558,
+   "lst": 24.7,
+   "pernoctaciones_por_plaza_dia": 0.409
+  },
+  {
+   "periodo": "2025-04",
+   "pernoctaciones": 232762.0,
+   "viajeros": 67261.0,
+   "plazas": 13895.0,
+   "ndvi": 0.5566,
+   "lst": 27.59,
+   "pernoctaciones_por_plaza_dia": 0.551
+  },
+  {
+   "periodo": "2025-05",
+   "pernoctaciones": 263032.0,
+   "viajeros": 75942.0,
+   "plazas": 13922.0,
+   "ndvi": 0.4504,
+   "lst": 33.52,
+   "pernoctaciones_por_plaza_dia": 0.621
+  },
+  {
+   "periodo": "2025-06",
+   "pernoctaciones": 276041.0,
+   "viajeros": 75110.0,
+   "plazas": 14226.0,
+   "ndvi": 0.4326,
+   "lst": 36.06,
+   "pernoctaciones_por_plaza_dia": 0.638
+  },
+  {
+   "periodo": "2025-07",
+   "pernoctaciones": 325739.0,
+   "viajeros": 85697.0,
+   "plazas": 15494.0,
+   "ndvi": 0.4194,
+   "lst": 39.23,
+   "pernoctaciones_por_plaza_dia": 0.692,
+   "provisional": true
+  },
+  {
+   "periodo": "2025-08",
+   "pernoctaciones": 350366.0,
+   "viajeros": 84294.0,
+   "plazas": 15477.0,
+   "ndvi": 0.4058,
+   "lst": 37.94,
+   "pernoctaciones_por_plaza_dia": 0.745,
+   "provisional": true
+  },
+  {
+   "periodo": "2025-09",
+   "pernoctaciones": 271548.0,
+   "viajeros": 76463.0,
+   "plazas": 15787.0,
+   "ndvi": 0.4218,
+   "lst": 36.63,
+   "pernoctaciones_por_plaza_dia": 0.566,
+   "provisional": true
+  },
+  {
+   "periodo": "2025-10",
+   "pernoctaciones": 246233.0,
+   "viajeros": 68421.0,
+   "plazas": 14522.0,
+   "ndvi": 0.4305,
+   "lst": 29.42,
+   "pernoctaciones_por_plaza_dia": 0.558,
+   "provisional": true
+  },
+  {
+   "periodo": "2025-11",
+   "pernoctaciones": 135320.0,
+   "viajeros": 42091.0,
+   "plazas": 11911.0,
+   "ndvi": 0.5252,
+   "lst": 22.69,
+   "pernoctaciones_por_plaza_dia": 0.374,
+   "provisional": true
+  },
+  {
+   "periodo": "2025-12",
+   "pernoctaciones": 85373.0,
+   "viajeros": 28356.0,
+   "plazas": 9738.0,
+   "ndvi": 0.543,
+   "lst": 17.27,
+   "pernoctaciones_por_plaza_dia": 0.288,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-01",
+   "pernoctaciones": 71273.0,
+   "viajeros": 20442.0,
+   "plazas": 9516.0,
+   "ndvi": 0.5647,
+   "lst": 16.04,
+   "pernoctaciones_por_plaza_dia": 0.246,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-02",
+   "pernoctaciones": 91547.0,
+   "viajeros": 31909.0,
+   "plazas": 9320.0,
+   "ndvi": 0.568,
+   "lst": 19.5,
+   "pernoctaciones_por_plaza_dia": 0.323,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-03",
+   "pernoctaciones": 172460.0,
+   "viajeros": 56249.0,
+   "plazas": 12957.0,
+   "ndvi": 0.5648,
+   "lst": 22.95,
+   "pernoctaciones_por_plaza_dia": 0.438,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-04",
+   "pernoctaciones": 262017.0,
+   "viajeros": 78711.0,
+   "plazas": 14839.0,
+   "ndvi": 0.5096,
+   "lst": 18.76,
+   "pernoctaciones_por_plaza_dia": 0.581,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-05",
+   "pernoctaciones": 291576.0,
+   "viajeros": 91423.0,
+   "plazas": 15396.0,
+   "ndvi": 0.4675,
+   "lst": 32.78,
+   "pernoctaciones_por_plaza_dia": 0.623,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-06",
+   "pernoctaciones": 288841.0,
+   "viajeros": 82298.0,
+   "plazas": 15666.0,
+   "ndvi": 0.3985,
+   "lst": 35.82,
+   "pernoctaciones_por_plaza_dia": 0.606,
+   "provisional": true
+  },
+  {
+   "periodo": "2026-07",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": null,
+   "ndvi": 0.4254,
+   "lst": 37.61
+  }
+ ]
+}

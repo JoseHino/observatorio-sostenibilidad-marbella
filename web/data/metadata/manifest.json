@@ -9,11 +9,22 @@
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
   },
-  "ndvi_municipal": {
-    "hash_config": "31d696c496d99947",
+  "ndbi_municipal": {
+    "hash_config": "ab76f07b9d3a0714",
     "n_huecos": 0,
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
+  },
+  "ndvi_municipal": {
+    "hash_config": "1c2bf7a14a7b7099",
+    "n_huecos": 0,
+    "n_periodos": 115,
+    "ultima_fecha_dato": "2026-07"
+  },
+  "presion_turistica": {
+    "hash_config": "01b2769e515ec285",
+    "n_periodos": 115,
+    "ultima_fecha_dato": "2026-06"
   },
   "radiacion_solar": {
     "hash_config": "95b9baa55964f983",

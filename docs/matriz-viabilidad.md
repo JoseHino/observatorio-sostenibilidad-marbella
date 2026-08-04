@@ -44,13 +44,13 @@ servicio no haya respondido.
 | Superficie sellada, evolución | **P** | CLMS Imperviousness | Endpoint no resuelto. Además, cadencia trienal: la «serie» tendría del orden de 6 puntos desde 2006. |
 | Cambios de usos del suelo | **V** | **CLMS Land Cover 10 m anual vía openEO** | Mejorado en Fase 2. `CLMS_LCM_GLOBAL_10M_YEARLY_V1` da usos del suelo a **10 m con cadencia anual desde 2020**: seis cortes comparables y resolución suficiente para cambio urbano fino. Sustituye a CORINE como fuente principal (25 ha de unidad mínima y ~6 años de cadencia), que queda como serie histórica larga de contexto. |
 | Ratio suelo urbanizado / natural | **V** | CORINE + PGOM 2025 | Las cifras oficiales del PGOM (urbano 5.374 ha, rústico 6.339 ha) permiten anclar y validar el cálculo. |
-| Crecimiento de superficie construida | **VR** | Sentinel-2 NDBI | Se recomienda NDBI sobre Sentinel-2. **Se desaconseja Sentinel-1 en primera iteración**: alto coste de proceso y elevada incertidumbre interpretativa en terreno de fuerte relieve como Sierra Blanca. |
+| Crecimiento de superficie construida | **VR** *(publicado)* | Sentinel-2 NDBI | **Publicado.** 115 periodos sin huecos, 20 m. El NDBI **no distingue suelo desnudo de superficie construida**: el ciclo medido pasa de −0,148 en febrero a −0,030 en agosto, y ese ascenso es agostamiento, no urbanización. Debe leerse comparando el mismo mes entre años. Se descartó Sentinel-1 por coste e incertidumbre en terreno de fuerte relieve. |
 
 ## Bloque 4 — Litoral y aguas
 
 | Indicador | Estado | Fuente | Observaciones |
 |---|---|---|---|
-| Clorofila-a y turbidez | **VR** | Sentinel-3 OLCI L2 WATER | Resolución 300 m. Los productos oceánicos estándar pierden fiabilidad en aguas costeras someras, que es justamente la franja de interés. Debe declararse. |
+| Clorofila-a | **VR** *(publicado)* | Sentinel-3 OLCI L2 WATER, banda CHL_NN | **Publicado**, sobre una franja marina de 2 km (6.172 ha) derivada del límite municipal y de los municipios colindantes. Se usa CHL_NN y no CHL_OC4ME: la red neuronal es la indicada para aguas costeras de tipo 2. Resolución 300 m. Los productos oceánicos pierden fiabilidad cerca de la costa: sirve para estacionalidad y tendencia, no como medida absoluta. |
 | Temperatura superficial del mar | **V** | Sentinel-3 SLSTR | Adecuado para el buffer marino de 2 km. |
 | Evolución de la línea de costa | **V** | Sentinel-2 NDWI (10 m) | Técnicamente sólido y de alto valor para un municipio litoral. Requiere corrección por estado de marea para comparar fechas. |
 | Oleaje y régimen de vientos | **VR** | **CMEMS**, no Puertos del Estado | Puertos del Estado **no ofrece API REST pública documentada**; la descarga es por formulario, máximo 5 series por petición, no automatizable de forma fiable. Se propone Copernicus Marine como fuente automatizable y Puertos del Estado como contraste puntual. |
@@ -61,16 +61,16 @@ servicio no haya respondido.
 |---|---|---|---|
 | Radiación solar global horizontal | **V** *(publicado)* | PVGIS v5_3 (JRC) | **Publicado en Fase 3.** Sin registro ni cuota. 228 meses (2005-2023), 1.886 kWh/m² anuales de media municipal. Se muestrean nueve puntos del término, no un único centroide, para recoger el gradiente costa-sierra. **Es un reanálisis de recorrido cerrado**: termina en 2023 y no crece mes a mes; el sitio lo declara para no presentarlo como desactualizado. |
 | Potencial fotovoltaico en cubiertas | **NV** *(como serie)* | LiDAR PNOA + PVGIS | Determinación puntual, no serie. Además exige procesado pesado de nube de puntos y cartografía de edificación. **Alcance muy superior al resto de indicadores**; debe tratarse como línea de trabajo propia, no como un indicador más. |
-| NO₂ troposférico | **VR** | Sentinel-5P | Píxel de 5,5 × 3,5 km ≈ 19 km². Sobre 117 km² son **del orden de 6 píxeles**. No permite lectura municipal fina. Publicable únicamente como tendencia y estacionalidad de ámbito comarcal, nunca como mapa municipal. |
+| NO₂ troposférico | **VR** *(publicado)* | Sentinel-5P L2 | **Publicado** con la limitación declarada junto al dato: la medición real arroja **17 píxeles de media** sobre el municipio y la huella de cada uno lo desborda. Serie 2019-2026, máximo en noviembre (65,4 µmol/m²) y mínimo en agosto (20,4). Lectura comarcal, nunca por barrios. |
 | Emisiones evitadas por potencial solar | **VR** | Derivado | Cálculo derivado, no medición. Depende del potencial FV, que no es viable como serie. Debe publicarse como estimación con hipótesis explícitas o posponerse. |
 
 ## Bloque transversal — Presión turística
 
 | Indicador | Estado | Fuente | Observaciones |
 |---|---|---|---|
-| Correlación pernoctaciones ↔ NDVI / LST | **V** | INE Tempus3 (EOH) + Sentinel-2/3 | Ambas series verificadas. **Prioritario: es el elemento diferencial del observatorio.** La oposición de fase ya es visible en los datos preliminares (NDVI mínimo en agosto, máximo turístico en agosto). |
-| Indicadores ambientales por plaza hotelera | **V** | INE Tempus3 + series ambientales | Normalización directa. |
-| Estacionalidad ambiental vs turística | **V** | INE Tempus3 + Sentinel-2 | Amplitud NDVI intraanual medida: 0,187 puntos. |
+| Correlación pernoctaciones ↔ NDVI / LST | **V** *(publicado)* | INE EOH + Sentinel-2 + Landsat | **Publicado.** r = **−0,699** con el NDVI (100 meses comunes) y **+0,840** con la temperatura superficial (88 meses). Agosto concentra a la vez máximo de ocupación, mínimo de NDVI y máxima LST. |
+| Indicadores ambientales por plaza hotelera | **V** *(publicado)* | INE Tempus3 + series ambientales | **Publicado** como pernoctaciones por plaza y día. Recorrido de 0,11 (confinamiento de 2020) a 0,78. |
+| Estacionalidad ambiental vs turística | **V** *(publicado)* | INE Tempus3 + Sentinel-2 + Landsat | **Publicado** como perfil estacional superpuesto de las tres series, normalizadas a escala 0-1. Agosto recibe 4,5 veces más pernoctaciones que el mes más tranquilo. |
 
 **Advertencia técnica sobre INE Tempus3.** El campo `Fecha` de la API se expresa en hora de
 Madrid; interpretado como UTC desplaza la serie un mes completo. Debe construirse el periodo a
@@ -124,7 +124,12 @@ histórica de 115 meses exigiría trabajar con trabajos por lotes, no con petici
 | **P** — Pendiente de resolver | 3 |
 | **NV** — No viable como se plantea | 3 |
 
-De ellos, **publicado y en producción: 1** (NDVI medio municipal, Fase 1).
+**Publicados y en producción: 7** — NDVI, temperatura superficial, NDBI, clorofila-a,
+irradiación solar, NO₂ y el bloque transversal de presión turística.
+
+**Bloqueados por credencial o decisión, no por técnica:** temperatura y precipitación de
+AEMET (falta dar de alta la clave gratuita) y oleaje (requiere decidir el paso a CMEMS y su
+registro).
 
 ## Revisión de Fase 2 (4 de agosto de 2026)
 

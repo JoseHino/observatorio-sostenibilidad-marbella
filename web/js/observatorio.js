@@ -33,6 +33,39 @@
       notaAmplitud: 'Diferencia entre el mes más y menos cálido'
     },
     {
+      clave: 'ndbi_municipal',
+      bloque: 'Bloque 3 · Suelo y urbanización',
+      titulo: 'NDBI, índice de superficie construida',
+      descripcion: 'Índice normalizado de superficie construida. Crece con el sellado del suelo y el material urbano, y decrece con la vegetación. Debe leerse comparando el mismo mes entre años: en verano el agostamiento del suelo lo eleva sin que haya urbanización nueva.',
+      unidad: '',
+      decimales: 3,
+      banda: null,
+      columnas: [['Mediana', 'mediana'], ['P25', 'p25'], ['P75', 'p75']],
+      notaAmplitud: 'Diferencia entre el mes de índice más alto y más bajo'
+    },
+    {
+      clave: 'clorofila_litoral',
+      bloque: 'Bloque 4 · Litoral y aguas',
+      titulo: 'Clorofila-a en aguas litorales',
+      descripcion: 'Concentración de clorofila-a en la franja marina de 2 km frente a la costa, a partir del producto oficial de Sentinel-3. Los productos oceánicos pierden fiabilidad cerca de la costa: la serie sirve para leer estacionalidad y tendencia, no como medida absoluta.',
+      unidad: ' mg/m³',
+      decimales: 3,
+      banda: null,
+      columnas: [],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor concentración'
+    },
+    {
+      clave: 'no2_troposferico',
+      bloque: 'Bloque 5 · Energía y atmósfera',
+      titulo: 'Dióxido de nitrógeno troposférico',
+      descripcion: 'Columna troposférica de NO₂ sobre el municipio. El píxel de Sentinel-5P mide unos 5,5 × 3,5 km, de modo que sobre las 11.714 ha del término caben apenas una veintena de valores: la serie describe tendencia y estacionalidad de ámbito comarcal, no la calidad del aire de un punto concreto.',
+      unidad: ' µmol/m²',
+      decimales: 1,
+      banda: null,
+      columnas: [['Mediana', 'mediana'], ['Píxeles', 'pixeles_validos']],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor columna'
+    },
+    {
       clave: 'radiacion_solar',
       bloque: 'Bloque 5 · Energía y atmósfera',
       titulo: 'Irradiación solar global horizontal',
@@ -328,6 +361,124 @@
       (f.limitaciones || []).map(function (l) { return '<li>' + l + '</li>'; }).join('');
   }
 
+
+  /* ---------- Bloque transversal: cruce ambiental y turistico ---------- */
+  // Tres slots de la paleta categorica, en orden fijo y validados para separacion CVD.
+  // El color sigue a la serie, nunca a su posicion, y no se cicla.
+  var COLORES_CRUCE = { pernoctaciones: '--serie-1', ndvi: '--serie-3', lst: '--serie-2' };
+
+  function pintarCruce(d, ficha) {
+    var perf = d.perfil_estacional_normalizado;
+    var crudo = d.perfil_estacional_crudo;
+    var sup = css('--superficie');
+
+    var defs = [
+      { k: 'pernoctaciones', etq: 'Pernoctaciones', dec: 0, uni: '' },
+      { k: 'ndvi', etq: 'NDVI', dec: 3, uni: '' },
+      { k: 'lst', etq: 'Temperatura superficial', dec: 1, uni: ' \u00b0C' }
+    ];
+
+    graficos.push(new Chart(document.getElementById('g-cruce'), {
+      type: 'line',
+      data: {
+        labels: MESES,
+        datasets: defs.map(function (x) {
+          var c = css(COLORES_CRUCE[x.k]);
+          return {
+            label: x.etq, data: perf[x.k], borderColor: c, backgroundColor: c,
+            borderWidth: 2, pointRadius: 0, pointHoverRadius: 5,
+            pointHoverBackgroundColor: c, pointHoverBorderColor: sup, pointHoverBorderWidth: 2,
+            tension: 0.35, fill: false
+          };
+        })
+      },
+      options: (function () {
+        var o = opcionesBase();
+        // Se muestra el valor real, no el normalizado: la escala 0-1 solo sirve para superponer
+        o.plugins.tooltip.callbacks = { label: function (ctx) {
+          var x = defs[ctx.datasetIndex];
+          var v = crudo[x.k][ctx.dataIndex];
+          if (v === null || v === undefined) return null;
+          var txt = x.dec === 0 ? Math.round(v).toLocaleString('es-ES') : v.toFixed(x.dec);
+          return x.etq + ': ' + txt + x.uni;
+        } };
+        o.scales.y.min = 0;
+        o.scales.y.max = 1;
+        return o;
+      })()
+    }));
+
+    // La identidad nunca queda solo en el color: la leyenda esta siempre presente
+    document.getElementById('leyenda-cruce').innerHTML = defs.map(function (x) {
+      return '<span class="leyenda-item"><span class="leyenda-marca" style="background:' +
+             css(COLORES_CRUCE[x.k]) + '"></span>' + x.etq + '</span>';
+    }).join('');
+
+    var conInt = d.serie.filter(function (r) { return r.pernoctaciones_por_plaza_dia != null; });
+    var azul = css('--serie-1');
+    graficos.push(new Chart(document.getElementById('g-intensidad'), {
+      type: 'line',
+      data: {
+        labels: conInt.map(function (r) { return etiquetaPeriodo(r.periodo); }),
+        datasets: [{
+          label: 'Pernoctaciones por plaza y dia',
+          data: conInt.map(function (r) { return r.pernoctaciones_por_plaza_dia; }),
+          borderColor: azul, backgroundColor: css('--serie-1-suave'), borderWidth: 2,
+          pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: azul,
+          pointHoverBorderColor: sup, pointHoverBorderWidth: 2, tension: 0.25, fill: true
+        }]
+      },
+      options: (function () {
+        var o = opcionesBase();
+        o.plugins.tooltip.callbacks = { label: function (ctx) {
+          var r = conInt[ctx.dataIndex];
+          var l = [ctx.raw.toFixed(2) + ' pernoct./plaza y d\u00eda'];
+          if (r.provisional) l.push('Dato provisional del INE');
+          return l;
+        } };
+        return o;
+      })()
+    }));
+
+    var c = {};
+    (d.cruces || []).forEach(function (x) { c[x.variable] = x; });
+    var co = d.coincidencias || {};
+    var kpis = [
+      { e: 'Correlaci\u00f3n con el NDVI', v: c.ndvi ? c.ndvi.correlacion_pearson.toFixed(3) : '\u2014',
+        n: 'Negativa: m\u00e1s ocupaci\u00f3n, menos verde' },
+      { e: 'Correlaci\u00f3n con la LST', v: c.lst ? c.lst.correlacion_pearson.toFixed(3) : '\u2014',
+        n: 'Positiva: m\u00e1s ocupaci\u00f3n, m\u00e1s calor superficial' },
+      { e: 'Mes de m\u00e1xima ocupaci\u00f3n', v: co.mes_maxima_ocupacion || '\u2014', n: 'Media de la serie' },
+      { e: 'Mes de m\u00ednimo NDVI', v: co.mes_minimo_ndvi || '\u2014', n: 'Media de la serie' }
+    ];
+    document.getElementById('kpi-cruce').innerHTML = kpis.map(function (k) {
+      return '<div class="kpi"><p class="kpi-etiqueta">' + k.e + '</p><p class="kpi-valor">' +
+             k.v + '</p><p class="kpi-nota">' + k.n + '</p></div>';
+    }).join('');
+
+    if (co.mes_maxima_ocupacion && co.mes_maxima_ocupacion === co.mes_minimo_ndvi) {
+      var pico = crudo.pernoctaciones[MESES.indexOf(co.mes_maxima_ocupacion)];
+      var validos = crudo.pernoctaciones.filter(function (v) { return v !== null && v !== undefined; });
+      var valle = Math.min.apply(null, validos);
+      document.getElementById('hallazgo-cruce').innerHTML =
+        '<strong>' + co.mes_maxima_ocupacion + ' concentra a la vez el m\u00e1ximo de ocupaci\u00f3n, ' +
+        'el m\u00ednimo de vegetaci\u00f3n y el m\u00e1ximo de temperatura superficial.</strong> ' +
+        'El municipio recibe entonces ' + (pico / valle).toFixed(1) + ' veces m\u00e1s pernoctaciones ' +
+        'que en el mes m\u00e1s tranquilo, y lo hace cuando la vegetaci\u00f3n est\u00e1 en su punto m\u00e1s bajo ' +
+        'y las superficies alcanzan su temperatura m\u00e1xima.';
+    }
+
+    if (ficha) {
+      document.getElementById('dl-cruce').innerHTML = [
+        ['Fuente', ficha.fuente], ['M\u00e9todo de c\u00e1lculo', ficha.metodo],
+        ['Periodo', ficha.serie_desde + ' a ' + ficha.serie_hasta],
+        ['Licencia', ficha.licencia]
+      ].map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('');
+      document.getElementById('lim-cruce').innerHTML =
+        (ficha.limitaciones || []).map(function (l) { return '<li>' + l + '</li>'; }).join('');
+    }
+  }
+
   /* ---------- Estado de frescura ---------- */
   function pintarEstado(estado) {
     var claves = Object.keys(cargados);
@@ -405,6 +556,7 @@
     graficos.forEach(function (g) { if (g && g.destroy) g.destroy(); });
     graficos = [];
     INDICADORES.forEach(function (ind) { if (cargados[ind.clave]) dibujar(ind, cargados[ind.clave]); });
+    if (window._cruce) pintarCruce(window._cruce[0], window._cruce[1]);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -443,6 +595,18 @@
         if (caja) caja.innerHTML = '<p class="kpi-nota">Este indicador aún no tiene datos publicados.</p>';
       });
     });
+
+    document.getElementById('btn-ficha-cruce').addEventListener('click', function () {
+      alternar(this, 'ficha-cruce', ['Ver la ficha del indicador', 'Ocultar la ficha']);
+    });
+
+    Promise.all([
+      json('data/presion_turistica.json'),
+      json('data/metadata/presion_turistica.json').catch(function () { return null; })
+    ]).then(function (r) {
+      window._cruce = r;
+      pintarCruce(r[0], r[1]);
+    }).catch(function (e) { console.error(e); });
 
     Promise.all(promesas).then(function () {
       json('data/estado.json').then(pintarEstado).catch(function () { pintarEstado(null); });

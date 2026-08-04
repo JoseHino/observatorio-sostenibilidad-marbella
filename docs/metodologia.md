@@ -265,6 +265,84 @@ del observatorio, que se determina solo con las series vivas.
 es la **suma** de los meses, no su promedio: es lo que se maneja al hablar de potencial solar.
 La media municipal es de 1.886 kWh/m² al año.
 
+## 6 quater. Metodología de los indicadores restantes
+
+### NDBI — superficie construida (Bloque 3)
+
+Diferencia normalizada entre el infrarrojo de onda corta y el infrarrojo cercano:
+
+```
+NDBI = (B11 − B08) / (B11 + B08)
+```
+
+Comparte máquina de cálculo con el NDVI: mismo enmascaramiento SCL, mismo compuesto mensual
+`leastCC`, misma resolución de 20 m.
+
+**Limitación determinante para su lectura.** El NDBI no distingue suelo desnudo de superficie
+construida. El ciclo estacional medido lo demuestra: el índice pasa de −0,148 en febrero a
+−0,030 en agosto, y ese ascenso no es urbanización sino agostamiento del suelo. **El indicador
+debe leerse comparando el mismo mes entre años distintos**, nunca mes a mes. El valor medio
+anual también refleja la sequía: 2022 es el año de índice más alto de la serie.
+
+### Clorofila-a en aguas litorales (Bloque 4)
+
+Producto oficial `SENTINEL3_OLCI_L2_WATER`, banda **CHL_NN**, agregado sobre una franja marina
+de 2 km. Se emplea la banda de red neuronal y no `CHL_OC4ME` porque el algoritmo OC4Me está
+concebido para aguas oceánicas de tipo 1, mientras que la red neuronal es la recomendada para
+aguas costeras de tipo 2, que son las de la franja de interés.
+
+**Construcción de la franja marina.** No basta con dilatar el término municipal y restarlo:
+eso deja también un anillo tierra adentro. Como el GML descargado del CNIG incluye los
+municipios colindantes, se resta la unión de toda la tierra descargada y lo que resta del
+anillo es agua. Resultado: 6.172 ha, un único polígono a lo largo de los 27 km de costa.
+
+**Limitación declarada.** Los productos oceánicos estándar pierden fiabilidad cerca de la
+costa, por reflexión del fondo en aguas someras y por aportes terrestres. La serie sirve para
+leer estacionalidad y tendencia, no como medida absoluta de concentración.
+
+### NO₂ troposférico (Bloque 5)
+
+Columna troposférica de Sentinel-5P nivel 2, agregada sobre el término y publicada en µmol/m².
+
+**La resolución manda sobre la interpretación.** El píxel mide del orden de 5,5 × 3,5 km. La
+medición real arroja **17 píxeles de media sobre todo el municipio**, y la huella de cada uno
+desborda ampliamente el término. La serie describe por tanto tendencia y estacionalidad de
+ámbito comarcal; **no es la calidad del aire de un punto concreto de Marbella y no admite
+representación por barrios**. El ciclo medido (máximo en noviembre con 65,4 µmol/m², mínimo en
+agosto con 20,4) responde al patrón esperado: en invierno la capa límite es más baja y la
+destrucción fotoquímica menor.
+
+## 6 quinquies. Bloque transversal: presión turística
+
+Es el elemento diferencial del observatorio. Cruza las pernoctaciones hoteleras del INE con
+los indicadores ambientales ya publicados sobre los meses en que las series coinciden.
+
+**Fuente.** Encuesta de Ocupación Hotelera, series `EOT42534` (pernoctaciones), `EOT42428`
+(viajeros) y `EOT3080` (plazas) del punto turístico Marbella.
+
+**Tres trampas de la API Tempus3, todas comprobadas:**
+
+1. El campo `Fecha` viene en hora de Madrid; interpretado como UTC desplaza la serie un mes.
+   El periodo se construye siempre con `Anyo` y `FK_Periodo`.
+2. Los datos llegan en orden **ascendente** pese a pedirse con `nult`. Tomar el primer
+   registro como último valor es un error.
+3. La serie de pernoctaciones arrastra **un registro huérfano de enero de 2007** y luego
+   arranca en 2018. Incluirlo abriría un hueco de once años. El pipeline detecta los saltos
+   superiores a dos años y recorta lo anterior, declarando cuántos registros descarta.
+
+**Lecturas publicadas.** Correlación de Pearson sobre los meses comunes, perfiles estacionales
+normalizados a escala 0-1 para poder superponer magnitudes incomparables, e indicadores
+ambientales normalizados por plaza hotelera.
+
+**Resultado.** Correlación de −0,699 con el NDVI y de +0,840 con la temperatura superficial.
+Agosto es simultáneamente el mes de máxima ocupación, mínimo NDVI y máxima LST.
+
+**Sobre la interpretación.** Dos series con ciclo anual marcado correlacionan por el mero
+hecho de compartir estacionalidad. El coeficiente **no se interpreta como relación causal**;
+su valor está en el signo y en la coincidencia de fase. Además, la Encuesta de Ocupación
+Hotelera no recoge vivienda turística ni apartamentos, que en Marbella son parte relevante de
+la oferta: la presión real es superior a la que refleja el indicador.
+
 ## 7. Estrategia de actualización
 
 Se descarta el reprocesado íntegro de la serie. El pipeline opera por incremento, contrastando

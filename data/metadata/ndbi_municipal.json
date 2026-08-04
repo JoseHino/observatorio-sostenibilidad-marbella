@@ -1,0 +1,26 @@
+{
+  "indicador": "ndbi_municipal",
+  "titulo": "NDBI, índice de superficie construida",
+  "descripcion": "Índice normalizado de superficie construida, que crece con el sellado del suelo y el material urbano y decrece con la vegetación.",
+  "fuente": "Copernicus Sentinel-2 L2A vía Sentinel Hub Statistical API (CDSE)",
+  "formula": "(B11 − B08) / (B11 + B08)",
+  "resolucion_espacial": "20 m",
+  "resolucion_temporal": "mensual (compuesto)",
+  "metodo": "Agregación zonal en servidor sobre el polígono municipal. Mosaico mensual con criterio leastCC: para cada píxel se toma la observación menos nubosa del mes.",
+  "enmascaramiento": "Banda SCL del producto L2A. Clases válidas: 4, 5, 7. Se excluyen nubes, cirros, sombras, nieve y saturados.",
+  "epsg_peticion": 32630,
+  "epsg_calculo": 25830,
+  "serie_desde": "2017-01",
+  "serie_hasta": "2026-07",
+  "n_periodos": 115,
+  "n_huecos": 0,
+  "limitaciones": [
+    "El NDBI no distingue suelo desnudo de superficie construida: en verano, el agostamiento del suelo eleva el índice sin que haya urbanización nueva. Debe leerse por comparación entre el mismo mes de años distintos, nunca mes a mes.",
+    "El valor mensual es un compuesto, no una observación de fecha única.",
+    "Los meses sin observación válida se publican como hueco. No se interpolan."
+  ],
+  "valor_minimo_serie": -0.202,
+  "valor_maximo_serie": -0.002,
+  "licencia": "Contiene datos Copernicus modificados",
+  "ruta_datos": "data/processed/ndbi_municipal.json"
+}

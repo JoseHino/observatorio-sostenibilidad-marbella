@@ -25,12 +25,12 @@ def validar_limite(ficha: dict, tolerancia_ha: float = 5.0) -> list[str]:
     return fallos
 
 
-def validar_serie_ndvi(resultado: dict) -> list[str]:
+def validar_serie_indice(resultado: dict) -> list[str]:
     """Comprueba rango fisico, orden temporal y ausencia de duplicados."""
     fallos = []
     serie = resultado.get("serie", [])
     if not serie:
-        return ["La serie NDVI esta vacia"]
+        return ["La serie del indice esta vacia"]
 
     periodos = [r["periodo"] for r in serie]
     if periodos != sorted(periodos):
@@ -46,7 +46,7 @@ def validar_serie_ndvi(resultado: dict) -> list[str]:
                 fallos.append(f"{r['periodo']}: hueco sin motivo declarado")
             continue
         if not -1.0 <= v <= 1.0:
-            fallos.append(f"{r['periodo']}: NDVI {v} fuera del rango fisico [-1, 1]")
+            fallos.append(f"{r['periodo']}: indice {v} fuera del rango fisico [-1, 1]")
         if r.get("cobertura_pct") is not None and r["cobertura_pct"] > 105:
             fallos.append(f"{r['periodo']}: cobertura {r['cobertura_pct']}% imposible")
     return fallos

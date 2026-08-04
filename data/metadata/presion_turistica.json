@@ -1,0 +1,25 @@
+{
+  "indicador": "presion_turistica",
+  "titulo": "Presión turística y variables ambientales",
+  "descripcion": "Cruce de las pernoctaciones hoteleras con el NDVI y la temperatura superficial sobre los meses en que las series coinciden.",
+  "fuente": "INE, Encuesta de Ocupación Hotelera (serie EOT42534 de pernoctaciones, EOT42428 de viajeros y EOT3080 de plazas, punto turístico Marbella), cruzada con los indicadores NDVI y LST de este observatorio",
+  "formula": "Correlación de Pearson sobre los meses comunes; perfiles estacionales normalizados a escala 0-1",
+  "resolucion_espacial": "municipio",
+  "resolucion_temporal": "mensual",
+  "metodo": "El periodo se construye con los campos Anyo y FK_Periodo de la API Tempus3, nunca con el campo Fecha, que viene en hora de Madrid y desplaza la serie un mes si se interpreta como UTC. Los perfiles estacionales se normalizan a escala 0-1 para poder superponer magnitudes que no son comparables entre sí.",
+  "enmascaramiento": "No aplica.",
+  "serie_desde": "2017-01",
+  "serie_hasta": "2026-06",
+  "n_periodos": 115,
+  "n_huecos": 0,
+  "limitaciones": [
+    "La correlación NO implica causalidad. Dos series con ciclo anual marcado correlacionan por el mero hecho de compartir estacionalidad; lo informativo es el signo y el desfase, no la atribución de causa.",
+    "La serie hotelera del INE arranca en 2018, mientras que las ambientales arrancan en 2017: el cruce se limita al tramo común.",
+    "La EOH cubre establecimientos hoteleros. No recoge vivienda turística ni apartamentos, que en Marbella representan una parte relevante de la oferta, de modo que la presión real es superior a la que refleja este indicador.",
+    "Los meses más recientes son datos provisionales del INE y pueden revisarse."
+  ],
+  "correlacion_pernoctaciones_ndvi": -0.699,
+  "correlacion_pernoctaciones_lst": 0.84,
+  "licencia": "Instituto Nacional de Estadística. Reutilización libre citando la fuente.",
+  "ruta_datos": "data/processed/presion_turistica.json"
+}

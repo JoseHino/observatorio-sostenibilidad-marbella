@@ -15,6 +15,7 @@
   --serie-1:        #2a78d6;
   --serie-1-suave:  rgba(42, 120, 214, 0.13);
   --serie-2:        #eb6834;
+  --serie-3:        #1baf7a;
 
   --ok:             #0ca30c;
   --aviso:          #b8860b;
@@ -39,6 +40,7 @@
   --serie-1:        #3987e5;
   --serie-1-suave:  rgba(57, 135, 229, 0.20);
   --serie-2:        #d95926;
+  --serie-3:        #199e70;
 
   --ok:             #0ca30c;
   --aviso:          #e0a526;
@@ -247,3 +249,21 @@ tbody td.marcado { color: var(--aviso); font-weight: 600; }
 
 /* Serie cerrada: reanalisis que no crece mes a mes */
 .pastilla.cerrada { color: var(--tinta-apagada); font-weight: 500; }
+
+/* ---------- Bloque transversal destacado ---------- */
+.bloque.destacado { border-color: var(--serie-1); border-width: 1px; }
+.bloque.destacado .bloque-supra { color: var(--serie-1); }
+
+.hallazgo {
+  margin: 0 0 26px; padding: 18px 22px;
+  background: var(--serie-1-suave); border-left: 3px solid var(--serie-1);
+  border-radius: var(--radio); font-size: 14.5px; line-height: 1.65;
+}
+.hallazgo strong { font-weight: 700; }
+
+.leyenda {
+  display: flex; flex-wrap: wrap; gap: 8px 22px;
+  margin-top: 14px; font-size: 13px; color: var(--tinta-2);
+}
+.leyenda-item { display: inline-flex; align-items: center; gap: 8px; }
+.leyenda-marca { width: 14px; height: 3px; border-radius: 2px; flex: none; }

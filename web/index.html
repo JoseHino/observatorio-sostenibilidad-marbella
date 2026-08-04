@@ -52,6 +52,39 @@
     </div>
   </section>
 
+  <!-- Bloque transversal: cruce ambiental y turistico -->
+  <section class="bloque destacado" aria-labelledby="t-cruce">
+    <div class="bloque-cabecera"><div>
+      <p class="bloque-supra">Bloque transversal · Presión turística</p>
+      <h2 id="t-cruce">Estacionalidad ambiental frente a estacionalidad turística</h2>
+      <p class="bloque-desc">Cruce de las pernoctaciones hoteleras del INE con el NDVI y la temperatura superficial. Es el elemento diferencial del observatorio: permite leer las series ambientales contra la curva de ocupación.</p>
+    </div></div>
+    <div class="rejilla-kpi" id="kpi-cruce"></div>
+    <p id="hallazgo-cruce" class="hallazgo"></p>
+    <div class="rejilla-dos">
+      <figure class="figura"><figcaption>
+        <h3>Perfil estacional superpuesto</h3>
+        <p>Las tres series, normalizadas a escala 0-1 para poder compararlas pese a medir magnitudes distintas.</p>
+      </figcaption>
+        <div class="lienzo"><canvas id="g-cruce" role="img" aria-label="Perfil estacional de pernoctaciones, NDVI y temperatura superficial"></canvas></div>
+        <div id="leyenda-cruce" class="leyenda"></div>
+      </figure>
+      <figure class="figura"><figcaption>
+        <h3>Intensidad de uso del alojamiento</h3>
+        <p>Pernoctaciones por plaza hotelera y día. Mide el uso real de la capacidad instalada.</p>
+      </figcaption>
+        <div class="lienzo"><canvas id="g-intensidad" role="img" aria-label="Pernoctaciones por plaza hotelera y día"></canvas></div>
+      </figure>
+    </div>
+    <div class="bloque-acciones">
+      <button type="button" id="btn-ficha-cruce" class="btn" aria-expanded="false" aria-controls="ficha-cruce">Ver la ficha del indicador</button>
+    </div>
+    <div id="ficha-cruce" hidden>
+      <dl class="ficha" id="dl-cruce"></dl>
+      <div class="aviso"><h3>Limitaciones declaradas</h3><ul id="lim-cruce"></ul></div>
+    </div>
+  </section>
+
   <!-- Los bloques de indicador los genera js/observatorio.js -->
   <div id="indicadores"></div>
 

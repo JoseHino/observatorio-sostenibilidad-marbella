@@ -1,0 +1,12 @@
+{
+  "indicador": "buffer_marino",
+  "titulo": "Franja marina de 2 km frente a la costa",
+  "fuente": "Derivado del límite municipal del CNIG y de los municipios colindantes",
+  "metodo": "Dilatación de 2000 m del término municipal, restando la unión de todos los términos municipales descargados. Lo que resta del anillo es superficie marina.",
+  "superficie_ha": 6172.1,
+  "epsg_calculo": 25830,
+  "limitaciones": [
+    "La franja se deriva del límite administrativo terrestre, no de la línea de costa cartografiada a escala de detalle."
+  ],
+  "ruta_datos": "data/processed/buffer_marino.geojson"
+}

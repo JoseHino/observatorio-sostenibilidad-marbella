@@ -22,10 +22,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import manifest
 from config import DIR_METADATA, DIR_PROCESSED, ROOT, cargar_config
 from processing import lst as proc_lst
+from processing import presion_turistica as proc_presion
 from processing import radiacion as proc_rad
-from processing import ndvi as proc_ndvi
+from processing import calidad_agua as proc_agua
+from processing import indices_s2
+from processing import no2 as proc_no2
 from qa import validate
-from sources import cnig
+from sources import buffer_marino, cnig
 
 WEB_DATA = ROOT / "web" / "data"
 
@@ -75,36 +78,38 @@ def tarea_limite(cfg: dict, forzar: bool) -> list[str]:
     return fallos
 
 
-def tarea_ndvi(cfg: dict, forzar: bool) -> list[str]:
-    ind = cfg["indicadores"]["ndvi_municipal"]
-    huella = manifest.hash_config(ind)
-    # Si cambia la configuracion de calculo, la serie historica deja de ser comparable
-    reproceso = forzar or manifest.requiere_reproceso("ndvi_municipal", huella)
-    if reproceso and not forzar:
-        log("ndvi", "INFO", "cambio de configuracion: se recalcula la serie completa")
+def tarea_indice_s2(clave: str):
+    """Fabrica la tarea de un indice de Sentinel-2 (NDVI, NDBI...)."""
+    def tarea(cfg: dict, forzar: bool) -> list[str]:
+        ind = cfg["indicadores"][clave]
+        if not ind.get("activo", True):
+            return []
+        huella = manifest.hash_config(ind)
+        # Si cambia la configuracion de calculo, la serie historica deja de ser comparable
+        reproceso = forzar or manifest.requiere_reproceso(clave, huella)
+        if reproceso and not forzar:
+            log(clave, "INFO", "cambio de configuracion: se recalcula la serie completa")
 
-    resultado = proc_ndvi.construir_serie(cfg, forzar=reproceso)
-    fallos = validate.validar_serie_ndvi(resultado)
-    proc_ndvi.escribir(resultado, cfg)
+        resultado = indices_s2.construir_serie(cfg, clave, forzar=reproceso)
+        fallos = validate.validar_serie_indice(resultado)
+        indices_s2.escribir(resultado, cfg, clave)
 
-    tele = resultado["_telemetria"]
-    previo = manifest.entrada("ndvi_municipal").get("ultima_fecha_dato")
-    novedad = "sin cambios" if previo == resultado["ultimo_periodo"] else "dato nuevo"
-    log(
-        "ndvi",
-        "OK",
-        f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
-        f"hasta {resultado['ultimo_periodo']} ({novedad}), {tele['pu_consumidas']} PU",
-    )
-    manifest.actualizar(
-        "ndvi_municipal",
-        ultima_fecha_dato=resultado["ultimo_periodo"],
-        n_periodos=resultado["n_periodos"],
-        n_huecos=resultado["n_huecos"],
-        hash_config=huella,
-    )
-    TELEMETRIA["ndvi_municipal"] = tele
-    return fallos
+        tele = resultado["_telemetria"]
+        previo = manifest.entrada(clave).get("ultima_fecha_dato")
+        novedad = "sin cambios" if previo == resultado["ultimo_periodo"] else "dato nuevo"
+        log(clave, "OK",
+            f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
+            f"hasta {resultado['ultimo_periodo']} ({novedad}), {tele['pu_consumidas']} PU")
+        manifest.actualizar(
+            clave,
+            ultima_fecha_dato=resultado["ultimo_periodo"],
+            n_periodos=resultado["n_periodos"],
+            n_huecos=resultado["n_huecos"],
+            hash_config=huella,
+        )
+        TELEMETRIA[clave] = tele
+        return fallos
+    return tarea
 
 
 # Telemetria acumulada de la pasada, volcada a estado.json al final
@@ -170,11 +175,77 @@ def tarea_radiacion(cfg: dict, forzar: bool) -> list[str]:
     return fallos
 
 
+def tarea_presion(cfg: dict, forzar: bool) -> list[str]:
+    ind = cfg["indicadores"]["presion_turistica"]
+    if not ind.get("activo", True):
+        return []
+    huella = manifest.hash_config(ind)
+    resultado = proc_presion.construir(cfg, forzar=forzar)
+    proc_presion.escribir(resultado, cfg)
+    c = {x["variable"]: x.get("correlacion_pearson") for x in resultado["cruces"]}
+    log("presion_turistica", "OK",
+        f"{resultado['n_periodos']} periodos hasta {resultado['ultimo_periodo']}; "
+        f"r(pernoct,NDVI)={c.get('ndvi')}  r(pernoct,LST)={c.get('lst')}")
+    manifest.actualizar(
+        "presion_turistica",
+        ultima_fecha_dato=resultado["ultimo_periodo"],
+        n_periodos=resultado["n_periodos"],
+        hash_config=huella,
+    )
+    TELEMETRIA["presion_turistica"] = resultado["_telemetria"]
+    return []
+
+
+def tarea_buffer_marino(cfg: dict, forzar: bool) -> list[str]:
+    ficha = buffer_marino.construir(cfg)
+    log("buffer_marino", "OK", f"{ficha['superficie_ha']} ha de franja marina")
+    return []
+
+
+def tarea_no2(cfg: dict, forzar: bool) -> list[str]:
+    ind = cfg["indicadores"]["no2_troposferico"]
+    if not ind.get("activo", True):
+        return []
+    huella = manifest.hash_config(ind)
+    reproceso = forzar or manifest.requiere_reproceso("no2_troposferico", huella)
+    resultado = proc_no2.construir_serie(cfg, forzar=reproceso)
+    proc_no2.escribir(resultado, cfg)
+    log("no2", "OK",
+        f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
+        f"hasta {resultado['ultimo_periodo']}, {resultado['_telemetria']['pu_consumidas']} PU")
+    manifest.actualizar("no2_troposferico", ultima_fecha_dato=resultado["ultimo_periodo"],
+                        n_periodos=resultado["n_periodos"], hash_config=huella)
+    TELEMETRIA["no2_troposferico"] = resultado["_telemetria"]
+    return []
+
+
+def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
+    ind = cfg["indicadores"]["clorofila_litoral"]
+    if not ind.get("activo", True):
+        return []
+    huella = manifest.hash_config(ind)
+    reproceso = forzar or manifest.requiere_reproceso("clorofila_litoral", huella)
+    resultado = proc_agua.construir_serie(cfg, forzar=reproceso)
+    proc_agua.escribir(resultado, cfg)
+    log("clorofila", "OK",
+        f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
+        f"hasta {resultado['ultimo_periodo']}")
+    manifest.actualizar("clorofila_litoral", ultima_fecha_dato=resultado["ultimo_periodo"],
+                        n_periodos=resultado["n_periodos"], hash_config=huella)
+    TELEMETRIA["clorofila_litoral"] = resultado["_telemetria"]
+    return []
+
+
 TAREAS = [
     ("limite_municipal", tarea_limite),
-    ("ndvi_municipal", tarea_ndvi),
+    ("buffer_marino", tarea_buffer_marino),
+    ("ndvi_municipal", tarea_indice_s2("ndvi_municipal")),
+    ("ndbi_municipal", tarea_indice_s2("ndbi_municipal")),
     ("lst_municipal", tarea_lst),
+    ("no2_troposferico", tarea_no2),
+    ("clorofila_litoral", tarea_clorofila),
     ("radiacion_solar", tarea_radiacion),
+    ("presion_turistica", tarea_presion),
 ]
 
 

@@ -60,14 +60,50 @@ fuentes:
 indicadores:
   ndvi_municipal:
     activo: true
+    titulo: NDVI medio municipal
+    descripcion: >-
+      Índice de vegetación de diferencia normalizada promediado sobre el término municipal,
+      en compuesto mensual.
     coleccion: sentinel-2-l2a
-    bandas: [B04, B08, SCL]
+    bandas_indice: [B08, B04]           # infrarrojo cercano y rojo
     resolucion_m: 20
     intervalo: P1M
     mosaico: leastCC
     scl_validas: [4, 5, 7]              # vegetacion, suelo desnudo, sin clasificar
-    pu_estimado_por_mes: 5.1
+    limitaciones:
+      - El valor mensual es un compuesto, no una observación de fecha única.
+      - >-
+        La media municipal enmascara el fuerte gradiente altitudinal entre la costa y Sierra
+        Blanca; su lectura exige estratificación por altitud.
+      - Los meses sin observación válida se publican como hueco. No se interpolan.
+      - >-
+        El servicio Sentinel Hub no admite EPSG:25830; la petición se formula en EPSG:32630.
+        Las superficies se calculan aparte en EPSG:25830.
+      - >-
+        La cobertura de 2017 es menor: hasta marzo de 2017 solo operaba la unidad S2A, con
+        revisita de 10 días. Febrero de 2017 queda marcado por cobertura baja.
     salida: "data/processed/ndvi_municipal.json"
+
+  ndbi_municipal:
+    activo: true
+    titulo: NDBI, índice de superficie construida
+    descripcion: >-
+      Índice normalizado de superficie construida, que crece con el sellado del suelo y el
+      material urbano y decrece con la vegetación.
+    coleccion: sentinel-2-l2a
+    bandas_indice: [B11, B08]           # infrarrojo de onda corta e infrarrojo cercano
+    resolucion_m: 20
+    intervalo: P1M
+    mosaico: leastCC
+    scl_validas: [4, 5, 7]
+    limitaciones:
+      - >-
+        El NDBI no distingue suelo desnudo de superficie construida: en verano, el
+        agostamiento del suelo eleva el índice sin que haya urbanización nueva. Debe leerse
+        por comparación entre el mismo mes de años distintos, nunca mes a mes.
+      - El valor mensual es un compuesto, no una observación de fecha única.
+      - Los meses sin observación válida se publican como hueco. No se interpolan.
+    salida: "data/processed/ndbi_municipal.json"
 
   lst_municipal:
     activo: true
@@ -85,6 +121,26 @@ indicadores:
     fuente: PVGIS-SARAH3
     puntos_por_lado: 4              # rejilla interior; los de fuera del termino se descartan
     salida: "data/processed/radiacion_solar.json"
+
+  presion_turistica:
+    activo: true
+    # Bloque transversal: es el elemento diferencial del observatorio
+    series_ine: [EOT42534, EOT42428, EOT3080]
+    salida: "data/processed/presion_turistica.json"
+
+  no2_troposferico:
+    activo: true
+    # Pixel de ~5,5 x 3,5 km: lectura comarcal, no municipal
+    coleccion: sentinel-5p-l2
+    resolucion_m: 3500
+    salida: "data/processed/no2_troposferico.json"
+
+  clorofila_litoral:
+    activo: true
+    # Se agrega sobre la franja marina de 2 km, no sobre el termino terrestre
+    coleccion: SENTINEL3_OLCI_L2_WATER
+    banda: CHL_NN
+    salida: "data/processed/clorofila_litoral.json"
 
 calidad:
   tamano_maximo_fichero_mb: 5

@@ -1,4 +1,4 @@
-name: Actualización semanal (Sentinel-2 y Landsat)
+name: Actualización semanal (Copernicus, Landsat, INE y PVGIS)
 
 # Cadencia real de la fuente: Sentinel-2 revisita cada 2-3 días sobre Marbella y el dato
 # aparece en el CDSE en horas. Un sondeo semanal es suficiente y no desperdicia cuota.
@@ -30,8 +30,10 @@ jobs:
           python-version: '3.11'
           cache: pip
 
-      # Sin esta caché el pipeline recalcularía la serie completa en cada pasada
-      # (583 PU frente a 35). data/raw no se versiona, así que ha de persistir aquí.
+      # Sin esta caché el pipeline recalcularía cada serie completa en cada pasada:
+      # 583 PU frente a 35 en los índices de Sentinel-2, 316 escenas de Landsat en vez de
+      # las nuevas, y más de una hora de openEO para la clorofila. data/raw no se versiona,
+      # así que ha de persistir aquí.
       # La clave incluye config.yaml: si cambia la configuración del indicador, la caché
       # se invalida y el recálculo completo ocurre, que es justo lo que se quiere.
       - name: Recuperar caché de la serie
@@ -40,6 +42,10 @@ jobs:
           path: |
             data/raw/sh_statistics
             data/raw/landsat
+            data/raw/openeo
+            data/raw/pvgis
+            data/raw/ine
+            data/raw/cnig_unidades_administrativas.gml
           key: sh-stats-${{ hashFiles('pipeline/config.yaml') }}-${{ github.run_id }}
           restore-keys: |
             sh-stats-${{ hashFiles('pipeline/config.yaml') }}-
