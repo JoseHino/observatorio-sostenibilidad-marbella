@@ -10,7 +10,8 @@ efectuado una consulta real al servicio y se ha obtenido respuesta válida.
 | CDSE — Sentinel Hub Statistical API | `https://sh.dataspace.copernicus.eu/api/v1/statistics` | Sí | OAuth client credentials |
 | CDSE — token OAuth | `https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token` | Sí | — |
 | CDSE — catálogo OData | `https://catalogue.dataspace.copernicus.eu/odata/v1/Products` | Sí | No requiere |
-| CDSE — openEO | `https://openeo.dataspace.copernicus.eu/openeo/1.2/` | Sí (83 colecciones) | OIDC |
+| CDSE — openEO | `https://openeo.dataspace.copernicus.eu/openeo/1.2/` | Sí (83 colecciones) | OIDC, **`scope=openid` obligatorio** |
+| REDIAM — catálogo GeoNetwork | `https://portalrediam.cica.es/geonetwork/srv/api/search/records/_search` | Sí | No requiere |
 | CNIG — WFS INSPIRE Unidades Administrativas | `https://www.ign.es/wfs-inspire/unidades-administrativas` | Sí | No requiere |
 | PVGIS (JRC) | `https://re.jrc.ec.europa.eu/api/v5_3/MRcalc` | Sí | No requiere |
 | INE — Tempus3 | `https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/{tabla}` | Sí | No requiere |
@@ -33,9 +34,23 @@ el ámbito en EPSG:4326 se interpretan como grados. La Statistical API exige dec
 `dataMask` en el `setup()` del evalscript, y aborta la ejecución completa si el evalscript
 genera valores no finitos.
 
+**CDSE — openEO.** Las credenciales de cliente de Sentinel Hub sirven también para openEO,
+pero **solo si el token se solicita con `scope=openid`**; sin ese parámetro el servicio
+responde 403 `TokenInvalid`. El token se presenta como `Bearer oidc/CDSE/<token>`, no como
+`Bearer` a secas. Las peticiones síncronas a `/result` tardan del orden de 200 s por trimestre
+y fallan de forma intermitente con 500 y con cierres de conexión: exigen reintentos, y la
+carga de series históricas largas requiere trabajos por lotes.
+
+**CDSE — modelo digital de elevaciones.** No accesible por las vías gratuitas. Sentinel Hub
+responde que las colecciones DEM se sirven desde `services.sentinel-hub.com`, que es la
+plataforma comercial, y openEO no expone ninguna colección de elevación. Para estratificar por
+altitud debe usarse el MDT del CNIG.
+
 **REDIAM.** Los identificadores de servicio no son deducibles por convención. De tres nombres
 ensayados, únicamente `REDIAM_RENPA` existía. Cada servicio debe localizarse en el catálogo
-GeoNetwork (`https://portalrediam.cica.es/geonetwork`) antes de integrarlo.
+GeoNetwork, que **sí admite consulta por API** (endpoint en la tabla anterior, POST con
+Elasticsearch DSL). Los productos climáticos publicados son normales estáticas 1971-2000; no
+consta servicio OGC de evapotranspiración.
 
 **CLMS — Imperviousness y Tree Cover Density.** No se ha localizado un endpoint operativo. El
 servicio histórico de `image.discomap.eea.europa.eu` responde 400. La API de descarga de

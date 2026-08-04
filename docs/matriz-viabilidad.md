@@ -31,18 +31,18 @@ servicio no haya respondido.
 
 | Indicador | Estado | Fuente | Observaciones |
 |---|---|---|---|
-| LST media estival e invernal | **VR** | Sentinel-3 SLSTR L2 LST | Resolución 1 km sobre 117 km² ⇒ del orden de 117 píxeles. Suficiente para media municipal y contraste costa/sierra. Insuficiente para detalle urbano. |
-| Delta de isla de calor urbana | **VR** | Sentinel-3 SLSTR | Con 1 km, el contraste urbano/periurbano es detectable pero grosero. **Alternativa recomendada: Landsat 8/9 TIRS (100 m), abierto vía USGS.** No es Copernicus, pero es la única vía abierta con resolución adecuada. |
+| LST media estival e invernal | **P** | Sentinel-3 SLSTR L2 LST vía openEO | Trabajado en Fase 2 y **no publicable todavía**: falta una máscara de nubes defendible. Resolución 1 km sobre 117 km² ⇒ del orden de 117 píxeles. Detalle en el apartado «LST: por qué no se publica». |
+| Delta de isla de calor urbana | **VR** | Sentinel-3 SLSTR | Depende de que se resuelva antes la máscara de nubes de la LST. Con 1 km, el contraste urbano/periurbano es detectable pero grosero. **Alternativa recomendada: Landsat 8/9 TIRS (100 m), abierto vía USGS.** No es Copernicus, pero es la única vía abierta con resolución adecuada. |
 | Mapa de puntos calientes por barrio | **NV** | Sentinel-3 | Un barrio de Marbella ocupa del orden de 1 km² o menos: **1 píxel**. El indicador no es representable con Sentinel-3. Exige Landsat (100 m) o ECOSTRESS (70 m). Debe descartarse o rehacerse sobre otra fuente. |
 | Serie de temperatura y precipitación | **V** | AEMET OpenData + ERA5 | Servicio AEMET verificado y operativo. **Requiere clave gratuita, aún no dada de alta.** ERA5 exige registro adicional en el Climate Data Store. |
-| Evapotranspiración de referencia | **P** | REDIAM | Servicio no localizado. Los nombres de servicio REDIAM no son deducibles: de tres candidatos probados, dos no existían. Requiere resolución contra el catálogo GeoNetwork servicio a servicio. |
+| Evapotranspiración | **VR** | **CLMS vía openEO**, no REDIAM | Revisado en Fase 2. El catálogo GeoNetwork de REDIAM **sí es consultable por API**, y en él no consta ningún servicio OGC de evapotranspiración; sus productos climáticos son **normales estáticas 1971-2000**, útiles como contexto pero no como serie. La alternativa es `CLMS_ETA_GLOBAL_300M_10DAILY_V1` (300 m, decadal), pero **su serie arranca en noviembre de 2025**: nueve meses, insuficiente para leer tendencia. Publicable solo como valor reciente, declarando la brevedad de la serie. |
 
 ## Bloque 3 — Suelo y urbanización
 
 | Indicador | Estado | Fuente | Observaciones |
 |---|---|---|---|
 | Superficie sellada, evolución | **P** | CLMS Imperviousness | Endpoint no resuelto. Además, cadencia trienal: la «serie» tendría del orden de 6 puntos desde 2006. |
-| Cambios de usos del suelo | **VR** | CORINE Land Cover (WMS EEA verificado) | Cadencia ~6 años y unidad mínima cartografiable de 25 ha. **Demasiado grosero para detectar cambio urbano fino** en un municipio ya consolidado. Útil para tendencia estructural, no para seguimiento anual. |
+| Cambios de usos del suelo | **V** | **CLMS Land Cover 10 m anual vía openEO** | Mejorado en Fase 2. `CLMS_LCM_GLOBAL_10M_YEARLY_V1` da usos del suelo a **10 m con cadencia anual desde 2020**: seis cortes comparables y resolución suficiente para cambio urbano fino. Sustituye a CORINE como fuente principal (25 ha de unidad mínima y ~6 años de cadencia), que queda como serie histórica larga de contexto. |
 | Ratio suelo urbanizado / natural | **V** | CORINE + PGOM 2025 | Las cifras oficiales del PGOM (urbano 5.374 ha, rústico 6.339 ha) permiten anclar y validar el cálculo. |
 | Crecimiento de superficie construida | **VR** | Sentinel-2 NDBI | Se recomienda NDBI sobre Sentinel-2. **Se desaconseja Sentinel-1 en primera iteración**: alto coste de proceso y elevada incertidumbre interpretativa en terreno de fuerte relieve como Sierra Blanca. |
 
@@ -78,14 +78,70 @@ partir de los campos `Anyo` y `FK_Periodo`, nunca de `Fecha`.
 
 ---
 
+## LST: por qué no se publica todavía
+
+La temperatura superficial terrestre se trabajó en Fase 2 hasta el punto de tener el dato
+en la mano. No se publica porque no se ha logrado enmascarar la nubosidad de forma
+defendible, y el valor sin enmascarar es físicamente imposible.
+
+**Lo que sí quedó resuelto:**
+
+1. **Vía de acceso.** Sentinel Hub solo expone las bandas de temperatura de brillo de
+   Sentinel-3 (S7-S9). Convertirlas a LST exigiría implementar una corrección de emisividad
+   propia. El producto oficial `SENTINEL3_SLSTR_L2_LST` está en openEO y evita ese problema.
+2. **Autenticación.** Las credenciales de Sentinel Hub sirven para openEO, pero **solo si el
+   token se pide con `scope=openid`**; sin él, el servicio responde 403 `TokenInvalid`.
+3. **Separación día/noche.** Sentinel-3 sobrevuela hacia las 10:30 y hacia las 22:00.
+   Promediar ambas pasadas produce una media sin significado físico. Se separan con la banda
+   `sunZenithAngles` (cenital < 85° es día). Diferencia medida: del orden de 5 °C.
+
+**Lo que bloquea la publicación.** Enero de 2026, media municipal diurna:
+
+| Tratamiento | Valor | Lectura |
+|---|---|---|
+| Sin máscara | 1,9 °C | Imposible: la temperatura del aire en Marbella en enero ronda 10-17 °C y la LST diurna debe ser superior |
+| `exception == 0` | 2,2 °C | Apenas cambia: **esa banda no marca nubosidad** |
+| `exception == 0` y LST > 0 °C | 13,4 °C | Plausible, pero **obtenido recortando la cola fría de la distribución** |
+
+El tercer tratamiento produce una cifra creíble por construcción, no por haber identificado
+nubes: sube la media porque descarta los valores bajos. Es una aproximación no documentada y
+queda descartada.
+
+**Vía pendiente.** La máscara correcta está en la banda `confidence_in`, que es un mapa de
+bits con los indicadores de nubosidad de SLSTR. Falta decodificar sus bits y validar el
+resultado contra la climatología conocida del municipio.
+
+**Coste operativo, además.** Las peticiones síncronas a openEO tardan del orden de 200 s por
+trimestre y fallan de forma intermitente con 500 y con cierres de conexión. La carga
+histórica de 115 meses exigiría trabajar con trabajos por lotes, no con peticiones síncronas.
+
 ## Resumen
 
 | Estado | Indicadores |
 |---|---|
-| **V** — Viable | 10 |
+| **V** — Viable | 11 |
 | **VR** — Viable con reservas | 11 |
-| **P** — Pendiente de resolver fuente | 3 |
+| **P** — Pendiente de resolver | 3 |
 | **NV** — No viable como se plantea | 3 |
+
+De ellos, **publicado y en producción: 1** (NDVI medio municipal, Fase 1).
+
+## Revisión de Fase 2 (4 de agosto de 2026)
+
+El acceso a openEO cambió el cuadro respecto a la evaluación inicial:
+
+- **El catálogo CLMS es accesible por openEO**, no solo por la vía de descarga autenticada
+  que bloqueó la evaluación de Fase 0. Eso resuelve la fuente de usos del suelo (10 m
+  anuales desde 2020) y abre una alternativa para evapotranspiración, aunque con serie corta.
+- **REDIAM no publica evapotranspiración como servicio OGC.** Su catálogo GeoNetwork sí es
+  consultable por API (`portalrediam.cica.es/geonetwork/srv/api/search/records/_search`), lo
+  que elimina la necesidad de adivinar nombres de servicio. Sus productos climáticos son
+  normales estáticas 1971-2000: contexto cartográfico, no series.
+- **No hay modelo digital de elevaciones accesible por las vías gratuitas de CDSE.** Sentinel
+  Hub responde que las colecciones DEM se sirven desde `services.sentinel-hub.com`, que es la
+  plataforma comercial, y openEO no expone ninguna colección de elevación. La estratificación
+  por altitud que exige el ámbito de Marbella deberá apoyarse en el MDT del CNIG, de descarga
+  directa. **Queda pendiente.**
 
 ## Cuestiones que requieren decisión
 
@@ -97,3 +153,6 @@ partir de los campos `Anyo` y `FK_Periodo`, nunca de `Fecha`.
    serie temporal?
 4. **Oleaje (Bloque 4).** ¿Se sustituye Puertos del Estado por CMEMS, con el registro
    adicional que ello supone?
+5. **LST (Bloque 2).** ¿Se invierte en decodificar la máscara `confidence_in` de SLSTR, o se
+   salta directamente a Landsat 8/9, que resuelve a la vez la resolución y el detalle por
+   barrio?
