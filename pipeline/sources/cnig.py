@@ -76,7 +76,12 @@ def obtener_limite_municipal(cfg: dict, forzar: bool = False) -> dict:
         "bbox_epsg4326": [round(v, 6) for v in municipio.total_bounds],
         "epsg_calculo": crs["calculo"],
         "metodo": "Descarga por bbox y filtrado local por nationalCode",
-        "limitaciones": "El servicio no admite CQL_FILTER (responde 504).",
+        "limitaciones": [
+            "El servicio del IGN no admite CQL_FILTER (responde 504): la descarga se hace "
+            "por bbox y el filtrado por nationalCode se resuelve en local.",
+            "La geometría es el límite administrativo, no la línea de costa cartografiada "
+            "a escala de detalle.",
+        ],
         "licencia": "CC BY 4.0 scne.es",
     }
     (DIR_METADATA / "limite_municipal.json").write_text(

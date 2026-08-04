@@ -57,17 +57,34 @@ def construir_serie(cfg: dict, forzar: bool = False) -> dict:
 
     hoy = date.today()
     inicio = int(cfg["serie"]["fecha_inicio"][:4])
-    intervalos, anios_leidos = [], []
+    intervalos, tramos_leidos = [], []
 
+    # Se pide por trimestres y no por anios: las peticiones anuales a openEO se quedan
+    # colgadas de forma sistematica en esta coleccion, mientras que las de tres meses
+    # responden con fiabilidad. El tramo mas pequeno tambien limita lo que se pierde si
+    # una peticion falla.
     for anio in range(inicio, hoy.year + 1):
-        nombre = f"chl_{anio}"
-        cache = None if forzar else oeo.leer_cache(nombre)
-        if cache is None:
-            hasta = f"{anio + 1}-01-01" if anio < hoy.year else hoy.isoformat()
-            cache = oeo.ejecutar(_grafo(fc, bbox, f"{anio}-01-01", hasta))
-            oeo.cachear(nombre, cache)
-            anios_leidos.append(anio)
-        intervalos.append(cache)
+        # Se conserva la cache anual de ejecuciones anteriores para no repetir trabajo
+        anual = None if forzar else oeo.leer_cache(f"chl_{anio}")
+        if anual is not None:
+            intervalos.append(anual)
+            continue
+        for trimestre in range(4):
+            mes_ini = trimestre * 3 + 1
+            desde = f"{anio}-{mes_ini:02d}-01"
+            if desde > hoy.isoformat():
+                break
+            fin_anio, fin_mes = (anio, mes_ini + 3) if mes_ini + 3 <= 12 else (anio + 1, 1)
+            hasta = min(f"{fin_anio}-{fin_mes:02d}-01", hoy.isoformat())
+            if hasta <= desde:
+                break
+            nombre = f"chl_{anio}T{trimestre + 1}"
+            cache = None if forzar else oeo.leer_cache(nombre)
+            if cache is None:
+                cache = oeo.ejecutar(_grafo(fc, bbox, desde, hasta))
+                oeo.cachear(nombre, cache)
+                tramos_leidos.append(nombre)
+            intervalos.append(cache)
 
     serie = _componer(intervalos)
     con_dato = [r for r in serie if r["valor"] is not None]
@@ -83,7 +100,7 @@ def construir_serie(cfg: dict, forzar: bool = False) -> dict:
         "n_periodos": len(serie),
         "n_huecos": len(serie) - len(con_dato),
         "serie": serie,
-        "_telemetria": {"anios_leidos": anios_leidos},
+        "_telemetria": {"tramos_leidos": tramos_leidos},
     }
 
 
