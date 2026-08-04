@@ -69,6 +69,16 @@ indicadores:
     pu_estimado_por_mes: 5.1
     salida: "data/processed/ndvi_municipal.json"
 
+  lst_municipal:
+    activo: true
+    # Landsat y no Sentinel-3: 30 m frente a 1 km. Con 1 km el municipio son ~117 valores
+    # y no admite lectura por barrios.
+    coleccion: landsat-c2-l2
+    banda: ST_B10                  # temperatura superficial ya corregida por emisividad
+    resolucion_m: 30
+    umbral_cobertura_escena: 70    # por debajo, la escena no representa al municipio
+    salida: "data/processed/lst_municipal.json"
+
 calidad:
   tamano_maximo_fichero_mb: 5
   interpolar_huecos: false              # los huecos se publican como ausencia explicita

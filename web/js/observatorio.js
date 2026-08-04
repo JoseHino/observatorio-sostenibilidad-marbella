@@ -6,10 +6,36 @@
   'use strict';
 
   var MESES = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-  var graficos = [];
 
-  function css(nombre) {
-    return getComputedStyle(document.documentElement).getPropertyValue(nombre).trim();
+  // Definicion de los indicadores publicados. Anadir uno nuevo es anadir una entrada aqui.
+  var INDICADORES = [
+    {
+      clave: 'ndvi_municipal',
+      bloque: 'Bloque 1 · Vegetación y espacios verdes',
+      titulo: 'NDVI medio municipal',
+      descripcion: 'Índice de vegetación de diferencia normalizada promediado sobre el término municipal, en compuesto mensual a partir de Sentinel-2.',
+      unidad: '',
+      decimales: 3,
+      banda: false,
+      notaAmplitud: 'Diferencia entre el mes más y menos verde'
+    },
+    {
+      clave: 'lst_municipal',
+      bloque: 'Bloque 2 · Clima urbano',
+      titulo: 'Temperatura superficial terrestre',
+      descripcion: 'Temperatura de la superficie del terreno promediada sobre el término municipal, a partir de los pasos de Landsat 8 y 9 hacia las 11:00 hora local. No es temperatura del aire.',
+      unidad: ' °C',
+      decimales: 1,
+      banda: true,
+      notaAmplitud: 'Diferencia entre el mes más y menos cálido'
+    }
+  ];
+
+  var graficos = [];
+  var cargados = {};
+
+  function css(n) {
+    return getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   }
 
   function etiquetaPeriodo(p) {
@@ -17,24 +43,13 @@
     return MESES[parseInt(t[1], 10) - 1] + ' ' + t[0];
   }
 
-  /* ---------- Tema claro / oscuro ---------- */
-  function temaInicial() {
-    var guardado = null;
-    try { guardado = null; } catch (e) { /* sin estado persistente por diseno */ }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-
-  function aplicarTema(tema) {
-    document.documentElement.setAttribute('data-theme', tema);
-    graficos.forEach(function (g) { if (g && g.destroy) g.destroy(); });
-    graficos = [];
-    if (window._datosNdvi) dibujarGraficos(window._datosNdvi);
+  function fmt(v, ind) {
+    return v === null || v === undefined ? '—' : v.toFixed(ind.decimales) + ind.unidad;
   }
 
   /* ---------- Opciones comunes de Chart.js ---------- */
   function opcionesBase() {
     var apagada = css('--tinta-apagada');
-    var rejilla = css('--rejilla');
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -42,119 +57,137 @@
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: css('--superficie'),
-          titleColor: css('--tinta'),
-          bodyColor: css('--tinta-2'),
-          borderColor: css('--borde'),
-          borderWidth: 1,
-          padding: 12,
-          cornerRadius: 8,
+          backgroundColor: css('--superficie'), titleColor: css('--tinta'),
+          bodyColor: css('--tinta-2'), borderColor: css('--borde'), borderWidth: 1,
+          padding: 12, cornerRadius: 8, displayColors: false,
           titleFont: { family: 'Montserrat', weight: '600', size: 13 },
-          bodyFont: { family: 'Montserrat', size: 12.5 },
-          displayColors: false
+          bodyFont: { family: 'Montserrat', size: 12.5 }
         }
       },
       scales: {
         x: {
-          grid: { display: false },
-          border: { color: css('--eje') },
+          grid: { display: false }, border: { color: css('--eje') },
           ticks: { color: apagada, font: { family: 'Montserrat', size: 11 }, maxRotation: 0, autoSkipPadding: 22 }
         },
         y: {
-          grid: { color: rejilla, drawTicks: false },
-          border: { display: false },
+          grid: { color: css('--rejilla'), drawTicks: false }, border: { display: false },
           ticks: { color: apagada, font: { family: 'Montserrat', size: 11 }, padding: 8 }
         }
       }
     };
   }
 
-  /* ---------- Graficos ---------- */
-  function dibujarGraficos(d) {
+  /* ---------- Construccion del bloque de un indicador ---------- */
+  function plantillaBloque(ind) {
+    return '' +
+      '<section class="bloque" aria-labelledby="t-' + ind.clave + '">' +
+        '<div class="bloque-cabecera"><div>' +
+          '<p class="bloque-supra">' + ind.bloque + '</p>' +
+          '<h2 id="t-' + ind.clave + '">' + ind.titulo + '</h2>' +
+          '<p class="bloque-desc">' + ind.descripcion + '</p>' +
+        '</div></div>' +
+        '<div class="rejilla-kpi" id="kpi-' + ind.clave + '"></div>' +
+        '<figure class="figura"><figcaption>' +
+          '<h3>Serie mensual completa</h3>' +
+          '<p>Valor medio municipal por mes. Los meses sin observación válida se representan como discontinuidad; no se interpolan.' +
+          (ind.banda ? ' La banda recoge el recorrido entre los percentiles 10 y 90 de la superficie.' : '') +
+          '</p></figcaption>' +
+          '<div class="lienzo"><canvas id="g-serie-' + ind.clave + '" role="img" aria-label="Serie mensual de ' + ind.titulo + '"></canvas></div>' +
+        '</figure>' +
+        '<div class="rejilla-dos">' +
+          '<figure class="figura"><figcaption><h3>Ciclo estacional medio</h3>' +
+            '<p>Promedio de cada mes en el conjunto de la serie. La banda representa el recorrido entre el mínimo y el máximo observados.</p></figcaption>' +
+            '<div class="lienzo lienzo-bajo"><canvas id="g-est-' + ind.clave + '" role="img" aria-label="Ciclo estacional de ' + ind.titulo + '"></canvas></div></figure>' +
+          '<figure class="figura"><figcaption><h3>Media anual</h3>' +
+            '<p>Promedio de los meses disponibles en cada año. El año en curso es parcial.</p></figcaption>' +
+            '<div class="lienzo lienzo-bajo"><canvas id="g-anual-' + ind.clave + '" role="img" aria-label="Media anual de ' + ind.titulo + '"></canvas></div></figure>' +
+        '</div>' +
+        '<div class="bloque-acciones">' +
+          '<button type="button" class="btn" data-tabla="' + ind.clave + '" aria-expanded="false" aria-controls="tabla-' + ind.clave + '">Ver los datos en tabla</button> ' +
+          '<button type="button" class="btn" data-ficha="' + ind.clave + '" aria-expanded="false" aria-controls="ficha-' + ind.clave + '">Ver la ficha del indicador</button>' +
+        '</div>' +
+        '<div id="tabla-' + ind.clave + '" class="envoltura-tabla" hidden>' +
+          '<table><caption class="sr-only">Serie mensual de ' + ind.titulo + '</caption>' +
+          '<thead id="cab-' + ind.clave + '"></thead><tbody id="cuerpo-' + ind.clave + '"></tbody></table>' +
+        '</div>' +
+        '<div id="ficha-' + ind.clave + '" hidden>' +
+          '<dl class="ficha" id="dl-' + ind.clave + '"></dl>' +
+          '<div class="aviso"><h3>Limitaciones declaradas</h3><ul id="lim-' + ind.clave + '"></ul></div>' +
+        '</div>' +
+      '</section>';
+  }
+
+  /* ---------- Graficos de un indicador ---------- */
+  function dibujar(ind, d) {
     var serie = d.serie;
     var azul = css('--serie-1');
-    var azulSuave = css('--serie-1-suave');
+    var suave = css('--serie-1-suave');
+    var sup = css('--superficie');
 
-    // 1. Serie mensual completa. Los huecos van como null: Chart.js corta la linea.
-    graficos.push(new Chart(document.getElementById('g-serie'), {
+    function tt(base, extra) {
+      var o = opcionesBase();
+      o.plugins.tooltip.callbacks = { label: extra };
+      return Object.assign(o, base || {});
+    }
+
+    // 1. Serie mensual. Los huecos van como null y Chart.js corta la linea.
+    var conjuntos = [];
+    if (ind.banda) {
+      conjuntos.push(
+        { label: 'P90', data: serie.map(function (r) { return r.p90; }), borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: '+1', tension: 0.25, spanGaps: false },
+        { label: 'P10', data: serie.map(function (r) { return r.p10; }), borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: false, tension: 0.25, spanGaps: false }
+      );
+    }
+    conjuntos.push({
+      label: ind.titulo, data: serie.map(function (r) { return r.valor; }),
+      borderColor: azul, backgroundColor: ind.banda ? 'transparent' : suave, borderWidth: 2,
+      pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: azul,
+      pointHoverBorderColor: sup, pointHoverBorderWidth: 2,
+      tension: 0.25, fill: !ind.banda, spanGaps: false
+    });
+
+    graficos.push(new Chart(document.getElementById('g-serie-' + ind.clave), {
       type: 'line',
-      data: {
-        labels: serie.map(function (r) { return etiquetaPeriodo(r.periodo); }),
-        datasets: [{
-          label: 'NDVI medio',
-          data: serie.map(function (r) { return r.valor; }),
-          borderColor: azul,
-          backgroundColor: azulSuave,
-          borderWidth: 2,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: azul,
-          pointHoverBorderColor: css('--superficie'),
-          pointHoverBorderWidth: 2,
-          tension: 0.25,
-          fill: true,
-          spanGaps: false
-        }]
-      },
-      options: Object.assign(opcionesBase(), {
-        plugins: Object.assign(opcionesBase().plugins, {
-          tooltip: Object.assign(opcionesBase().plugins.tooltip, {
-            callbacks: {
-              label: function (ctx) {
-                var r = serie[ctx.dataIndex];
-                if (r.valor === null) return 'Sin observación válida';
-                var lineas = ['NDVI medio: ' + r.valor.toFixed(3)];
-                if (r.cobertura_pct !== null && r.cobertura_pct !== undefined) {
-                  lineas.push('Cobertura: ' + r.cobertura_pct.toFixed(1) + '%');
-                }
-                if (r.aviso) lineas.push('Aviso: cobertura baja');
-                return lineas;
-              }
-            }
-          })
-        })
+      data: { labels: serie.map(function (r) { return etiquetaPeriodo(r.periodo); }), datasets: conjuntos },
+      options: tt(null, function (ctx) {
+        var r = serie[ctx.dataIndex];
+        if (r.valor === null) return ctx.datasetIndex === conjuntos.length - 1 ? 'Sin observación válida' : null;
+        if (ctx.dataset.label === 'P90') return 'P90: ' + fmt(r.p90, ind);
+        if (ctx.dataset.label === 'P10') return 'P10: ' + fmt(r.p10, ind);
+        var l = [ind.titulo + ': ' + fmt(r.valor, ind)];
+        if (r.n_escenas) l.push(r.n_escenas + ' escena(s)');
+        if (r.cobertura_pct !== undefined && r.cobertura_pct !== null) l.push('Cobertura: ' + r.cobertura_pct.toFixed(1) + '%');
+        if (r.aviso) l.push('Aviso: cobertura baja');
+        return l;
       })
     }));
 
-    // 2. Ciclo estacional: media por mes con banda de recorrido minimo-maximo
+    // 2. Ciclo estacional con banda de recorrido minimo-maximo
     var porMes = MESES.map(function () { return []; });
     serie.forEach(function (r) {
       if (r.valor !== null) porMes[parseInt(r.periodo.split('-')[1], 10) - 1].push(r.valor);
     });
     var media = porMes.map(function (v) { return v.length ? v.reduce(function (a, b) { return a + b; }, 0) / v.length : null; });
-    var minimo = porMes.map(function (v) { return v.length ? Math.min.apply(null, v) : null; });
-    var maximo = porMes.map(function (v) { return v.length ? Math.max.apply(null, v) : null; });
+    var mini = porMes.map(function (v) { return v.length ? Math.min.apply(null, v) : null; });
+    var maxi = porMes.map(function (v) { return v.length ? Math.max.apply(null, v) : null; });
 
-    graficos.push(new Chart(document.getElementById('g-estacional'), {
+    graficos.push(new Chart(document.getElementById('g-est-' + ind.clave), {
       type: 'line',
       data: {
         labels: MESES,
         datasets: [
-          { label: 'Máximo', data: maximo, borderColor: 'transparent', backgroundColor: azulSuave, pointRadius: 0, fill: '+1', tension: 0.35 },
-          { label: 'Mínimo', data: minimo, borderColor: 'transparent', backgroundColor: azulSuave, pointRadius: 0, fill: false, tension: 0.35 },
-          {
-            label: 'Media', data: media, borderColor: azul, borderWidth: 2,
-            pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: azul,
-            pointHoverBorderColor: css('--superficie'), pointHoverBorderWidth: 2,
-            fill: false, tension: 0.35
-          }
+          { label: 'Máximo', data: maxi, borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: '+1', tension: 0.35 },
+          { label: 'Mínimo', data: mini, borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: false, tension: 0.35 },
+          { label: 'Media', data: media, borderColor: azul, borderWidth: 2, pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: azul, pointHoverBorderColor: sup, pointHoverBorderWidth: 2, fill: false, tension: 0.35 }
         ]
       },
-      options: Object.assign(opcionesBase(), {
-        plugins: Object.assign(opcionesBase().plugins, {
-          tooltip: Object.assign(opcionesBase().plugins.tooltip, {
-            callbacks: {
-              label: function (ctx) {
-                if (ctx.raw === null) return null;
-                return ctx.dataset.label + ': ' + ctx.raw.toFixed(3);
-              }
-            }
-          })
-        })
+      options: tt(null, function (ctx) {
+        return ctx.raw === null ? null : ctx.dataset.label + ': ' + fmt(ctx.raw, ind);
       })
     }));
 
-    // 3. Media anual
+    // 3. Media anual. Linea con puntos, no barras: la variacion interanual es pequena
+    // frente al valor absoluto y unas barras con el eje en cero no la mostrarian.
     var porAnio = {};
     serie.forEach(function (r) {
       if (r.valor === null) return;
@@ -166,152 +199,137 @@
       return porAnio[a].reduce(function (x, y) { return x + y; }, 0) / porAnio[a].length;
     });
 
-    // Linea con puntos, no barras: la variacion interanual es pequena frente al valor
-    // absoluto, y unas barras con el eje en cero no la mostrarian. Las barras codifican
-    // magnitud por longitud y exigen eje a cero; una linea admite un eje ajustado.
-    graficos.push(new Chart(document.getElementById('g-anual'), {
+    var opc = tt(null, function (ctx) {
+      var n = porAnio[ctx.label].length;
+      return [ind.titulo + ': ' + fmt(ctx.raw, ind), n + ' meses' + (n < 12 ? ' (año parcial)' : '')];
+    });
+    opc.scales.y.beginAtZero = false;
+
+    graficos.push(new Chart(document.getElementById('g-anual-' + ind.clave), {
       type: 'line',
       data: {
         labels: anios,
         datasets: [{
-          label: 'NDVI medio anual',
-          data: mediasAnuales,
-          borderColor: azul,
-          backgroundColor: azul,
-          borderWidth: 2,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          pointBackgroundColor: azul,
-          pointBorderColor: css('--superficie'),
-          pointBorderWidth: 2,
-          tension: 0.2,
-          fill: false
+          label: 'Media anual', data: mediasAnuales,
+          borderColor: azul, backgroundColor: azul, borderWidth: 2,
+          pointRadius: 4, pointHoverRadius: 6, pointBorderColor: sup, pointBorderWidth: 2,
+          tension: 0.2, fill: false
         }]
       },
-      options: Object.assign(opcionesBase(), {
-        plugins: Object.assign(opcionesBase().plugins, {
-          tooltip: Object.assign(opcionesBase().plugins.tooltip, {
-            callbacks: {
-              label: function (ctx) {
-                var n = porAnio[ctx.label].length;
-                return ['NDVI medio: ' + ctx.raw.toFixed(3), n + ' meses' + (n < 12 ? ' (año parcial)' : '')];
-              }
-            }
-          })
-        }),
-        scales: Object.assign(opcionesBase().scales, {
-          y: Object.assign(opcionesBase().scales.y, { beginAtZero: false })
-        })
-      })
+      options: opc
     }));
   }
 
   /* ---------- KPI ---------- */
-  function pintarKpis(d) {
-    var conDato = d.serie.filter(function (r) { return r.valor !== null; });
-    var ultimo = conDato[conDato.length - 1];
-    var valores = conDato.map(function (r) { return r.valor; });
+  function pintarKpis(ind, d) {
+    var con = d.serie.filter(function (r) { return r.valor !== null; });
+    if (!con.length) return;
+    var ultimo = con[con.length - 1];
+    var vals = con.map(function (r) { return r.valor; });
 
     var porMes = {};
-    conDato.forEach(function (r) {
-      var m = r.periodo.split('-')[1];
-      (porMes[m] = porMes[m] || []).push(r.valor);
-    });
+    con.forEach(function (r) { (porMes[r.periodo.split('-')[1]] = porMes[r.periodo.split('-')[1]] || []).push(r.valor); });
     var mediasMes = Object.keys(porMes).map(function (m) {
       return porMes[m].reduce(function (a, b) { return a + b; }, 0) / porMes[m].length;
     });
     var amplitud = Math.max.apply(null, mediasMes) - Math.min.apply(null, mediasMes);
-
-    var minimo = conDato.reduce(function (a, b) { return a.valor < b.valor ? a : b; });
+    var maximo = con.reduce(function (a, b) { return a.valor > b.valor ? a : b; });
 
     var kpis = [
-      { etiqueta: 'Último valor', valor: ultimo.valor.toFixed(3), nota: etiquetaPeriodo(ultimo.periodo) },
-      { etiqueta: 'Media de la serie', valor: (valores.reduce(function (a, b) { return a + b; }, 0) / valores.length).toFixed(3), nota: d.n_periodos + ' meses observados' },
-      { etiqueta: 'Amplitud estacional', valor: amplitud.toFixed(3), nota: 'Diferencia entre el mes más y menos verde' },
-      { etiqueta: 'Mínimo de la serie', valor: minimo.valor.toFixed(3), nota: etiquetaPeriodo(minimo.periodo) }
+      { e: 'Último valor', v: fmt(ultimo.valor, ind), n: etiquetaPeriodo(ultimo.periodo) },
+      { e: 'Media de la serie', v: fmt(vals.reduce(function (a, b) { return a + b; }, 0) / vals.length, ind), n: con.length + ' meses observados' },
+      { e: 'Amplitud estacional', v: fmt(amplitud, ind), n: ind.notaAmplitud },
+      { e: 'Máximo de la serie', v: fmt(maximo.valor, ind), n: etiquetaPeriodo(maximo.periodo) }
     ];
-
-    document.getElementById('kpis').innerHTML = kpis.map(function (k) {
-      return '<div class="kpi"><p class="kpi-etiqueta">' + k.etiqueta + '</p>' +
-        '<p class="kpi-valor">' + k.valor + '</p>' +
-        '<p class="kpi-nota">' + k.nota + '</p></div>';
+    document.getElementById('kpi-' + ind.clave).innerHTML = kpis.map(function (k) {
+      return '<div class="kpi"><p class="kpi-etiqueta">' + k.e + '</p><p class="kpi-valor">' + k.v +
+             '</p><p class="kpi-nota">' + k.n + '</p></div>';
     }).join('');
   }
 
+  /* ---------- Tabla ---------- */
+  function pintarTabla(ind, d) {
+    var cols = ind.banda
+      ? ['Periodo', 'Media', 'Mediana', 'P10', 'P90', 'Escenas', 'Cobertura', 'Observaciones']
+      : ['Periodo', 'Media', 'Mediana', 'P25', 'P75', 'Cobertura', 'Observaciones'];
+    document.getElementById('cab-' + ind.clave).innerHTML =
+      '<tr>' + cols.map(function (c) { return '<th scope="col">' + c + '</th>'; }).join('') + '</tr>';
+
+    document.getElementById('cuerpo-' + ind.clave).innerHTML = d.serie.map(function (r) {
+      if (r.valor === null) {
+        return '<tr><td>' + etiquetaPeriodo(r.periodo) + '</td><td colspan="' + (cols.length - 2) +
+               '">Sin dato</td><td>' + (r.motivo || '') + '</td></tr>';
+      }
+      var c = [etiquetaPeriodo(r.periodo), fmt(r.valor, ind), fmt(r.mediana, ind)];
+      if (ind.banda) {
+        c.push(fmt(r.p10, ind), fmt(r.p90, ind), String(r.n_escenas || ''));
+      } else {
+        c.push(fmt(r.p25, ind), fmt(r.p75, ind));
+      }
+      c.push((r.cobertura_pct !== undefined && r.cobertura_pct !== null ? r.cobertura_pct.toFixed(1) + '%' : '—'));
+      c.push(r.aviso || (r.escenas_descartadas ? r.escenas_descartadas + ' escena(s) descartada(s)' : ''));
+      return '<tr>' + c.map(function (x, i) {
+        return '<td' + (i === c.length - 2 && r.aviso ? ' class="marcado"' : '') + '>' + x + '</td>';
+      }).join('') + '</tr>';
+    }).join('');
+  }
+
+  /* ---------- Ficha ---------- */
+  function pintarFicha(ind, f) {
+    var filas = [
+      ['Fuente', f.fuente],
+      ['Fórmula', '<code>' + f.formula + '</code>'],
+      ['Resolución espacial', f.resolucion_espacial],
+      ['Resolución temporal', f.resolucion_temporal],
+      ['Método de cálculo', f.metodo],
+      ['Enmascaramiento', f.enmascaramiento],
+      ['Periodo de la serie', f.serie_desde + ' a ' + f.serie_hasta + ' (' + f.n_periodos + ' meses, ' + f.n_huecos + ' huecos)'],
+      ['Recorrido observado', f.valor_minimo_serie + ' a ' + f.valor_maximo_serie],
+      ['Licencia', f.licencia]
+    ];
+    if (f.hora_de_paso) filas.splice(4, 0, ['Hora de paso', f.hora_de_paso]);
+    if (f.epsg_peticion) filas.splice(6, 0, ['Sistema de referencia', 'Petición en EPSG:' + f.epsg_peticion + ' · Cálculo de superficies en EPSG:' + f.epsg_calculo]);
+
+    document.getElementById('dl-' + ind.clave).innerHTML =
+      filas.map(function (x) { return '<dt>' + x[0] + '</dt><dd>' + x[1] + '</dd>'; }).join('');
+    document.getElementById('lim-' + ind.clave).innerHTML =
+      (f.limitaciones || []).map(function (l) { return '<li>' + l + '</li>'; }).join('');
+  }
+
   /* ---------- Estado de frescura ---------- */
-  function pintarEstado(d, estado) {
-    document.getElementById('estado-ultimo').textContent = etiquetaPeriodo(d.ultimo_periodo);
+  function pintarEstado(estado) {
+    var claves = Object.keys(cargados);
+    if (!claves.length) return;
+    var ultimos = claves.map(function (k) { return cargados[k].ultimo_periodo; }).filter(Boolean).sort();
+    var ultimo = ultimos[ultimos.length - 1];
+    document.getElementById('estado-ultimo').textContent = etiquetaPeriodo(ultimo);
 
     // La marca de comprobacion no se versiona: llega en estado.json con el despliegue
-    var comprobacion = estado && estado.ultima_comprobacion;
-    document.getElementById('estado-comprobacion').textContent = comprobacion
-      ? new Date(comprobacion).toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })
+    var c = estado && estado.ultima_comprobacion;
+    document.getElementById('estado-comprobacion').textContent = c
+      ? new Date(c).toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' })
       : 'No disponible';
 
-    // Sentinel-2 publica cada pocos dias; mas de dos meses de retraso indica anomalia
-    var t = d.ultimo_periodo.split('-');
-    var ultimo = new Date(parseInt(t[0], 10), parseInt(t[1], 10) - 1, 1);
+    var t = ultimo.split('-');
     var hoy = new Date();
-    var meses = (hoy.getFullYear() - ultimo.getFullYear()) * 12 + (hoy.getMonth() - ultimo.getMonth());
-
+    var meses = (hoy.getFullYear() - parseInt(t[0], 10)) * 12 + (hoy.getMonth() - (parseInt(t[1], 10) - 1));
     var el = document.getElementById('estado-frescura');
     if (meses <= 1) { el.className = 'pastilla al-dia'; el.textContent = 'Al día'; }
     else if (meses <= 3) { el.className = 'pastilla demorado'; el.textContent = 'Demorado ' + meses + ' meses'; }
     else { el.className = 'pastilla detenido'; el.textContent = 'Desactualizado ' + meses + ' meses'; }
-  }
 
-  /* ---------- Tabla ---------- */
-  function pintarTabla(d) {
-    document.getElementById('tabla-cuerpo').innerHTML = d.serie.map(function (r) {
-      if (r.valor === null) {
-        return '<tr><td>' + etiquetaPeriodo(r.periodo) + '</td>' +
-          '<td colspan="5">Sin dato</td><td>' + (r.motivo || '') + '</td></tr>';
-      }
-      return '<tr><td>' + etiquetaPeriodo(r.periodo) + '</td>' +
-        '<td>' + r.valor.toFixed(4) + '</td>' +
-        '<td>' + r.mediana.toFixed(4) + '</td>' +
-        '<td>' + r.p25.toFixed(4) + '</td>' +
-        '<td>' + r.p75.toFixed(4) + '</td>' +
-        '<td' + (r.aviso ? ' class="marcado"' : '') + '>' + r.cobertura_pct.toFixed(1) + '%</td>' +
-        '<td>' + (r.aviso || '') + '</td></tr>';
-    }).join('');
-  }
-
-  /* ---------- Ficha de metadatos ---------- */
-  function pintarFicha(ficha) {
-    var filas = [
-      ['Fuente', ficha.fuente],
-      ['Fórmula', '<code>' + ficha.formula + '</code>'],
-      ['Resolución espacial', ficha.resolucion_espacial],
-      ['Resolución temporal', ficha.resolucion_temporal],
-      ['Método de cálculo', ficha.metodo],
-      ['Enmascaramiento', ficha.enmascaramiento],
-      ['Sistema de referencia', 'Petición en EPSG:' + ficha.epsg_peticion + ' · Cálculo de superficies en EPSG:' + ficha.epsg_calculo],
-      ['Periodo de la serie', ficha.serie_desde + ' a ' + ficha.serie_hasta + ' (' + ficha.n_periodos + ' meses, ' + ficha.n_huecos + ' huecos)'],
-      ['Recorrido observado', ficha.valor_minimo_serie + ' a ' + ficha.valor_maximo_serie],
-      ['Licencia', ficha.licencia]
-    ];
-    document.getElementById('ficha').innerHTML = filas.map(function (f) {
-      return '<dt>' + f[0] + '</dt><dd>' + f[1] + '</dd>';
-    }).join('');
-
-    document.getElementById('lista-limitaciones').innerHTML =
-      (ficha.limitaciones || []).map(function (l) { return '<li>' + l + '</li>'; }).join('');
+    document.getElementById('estado-indicadores').textContent = claves.length;
   }
 
   /* ---------- Mapa ---------- */
-  function pintarMapa(geojson, fichaLimite) {
+  function pintarMapa(geojson, ficha) {
     var mapa = L.map('mapa', { scrollWheelZoom: false });
-
-    // El mapa base sigue al tema para no romper el contraste en modo oscuro
     var oscuro = document.documentElement.getAttribute('data-theme') === 'dark';
     L.tileLayer('https://{s}.basemaps.cartocdn.com/' + (oscuro ? 'dark_all' : 'light_all') + '/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap, &copy; CARTO',
-      maxZoom: 19
+      attribution: '&copy; OpenStreetMap, &copy; CARTO', maxZoom: 19
     }).addTo(mapa);
 
-    // Capa ambiental servida por WMS bajo demanda, no preprocesada.
-    // El nombre de capa procede del GetCapabilities del servicio, no de una convencion.
+    // Capa ambiental por WMS bajo demanda. El nombre de capa procede del GetCapabilities.
     L.tileLayer.wms('https://www.juntadeandalucia.es/medioambiente/mapwms/REDIAM_RENPA', {
       layers: 'red_natura_2000', format: 'image/png', transparent: true, opacity: 0.5,
       attribution: 'REDIAM, Junta de Andalucía'
@@ -322,13 +340,12 @@
     }).addTo(mapa);
     mapa.fitBounds(capa.getBounds(), { padding: [18, 18] });
 
-    var datos = [
-      ['Superficie', fichaLimite.superficie_ha.toLocaleString('es-ES') + ' ha'],
-      ['Código INE', fichaLimite.codigo_ine],
+    document.getElementById('datos-ambito').innerHTML = [
+      ['Superficie', ficha.superficie_ha.toLocaleString('es-ES') + ' ha'],
+      ['Código INE', ficha.codigo_ine],
       ['Fuente del límite', 'CNIG'],
-      ['Sistema de referencia', 'EPSG:' + fichaLimite.epsg_calculo]
-    ];
-    document.getElementById('datos-ambito').innerHTML = datos.map(function (d) {
+      ['Sistema de referencia', 'EPSG:' + ficha.epsg_calculo]
+    ].map(function (d) {
       return '<div class="dato"><p class="dato-etiqueta">' + d[0] + '</p><p class="dato-valor">' + d[1] + '</p></div>';
     }).join('');
   }
@@ -341,40 +358,61 @@
     });
   }
 
+  function alternar(boton, id, textos) {
+    var caja = document.getElementById(id);
+    var visible = !caja.hidden;
+    caja.hidden = visible;
+    boton.setAttribute('aria-expanded', String(!visible));
+    boton.textContent = visible ? textos[0] : textos[1];
+  }
+
+  function aplicarTema(tema) {
+    document.documentElement.setAttribute('data-theme', tema);
+    graficos.forEach(function (g) { if (g && g.destroy) g.destroy(); });
+    graficos = [];
+    INDICADORES.forEach(function (ind) { if (cargados[ind.clave]) dibujar(ind, cargados[ind.clave]); });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
-    document.documentElement.setAttribute('data-theme', temaInicial());
+    document.documentElement.setAttribute(
+      'data-theme',
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    );
 
     document.getElementById('btn-tema').addEventListener('click', function () {
-      var actual = document.documentElement.getAttribute('data-theme');
-      aplicarTema(actual === 'dark' ? 'light' : 'dark');
+      aplicarTema(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
 
-    var btnTabla = document.getElementById('btn-tabla');
-    btnTabla.addEventListener('click', function () {
-      var tabla = document.getElementById('tabla-datos');
-      var visible = !tabla.hidden;
-      tabla.hidden = visible;
-      btnTabla.setAttribute('aria-expanded', String(!visible));
-      btnTabla.textContent = visible ? 'Ver los datos en tabla' : 'Ocultar la tabla';
+    var cont = document.getElementById('indicadores');
+    cont.innerHTML = INDICADORES.map(plantillaBloque).join('');
+
+    // Un unico delegado: no hay onclick en el HTML
+    cont.addEventListener('click', function (ev) {
+      var b = ev.target.closest('button');
+      if (!b) return;
+      if (b.dataset.tabla) alternar(b, 'tabla-' + b.dataset.tabla, ['Ver los datos en tabla', 'Ocultar la tabla']);
+      if (b.dataset.ficha) alternar(b, 'ficha-' + b.dataset.ficha, ['Ver la ficha del indicador', 'Ocultar la ficha']);
     });
 
-    // Carga progresiva: cada bloque se pinta en cuanto tiene su dato,
-    // sin que el fallo de uno bloquee a los demas.
-    json('data/ndvi_municipal.json').then(function (d) {
-      window._datosNdvi = d;
-      pintarKpis(d);
-      dibujarGraficos(d);
-      pintarTabla(d);
-      json('data/estado.json')
-        .then(function (e) { pintarEstado(d, e); })
-        .catch(function () { pintarEstado(d, null); });
-    }).catch(function (e) {
-      console.error(e);
-      document.getElementById('kpis').innerHTML =
-        '<p class="kpi-nota">No se pudieron cargar los datos del indicador.</p>';
+    // Carga progresiva: cada indicador se pinta en cuanto llega, sin que el fallo
+    // de uno impida mostrar los demas.
+    var promesas = INDICADORES.map(function (ind) {
+      return json('data/' + ind.clave + '.json').then(function (d) {
+        cargados[ind.clave] = d;
+        pintarKpis(ind, d);
+        dibujar(ind, d);
+        pintarTabla(ind, d);
+        return json('data/metadata/' + ind.clave + '.json').then(function (f) { pintarFicha(ind, f); });
+      }).catch(function (e) {
+        console.error(e);
+        var caja = document.getElementById('kpi-' + ind.clave);
+        if (caja) caja.innerHTML = '<p class="kpi-nota">Este indicador aún no tiene datos publicados.</p>';
+      });
     });
 
-    json('data/metadata/ndvi_municipal.json').then(pintarFicha).catch(function (e) { console.error(e); });
+    Promise.all(promesas).then(function () {
+      json('data/estado.json').then(pintarEstado).catch(function () { pintarEstado(null); });
+    });
 
     Promise.all([
       json('data/limite_municipal.geojson'),

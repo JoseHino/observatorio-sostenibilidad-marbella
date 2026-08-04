@@ -1,4 +1,4 @@
-name: Actualización semanal (Sentinel-2)
+name: Actualización semanal (Sentinel-2 y Landsat)
 
 # Cadencia real de la fuente: Sentinel-2 revisita cada 2-3 días sobre Marbella y el dato
 # aparece en el CDSE en horas. Un sondeo semanal es suficiente y no desperdicia cuota.
@@ -37,7 +37,9 @@ jobs:
       - name: Recuperar caché de la serie
         uses: actions/cache@v4
         with:
-          path: data/raw/sh_statistics
+          path: |
+            data/raw/sh_statistics
+            data/raw/landsat
           key: sh-stats-${{ hashFiles('pipeline/config.yaml') }}-${{ github.run_id }}
           restore-keys: |
             sh-stats-${{ hashFiles('pipeline/config.yaml') }}-
@@ -64,7 +66,7 @@ jobs:
             echo "Sin dato nuevo: no se hace commit."
             echo "hubo_cambio=false" >> "$GITHUB_OUTPUT"
           else
-            git commit -m "data: actualización automática sentinel-2 $(date -u +%Y-%m-%d)"
+            git commit -m "data: actualización automática $(date -u +%Y-%m-%d)"
             git push
             echo "hubo_cambio=true" >> "$GITHUB_OUTPUT"
           fi

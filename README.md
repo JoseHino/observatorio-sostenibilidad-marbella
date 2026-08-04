@@ -30,8 +30,17 @@ estático.
 - Automatización verificada en CI: si no hay dato nuevo, no se genera commit; el sitio se
   redespliega igualmente para refrescar la fecha de comprobación.
 
-Fase 2 (bloques de vegetación y clima urbano) pendiente de las decisiones abiertas
-recogidas en [`docs/matriz-viabilidad.md`](docs/matriz-viabilidad.md).
+**Fase 2 — Clima urbano: temperatura superficial publicada.**
+
+- Serie LST mensual **2017-01 a 2026-07: 115 periodos, 14 huecos declarados**, a partir de
+  316 escenas de Landsat 8 y 9 (123 descartadas por control de calidad).
+- **Resolución de 30 m**, frente al kilómetro de Sentinel-3. Con ello el indicador de puntos
+  calientes por barrio deja de ser inviable.
+- Ciclo estacional: 17,1 °C de media en enero y 38,6 °C en agosto.
+- El máximo interanual de LST (2022-2023) coincide con el mínimo de NDVI (2022).
+
+Resto de bloques pendiente de las decisiones abiertas recogidas en
+[`docs/matriz-viabilidad.md`](docs/matriz-viabilidad.md).
 
 ## Arquitectura
 

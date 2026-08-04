@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import manifest
 from config import DIR_METADATA, DIR_PROCESSED, ROOT, cargar_config
+from processing import lst as proc_lst
 from processing import ndvi as proc_ndvi
 from qa import validate
 from sources import cnig
@@ -109,9 +110,45 @@ def tarea_ndvi(cfg: dict, forzar: bool) -> list[str]:
 TELEMETRIA: dict = {}
 
 
+def tarea_lst(cfg: dict, forzar: bool) -> list[str]:
+    ind = cfg["indicadores"]["lst_municipal"]
+    if not ind.get("activo", True):
+        return []
+    huella = manifest.hash_config(ind)
+    reproceso = forzar or manifest.requiere_reproceso("lst_municipal", huella)
+    if reproceso and not forzar:
+        log("lst", "INFO", "cambio de configuracion: se recalcula la serie completa")
+
+    resultado = proc_lst.construir_serie(cfg, forzar=reproceso)
+    fallos = validate.validar_serie_lst(resultado)
+    proc_lst.escribir(resultado, cfg)
+
+    tele = resultado["_telemetria"]
+    previo = manifest.entrada("lst_municipal").get("ultima_fecha_dato")
+    novedad = "sin cambios" if previo == resultado["ultimo_periodo"] else "dato nuevo"
+    log(
+        "lst",
+        "OK",
+        f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
+        f"hasta {resultado['ultimo_periodo']} ({novedad}); "
+        f"{tele['escenas_leidas']} escenas nuevas, {tele['escenas_reutilizadas']} en cache, "
+        f"{tele['escenas_descartadas']} descartadas",
+    )
+    manifest.actualizar(
+        "lst_municipal",
+        ultima_fecha_dato=resultado["ultimo_periodo"],
+        n_periodos=resultado["n_periodos"],
+        n_huecos=resultado["n_huecos"],
+        hash_config=huella,
+    )
+    TELEMETRIA["lst_municipal"] = tele
+    return fallos
+
+
 TAREAS = [
     ("limite_municipal", tarea_limite),
     ("ndvi_municipal", tarea_ndvi),
+    ("lst_municipal", tarea_lst),
 ]
 
 

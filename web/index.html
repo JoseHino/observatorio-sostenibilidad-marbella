@@ -43,64 +43,17 @@
       <span class="estado-valor" id="estado-comprobacion">—</span>
     </div>
     <div class="estado-item">
+      <span class="estado-etiqueta">Indicadores</span>
+      <span class="estado-valor" id="estado-indicadores">—</span>
+    </div>
+    <div class="estado-item">
       <span class="estado-etiqueta">Frescura</span>
       <span class="estado-valor"><span id="estado-frescura" class="pastilla">—</span></span>
     </div>
   </section>
 
-  <!-- Indicador NDVI -->
-  <section class="bloque" aria-labelledby="t-ndvi">
-    <div class="bloque-cabecera">
-      <div>
-        <p class="bloque-supra">Bloque 1 · Vegetación y espacios verdes</p>
-        <h2 id="t-ndvi">NDVI medio municipal</h2>
-        <p class="bloque-desc">Índice de vegetación de diferencia normalizada promediado sobre el término municipal, en compuesto mensual a partir de Sentinel-2.</p>
-      </div>
-    </div>
-
-    <div class="rejilla-kpi" id="kpis"></div>
-
-    <!-- Serie completa -->
-    <figure class="figura">
-      <figcaption>
-        <h3>Serie mensual completa</h3>
-        <p>Valor medio municipal por mes. Los meses sin observación válida se representan como discontinuidad; no se interpolan.</p>
-      </figcaption>
-      <div class="lienzo"><canvas id="g-serie" role="img" aria-label="Serie mensual del NDVI medio municipal de Marbella"></canvas></div>
-    </figure>
-
-    <div class="rejilla-dos">
-      <figure class="figura">
-        <figcaption>
-          <h3>Ciclo estacional medio</h3>
-          <p>Promedio de cada mes en el conjunto de la serie. La banda representa el recorrido entre el mínimo y el máximo observados.</p>
-        </figcaption>
-        <div class="lienzo lienzo-bajo"><canvas id="g-estacional" role="img" aria-label="Ciclo estacional medio del NDVI"></canvas></div>
-      </figure>
-
-      <figure class="figura">
-        <figcaption>
-          <h3>Media anual</h3>
-          <p>Promedio de los meses disponibles en cada año. El año en curso es parcial.</p>
-        </figcaption>
-        <div class="lienzo lienzo-bajo"><canvas id="g-anual" role="img" aria-label="Media anual del NDVI"></canvas></div>
-      </figure>
-    </div>
-
-    <!-- Vista de tabla -->
-    <div class="bloque-acciones">
-      <button type="button" id="btn-tabla" class="btn" aria-expanded="false" aria-controls="tabla-datos">Ver los datos en tabla</button>
-    </div>
-    <div id="tabla-datos" class="envoltura-tabla" hidden>
-      <table>
-        <caption class="sr-only">Serie mensual del NDVI medio municipal de Marbella</caption>
-        <thead>
-          <tr><th scope="col">Periodo</th><th scope="col">NDVI medio</th><th scope="col">Mediana</th><th scope="col">P25</th><th scope="col">P75</th><th scope="col">Cobertura</th><th scope="col">Observaciones</th></tr>
-        </thead>
-        <tbody id="tabla-cuerpo"></tbody>
-      </table>
-    </div>
-  </section>
+  <!-- Los bloques de indicador los genera js/observatorio.js -->
+  <div id="indicadores"></div>
 
   <!-- Ámbito territorial -->
   <section class="bloque" aria-labelledby="t-mapa">
@@ -113,22 +66,6 @@
     </div>
     <div id="mapa" class="mapa"></div>
     <div class="rejilla-dato" id="datos-ambito"></div>
-  </section>
-
-  <!-- Ficha de metadatos -->
-  <section class="bloque" aria-labelledby="t-ficha">
-    <div class="bloque-cabecera">
-      <div>
-        <p class="bloque-supra">Trazabilidad</p>
-        <h2 id="t-ficha">Ficha del indicador</h2>
-        <p class="bloque-desc">Toda cifra publicada debe poder reconstruirse desde la fuente original con el código del repositorio.</p>
-      </div>
-    </div>
-    <dl class="ficha" id="ficha"></dl>
-    <div class="aviso" id="limitaciones">
-      <h3>Limitaciones declaradas</h3>
-      <ul id="lista-limitaciones"></ul>
-    </div>
   </section>
 
 </main>

@@ -3,6 +3,12 @@
     "fuente": "CNIG WFS INSPIRE",
     "superficie_ha": 11714.2
   },
+  "lst_municipal": {
+    "hash_config": "60aaf2784c9f4102",
+    "n_huecos": 14,
+    "n_periodos": 115,
+    "ultima_fecha_dato": "2026-07"
+  },
   "ndvi_municipal": {
     "hash_config": "31d696c496d99947",
     "n_huecos": 0,

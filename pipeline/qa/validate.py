@@ -60,3 +60,28 @@ def validar_tamanos() -> list[str]:
         if mb > TAMANO_MAXIMO_MB:
             fallos.append(f"{f.name} pesa {mb:.1f} MB y supera el limite de {TAMANO_MAXIMO_MB} MB")
     return fallos
+
+
+def validar_serie_lst(resultado: dict) -> list[str]:
+    """Rango fisico plausible para temperatura superficial en el litoral mediterraneo."""
+    fallos = []
+    serie = resultado.get("serie", [])
+    if not serie:
+        return ["La serie LST esta vacia"]
+
+    periodos = [r["periodo"] for r in serie]
+    if periodos != sorted(periodos):
+        fallos.append("La serie LST no esta ordenada cronologicamente")
+
+    for r in serie:
+        v = r["valor"]
+        if v is None:
+            if "motivo" not in r:
+                fallos.append(f"{r['periodo']}: hueco sin motivo declarado")
+            continue
+        # Margen amplio a proposito: se busca detectar errores de escalado, no acotar el clima
+        if not 0.0 <= v <= 60.0:
+            fallos.append(f"{r['periodo']}: LST media {v} C fuera del recorrido esperable [0, 60]")
+        if r.get("p10") is not None and r.get("p90") is not None and r["p10"] > r["p90"]:
+            fallos.append(f"{r['periodo']}: percentil 10 mayor que el 90")
+    return fallos

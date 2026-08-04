@@ -1,0 +1,27 @@
+{
+  "indicador": "lst_municipal",
+  "titulo": "Temperatura superficial terrestre media municipal",
+  "descripcion": "Temperatura de la superficie del terreno promediada sobre el término municipal, a partir de los pasos de Landsat 8 y 9. No es temperatura del aire.",
+  "fuente": "USGS Landsat 8/9 Collection 2 Level-2, banda ST_B10, vía Microsoft Planetary Computer",
+  "formula": "LST (°C) = ST_B10 × 0,00341802 + 149,0 − 273,15",
+  "resolucion_espacial": "30 m",
+  "resolucion_temporal": "mensual (media de las escenas válidas del mes)",
+  "hora_de_paso": "hacia las 11:00 hora local",
+  "metodo": "Lectura por ventana del polígono municipal sobre los ficheros COG mediante peticiones de rango HTTP; no se descargan las escenas completas. Estadística zonal calculada en local.",
+  "enmascaramiento": "Banda QA_PIXEL. Se exige el bit 6 (píxel despejado: sin nube, nube dilatada, cirro ni sombra) y se excluye el bit 7 (agua). Las escenas cuya cobertura válida sobre el municipio no alcanza el 70% se descartan enteras, porque los píxeles que sobreviven en una escena medio nublada no son una muestra representativa del término.",
+  "serie_desde": "2017-01",
+  "serie_hasta": "2026-07",
+  "n_periodos": 115,
+  "n_huecos": 14,
+  "limitaciones": [
+    "Es temperatura de la superficie, no del aire: en verano la supera con holgura.",
+    "Corresponde al paso de media mañana, no a la máxima diaria.",
+    "La media municipal enmascara el gradiente entre la costa y Sierra Blanca; su lectura exige estratificación por altitud, aún pendiente.",
+    "Los meses sin escena válida se publican como hueco. No se interpolan.",
+    "La nubosidad invernal reduce el número de escenas útiles, por lo que los meses de invierno se apoyan en menos observaciones que los de verano."
+  ],
+  "valor_minimo_serie": 14.72,
+  "valor_maximo_serie": 41.7,
+  "licencia": "Datos Landsat de dominio público (USGS). Distribución vía Microsoft Planetary Computer.",
+  "ruta_datos": "data/processed/lst_municipal.json"
+}
