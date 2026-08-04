@@ -34,7 +34,7 @@
    "mediana": 16.32,
    "p10": 12.95,
    "p90": 19.95,
-   "amplitud_p10_p90": 6.99,
+   "amplitud_p10_p90": 7.0,
    "n_escenas": 2,
    "cobertura_pct": 87.7,
    "escenas_descartadas": 0
@@ -45,7 +45,7 @@
    "mediana": 28.28,
    "p10": 25.57,
    "p90": 30.98,
-   "amplitud_p10_p90": 5.42,
+   "amplitud_p10_p90": 5.41,
    "n_escenas": 1,
    "cobertura_pct": 99.4,
    "escenas_descartadas": 1
@@ -100,7 +100,7 @@
    "mediana": 31.9,
    "p10": 27.3,
    "p90": 35.66,
-   "amplitud_p10_p90": 8.35,
+   "amplitud_p10_p90": 8.36,
    "n_escenas": 2,
    "cobertura_pct": 97.6,
    "escenas_descartadas": 0
@@ -176,7 +176,7 @@
    "mediana": 30.17,
    "p10": 26.63,
    "p90": 34.21,
-   "amplitud_p10_p90": 7.59,
+   "amplitud_p10_p90": 7.58,
    "n_escenas": 1,
    "cobertura_pct": 90.3,
    "escenas_descartadas": 1
@@ -296,7 +296,7 @@
    "mediana": 33.83,
    "p10": 31.02,
    "p90": 37.03,
-   "amplitud_p10_p90": 6.0,
+   "amplitud_p10_p90": 6.01,
    "n_escenas": 2,
    "cobertura_pct": 98.4,
    "escenas_descartadas": 0
@@ -323,7 +323,7 @@
    "mediana": 39.36,
    "p10": 36.03,
    "p90": 43.18,
-   "amplitud_p10_p90": 7.14,
+   "amplitud_p10_p90": 7.15,
    "n_escenas": 2,
    "cobertura_pct": 98.6,
    "escenas_descartadas": 0
@@ -371,7 +371,7 @@
    "mediana": 21.73,
    "p10": 19.98,
    "p90": 23.71,
-   "amplitud_p10_p90": 3.72,
+   "amplitud_p10_p90": 3.73,
    "n_escenas": 2,
    "cobertura_pct": 99.7,
    "escenas_descartadas": 0
@@ -398,7 +398,7 @@
    "mediana": 32.73,
    "p10": 29.7,
    "p90": 36.04,
-   "amplitud_p10_p90": 6.33,
+   "amplitud_p10_p90": 6.34,
    "n_escenas": 1,
    "cobertura_pct": 99.6,
    "escenas_descartadas": 1
@@ -463,7 +463,7 @@
    "mediana": 15.96,
    "p10": 14.4,
    "p90": 17.7,
-   "amplitud_p10_p90": 3.29,
+   "amplitud_p10_p90": 3.3,
    "n_escenas": 1,
    "cobertura_pct": 97.7,
    "escenas_descartadas": 1
@@ -567,7 +567,7 @@
    "mediana": 25.9,
    "p10": 23.04,
    "p90": 28.68,
-   "amplitud_p10_p90": 5.63,
+   "amplitud_p10_p90": 5.64,
    "n_escenas": 1,
    "cobertura_pct": 86.7,
    "escenas_descartadas": 1
@@ -589,7 +589,7 @@
    "mediana": 18.49,
    "p10": 16.83,
    "p90": 21.09,
-   "amplitud_p10_p90": 4.27,
+   "amplitud_p10_p90": 4.26,
    "n_escenas": 2,
    "cobertura_pct": 98.7,
    "escenas_descartadas": 2
@@ -600,7 +600,7 @@
    "mediana": 17.41,
    "p10": 15.98,
    "p90": 19.41,
-   "amplitud_p10_p90": 3.42,
+   "amplitud_p10_p90": 3.43,
    "n_escenas": 2,
    "cobertura_pct": 99.7,
    "escenas_descartadas": 2
@@ -671,7 +671,7 @@
    "mediana": 40.27,
    "p10": 37.38,
    "p90": 43.94,
-   "amplitud_p10_p90": 6.55,
+   "amplitud_p10_p90": 6.56,
    "n_escenas": 3,
    "cobertura_pct": 99.4,
    "escenas_descartadas": 0
@@ -704,7 +704,7 @@
    "mediana": 23.95,
    "p10": 20.77,
    "p90": 27.76,
-   "amplitud_p10_p90": 6.98,
+   "amplitud_p10_p90": 6.99,
    "n_escenas": 2,
    "cobertura_pct": 91.3,
    "escenas_descartadas": 1
@@ -737,7 +737,7 @@
    "mediana": 18.82,
    "p10": 16.77,
    "p90": 20.67,
-   "amplitud_p10_p90": 3.89,
+   "amplitud_p10_p90": 3.9,
    "n_escenas": 2,
    "cobertura_pct": 96.1,
    "escenas_descartadas": 3
@@ -814,7 +814,7 @@
    "mediana": 34.04,
    "p10": 30.48,
    "p90": 37.66,
-   "amplitud_p10_p90": 7.17,
+   "amplitud_p10_p90": 7.18,
    "n_escenas": 2,
    "cobertura_pct": 85.2,
    "escenas_descartadas": 1
@@ -847,7 +847,7 @@
    "mediana": 18.29,
    "p10": 15.37,
    "p90": 21.6,
-   "amplitud_p10_p90": 6.24,
+   "amplitud_p10_p90": 6.23,
    "n_escenas": 3,
    "cobertura_pct": 94.8,
    "escenas_descartadas": 1
@@ -891,7 +891,7 @@
    "mediana": 25.77,
    "p10": 23.52,
    "p90": 27.83,
-   "amplitud_p10_p90": 4.3,
+   "amplitud_p10_p90": 4.31,
    "n_escenas": 2,
    "cobertura_pct": 99.7,
    "escenas_descartadas": 2
@@ -913,7 +913,7 @@
    "mediana": 35.17,
    "p10": 31.97,
    "p90": 38.57,
-   "amplitud_p10_p90": 6.59,
+   "amplitud_p10_p90": 6.6,
    "n_escenas": 3,
    "cobertura_pct": 97.1,
    "escenas_descartadas": 1
@@ -1078,7 +1078,7 @@
    "mediana": 36.44,
    "p10": 33.49,
    "p90": 40.06,
-   "amplitud_p10_p90": 6.56,
+   "amplitud_p10_p90": 6.57,
    "n_escenas": 2,
    "cobertura_pct": 99.7,
    "escenas_descartadas": 2
@@ -1100,7 +1100,7 @@
    "mediana": 22.58,
    "p10": 20.93,
    "p90": 24.59,
-   "amplitud_p10_p90": 3.65,
+   "amplitud_p10_p90": 3.66,
    "n_escenas": 1,
    "cobertura_pct": 99.8,
    "escenas_descartadas": 2

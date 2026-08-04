@@ -65,6 +65,9 @@ def buscar_escenas(bbox: list, desde: str, hasta: str, limite: int = 500) -> lis
         "collections": ["landsat-c2-l2"],
         "bbox": bbox,
         "datetime": f"{desde}T00:00:00Z/{hasta}T00:00:00Z",
+        # Solo OLI/TIRS. Landsat 7 (ETM+) esta en la misma coleccion pero no publica ST_B10
+        # con estos nombres de asset: pedirlo solo generaria descartes sin informacion.
+        "query": {"platform": {"in": ["landsat-8", "landsat-9"]}},
         "limit": 100,
     }
     while True:
@@ -89,16 +92,36 @@ def estadisticas_escena(escena: dict, limite_gdf) -> dict | None:
 
     Se lee solo la ventana del poligono mediante rangos HTTP: no se descarga la escena.
     """
+    if "lwir11" not in escena["assets"] or "qa_pixel" not in escena["assets"]:
+        # Landsat 7 y anteriores no publican ST_B10 con estos nombres de asset
+        return {"id": escena["id"], "fecha": escena["properties"]["datetime"][:10],
+                "error": "assets ST_B10 o QA_PIXEL ausentes"}
+
     sas = token_sas()
-    try:
-        with rasterio.Env(**CFG_GDAL):
-            with rasterio.open(f"{escena['assets']['lwir11']['href']}?{sas}") as src:
-                geom = limite_gdf.to_crs(src.crs).geometry.tolist()
-                st, _ = rio_mask(src, geom, crop=True, filled=True, nodata=0)
-            with rasterio.open(f"{escena['assets']['qa_pixel']['href']}?{sas}") as src:
-                qa, _ = rio_mask(src, geom, crop=True, filled=True, nodata=1)
-    except Exception:
-        return None
+    ultimo = ""
+    # Un fallo de red o un 429 son transitorios: se reintenta antes de dar la escena por perdida
+    for intento in range(1, 4):
+        try:
+            with rasterio.Env(**CFG_GDAL):
+                with rasterio.open(f"{escena['assets']['lwir11']['href']}?{sas}") as src:
+                    geom = limite_gdf.to_crs(src.crs).geometry.tolist()
+                    st, _ = rio_mask(src, geom, crop=True, filled=True, nodata=0)
+                with rasterio.open(f"{escena['assets']['qa_pixel']['href']}?{sas}") as src:
+                    qa, _ = rio_mask(src, geom, crop=True, filled=True, nodata=1)
+            break
+        except Exception as ex:
+            ultimo = f"{type(ex).__name__}: {str(ex)[:160]}"
+            if "do not overlap" in str(ex):
+                # La escena no cubre el municipio pese a intersectar el bbox: no es un fallo
+                return {"id": escena["id"], "fecha": escena["properties"]["datetime"][:10],
+                        "error": "la escena no solapa el término municipal"}
+            if intento < 3:
+                time.sleep(3 * intento)
+                sas = token_sas()  # por si el token hubiera caducado a mitad de la tanda
+                continue
+            # El motivo se propaga: un fallo de lectura nunca debe pasar inadvertido
+            return {"id": escena["id"], "fecha": escena["properties"]["datetime"][:10],
+                    "error": ultimo}
 
     st = st[0].astype("float64")
     qa = qa[0].astype("uint16")

@@ -43,6 +43,8 @@ LST_MIN_ADMISIBLE, LST_MAX_ADMISIBLE = -10.0, 70.0
 
 def escena_utilizable(r: dict) -> tuple[bool, str]:
     """Decide si una escena entra en la serie, y por que no si no entra."""
+    if r.get("error"):
+        return False, r["error"]
     if "lst_media" not in r:
         return False, "sin píxeles válidos"
     if r.get("cobertura_pct", 0) < UMBRAL_COBERTURA_ESCENA:
@@ -78,12 +80,12 @@ def construir_serie(cfg: dict, forzar: bool = False) -> dict:
             reutilizadas += 1
             continue
         st = lsat.estadisticas_escena(e, limite)
-        if st is None:
-            fallidas += 1
-            continue
         cache.write_text(json.dumps(st, ensure_ascii=False), encoding="utf-8")
         registros.append(st)
-        leidas += 1
+        if st.get("error"):
+            fallidas += 1
+        else:
+            leidas += 1
 
     serie = _componer(registros)
     con_dato = [r for r in serie if r["valor"] is not None]
@@ -107,8 +109,20 @@ def construir_serie(cfg: dict, forzar: bool = False) -> dict:
             "escenas_reutilizadas": reutilizadas,
             "escenas_fallidas": fallidas,
             "escenas_descartadas": sum(1 for r in registros if not escena_utilizable(r)[0]),
+            "motivos_descarte": _resumen_motivos(registros),
         },
     }
+
+
+def _resumen_motivos(registros: list[dict]) -> dict:
+    """Recuento por motivo de descarte. Ningun recorte de cobertura queda sin declarar."""
+    conteo: dict[str, int] = {}
+    for r in registros:
+        ok, motivo = escena_utilizable(r)
+        if not ok:
+            clave = motivo.split(":")[0][:60]
+            conteo[clave] = conteo.get(clave, 0) + 1
+    return dict(sorted(conteo.items(), key=lambda x: -x[1]))
 
 
 def _componer(registros: list[dict]) -> list[dict]:
@@ -140,13 +154,18 @@ def _componer(registros: list[dict]) -> list[dict]:
         lote = validas.get(p, [])
         if lote:
             n = len(lote)
+            p10 = round(sum(x["lst_p10"] for x in lote) / n, 2)
+            p90 = round(sum(x["lst_p90"] for x in lote) / n, 2)
             salida.append({
                 "periodo": p,
                 "valor": round(sum(x["lst_media"] for x in lote) / n, 2),
                 "mediana": round(sum(x["lst_mediana"] for x in lote) / n, 2),
-                "p10": round(sum(x["lst_p10"] for x in lote) / n, 2),
-                "p90": round(sum(x["lst_p90"] for x in lote) / n, 2),
-                "amplitud_p10_p90": round(sum(x["amplitud_p10_p90"] for x in lote) / n, 2),
+                "p10": p10,
+                "p90": p90,
+                # Se deriva de los percentiles ya publicados, no del promedio de las
+                # amplitudes por escena: promediar valores previamente redondeados hacia
+                # deriva de centesimas entre maquinas y provocaba commits sin dato nuevo.
+                "amplitud_p10_p90": round(p90 - p10, 2),
                 "n_escenas": n,
                 "cobertura_pct": round(sum(x["cobertura_pct"] for x in lote) / n, 1),
                 "escenas_descartadas": descartadas.get(p, 0),

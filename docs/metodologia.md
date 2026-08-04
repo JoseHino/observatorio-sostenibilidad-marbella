@@ -176,6 +176,70 @@ y mínimo estival por agostamiento. La amplitud intraanual es de 0,187 puntos de
 máximo en los meses de menor actividad vegetativa. La cuantificación de esta oposición
 constituye el objeto del bloque transversal.
 
+## 6 bis. Metodología del indicador de temperatura superficial
+
+### Elección de sensor
+
+El indicador se construye sobre **Landsat 8 y 9, colección 2 nivel 2, banda ST_B10**, y no
+sobre Sentinel-3, por dos razones:
+
+1. **Resolución.** Sentinel-3 SLSTR entrega 1 km de píxel, que sobre 117 km² da del orden de
+   117 valores. Sirve para una media municipal, pero no admite lectura por barrios. Landsat
+   entrega rejilla de 30 m.
+2. **Producto ya elaborado.** ST_B10 es temperatura superficial **corregida por emisividad
+   por el USGS**. Sentinel Hub solo expone las bandas de brillo de Sentinel-3 (S7-S9);
+   convertirlas exigiría una corrección de emisividad propia, es decir, una aproximación no
+   documentada.
+
+Se intentó previamente la vía Sentinel-3 con el producto oficial `SENTINEL3_SLSTR_L2_LST` de
+openEO. Se resolvieron el acceso y la separación día/noche, pero no la máscara de nubosidad;
+el detalle queda recogido en `docs/matriz-viabilidad.md`.
+
+### Cálculo
+
+```
+LST (°C) = ST_B10 × 0,00341802 + 149,0 − 273,15
+```
+
+### Vía de acceso
+
+Se emplea **Microsoft Planetary Computer**. Las URL de `landsatlook.usgs.gov` redirigen a un
+formulario de acceso de USGS EROS, y la alternativa en `s3://usgs-landsat` es *requester-pays*,
+lo que supondría gasto y queda descartada. Planetary Computer firma los mismos ficheros COG
+con un token SAS anónimo y gratuito.
+
+Se leen **únicamente las ventanas correspondientes al polígono municipal**, mediante
+peticiones de rango HTTP sobre los COG. No se descargan las escenas completas.
+
+### Control de calidad, en tres niveles
+
+1. **Píxel.** Banda `QA_PIXEL`: se exige el bit 6 (píxel despejado: sin nube, nube dilatada,
+   cirro ni sombra) y se excluye el bit 7 (agua), de modo que la LST publicada es terrestre.
+2. **Escena.** Una escena cuya cobertura válida sobre el municipio no alcanza el 70 % se
+   descarta entera. En una escena medio nublada, los píxeles que sobreviven no son una
+   muestra representativa del término, sino los claros entre nubes.
+3. **Integridad del producto.** Se descarta toda escena sin varianza espacial, definida como
+   un recorrido entre percentiles 10 y 90 inferior a 1 °C. Sobre 117 km² con 1.200 m de
+   desnivel, una superficie real siempre presenta varianza; su ausencia indica un fichero
+   relleno con un valor constante.
+
+Este tercer criterio no es una precaución teórica: la escena del 11 de octubre de 2024 llegaba
+íntegramente a 150,0 K, que es el fondo del rango válido de ST_B10, y arrastraba la media de
+octubre de 2024 a −10,3 °C. Conviene subrayar la diferencia con un recorte de distribución:
+**se descarta el fichero completo por no ser una medida**, no se eliminan los valores bajos de
+una escena por lo demás correcta, que sí sesgaría la media al alza.
+
+### Agregación y lectura
+
+El valor mensual es la media de las escenas válidas del mes. Los meses sin ninguna escena
+válida se publican como hueco explícito, con el motivo declarado. Se publican además los
+percentiles 10 y 90, cuya separación describe la heterogeneidad térmica interna del municipio.
+
+**La serie describe la temperatura de la superficie a media mañana**, en el paso de Landsat
+hacia las 11:00 hora local. No es temperatura del aire, que es sensiblemente inferior, ni la
+máxima diaria. La nubosidad invernal reduce el número de escenas útiles, por lo que los meses
+de invierno se apoyan en menos observaciones que los de verano.
+
 ## 7. Estrategia de actualización
 
 Se descarta el reprocesado íntegro de la serie. El pipeline opera por incremento, contrastando
