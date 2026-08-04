@@ -27,6 +27,22 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      # estado.json no se versiona (cambia en cada pasada del pipeline y forzaria commits
+      # sin dato nuevo). Un despliegue disparado por un cambio de codigo no lo lleva, asi
+      # que se arrastra el que ya esta publicado para no perder la fecha de comprobacion
+      # ni dejar un 404. Si no existe todavia, se escribe uno vacio y explicito.
+      - name: Conservar la marca de comprobación ya publicada
+        run: |
+          mkdir -p web/data
+          URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/data/estado.json"
+          if curl -fsSL --max-time 30 "$URL" -o web/data/estado.json; then
+            echo "Recuperado el estado publicado."
+          else
+            echo '{"ultima_comprobacion": null, "origen": "despliegue sin ejecucion del pipeline"}' > web/data/estado.json
+            echo "No habia estado publicado; se escribe uno vacio."
+          fi
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
