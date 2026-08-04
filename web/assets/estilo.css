@@ -244,3 +244,6 @@ tbody td.marcado { color: var(--aviso); font-weight: 600; }
   .lienzo { height: 290px; }
   .kpi-valor { font-size: 27px; }
 }
+
+/* Serie cerrada: reanalisis que no crece mes a mes */
+.pastilla.cerrada { color: var(--tinta-apagada); font-weight: 500; }

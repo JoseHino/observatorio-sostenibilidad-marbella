@@ -31,9 +31,9 @@ servicio no haya respondido.
 
 | Indicador | Estado | Fuente | Observaciones |
 |---|---|---|---|
-| LST media estival e invernal | **P** | Sentinel-3 SLSTR L2 LST vía openEO | Trabajado en Fase 2 y **no publicable todavía**: falta una máscara de nubes defendible. Resolución 1 km sobre 117 km² ⇒ del orden de 117 píxeles. Detalle en el apartado «LST: por qué no se publica». |
-| Delta de isla de calor urbana | **VR** | Sentinel-3 SLSTR | Depende de que se resuelva antes la máscara de nubes de la LST. Con 1 km, el contraste urbano/periurbano es detectable pero grosero. **Alternativa recomendada: Landsat 8/9 TIRS (100 m), abierto vía USGS.** No es Copernicus, pero es la única vía abierta con resolución adecuada. |
-| Mapa de puntos calientes por barrio | **NV** | Sentinel-3 | Un barrio de Marbella ocupa del orden de 1 km² o menos: **1 píxel**. El indicador no es representable con Sentinel-3. Exige Landsat (100 m) o ECOSTRESS (70 m). Debe descartarse o rehacerse sobre otra fuente. |
+| LST media estival e invernal | **V** *(publicado)* | **Landsat 8/9 C2 L2, banda ST_B10** | **Publicado en Fase 2**, a 30 m. 115 periodos (2017-2026) con 14 huecos declarados, de 316 escenas. Enero 17,1 °C, agosto 38,6 °C. Se descartó Sentinel-3 (1 km y sin máscara de nubes defendible); el intento queda documentado más abajo. |
+| Delta de isla de calor urbana | **V** | Landsat 8/9 + máscara de usos del suelo | Desbloqueado en Fase 2: con 30 m el contraste urbano/periurbano es medible. Falta la máscara de usos del suelo que separe ambas zonas; el candidato es CLMS Land Cover a 10 m. La infraestructura de LST ya está en producción. |
+| Mapa de puntos calientes por barrio | **V** | Landsat 8/9 (30 m) | **Deja de ser inviable.** Con Sentinel-3 un barrio era un único píxel; con la rejilla de 30 m de Landsat caben del orden de mil por barrio. Requiere pasar de estadística municipal a salida ráster o por polígonos de barrio, que es trabajo de Fase 4. |
 | Serie de temperatura y precipitación | **V** | AEMET OpenData + ERA5 | Servicio AEMET verificado y operativo. **Requiere clave gratuita, aún no dada de alta.** ERA5 exige registro adicional en el Climate Data Store. |
 | Evapotranspiración | **VR** | **CLMS vía openEO**, no REDIAM | Revisado en Fase 2. El catálogo GeoNetwork de REDIAM **sí es consultable por API**, y en él no consta ningún servicio OGC de evapotranspiración; sus productos climáticos son **normales estáticas 1971-2000**, útiles como contexto pero no como serie. La alternativa es `CLMS_ETA_GLOBAL_300M_10DAILY_V1` (300 m, decadal), pero **su serie arranca en noviembre de 2025**: nueve meses, insuficiente para leer tendencia. Publicable solo como valor reciente, declarando la brevedad de la serie. |
 
@@ -59,7 +59,7 @@ servicio no haya respondido.
 
 | Indicador | Estado | Fuente | Observaciones |
 |---|---|---|---|
-| Radiación solar global horizontal | **V** | PVGIS v5_3 (JRC) | Verificado y operativo. **Sin registro ni cuota.** Serie mensual SARAH3 + ERA5. La fuente de menor fricción de todo el proyecto. |
+| Radiación solar global horizontal | **V** *(publicado)* | PVGIS v5_3 (JRC) | **Publicado en Fase 3.** Sin registro ni cuota. 228 meses (2005-2023), 1.886 kWh/m² anuales de media municipal. Se muestrean nueve puntos del término, no un único centroide, para recoger el gradiente costa-sierra. **Es un reanálisis de recorrido cerrado**: termina en 2023 y no crece mes a mes; el sitio lo declara para no presentarlo como desactualizado. |
 | Potencial fotovoltaico en cubiertas | **NV** *(como serie)* | LiDAR PNOA + PVGIS | Determinación puntual, no serie. Además exige procesado pesado de nube de puntos y cartografía de edificación. **Alcance muy superior al resto de indicadores**; debe tratarse como línea de trabajo propia, no como un indicador más. |
 | NO₂ troposférico | **VR** | Sentinel-5P | Píxel de 5,5 × 3,5 km ≈ 19 km². Sobre 117 km² son **del orden de 6 píxeles**. No permite lectura municipal fina. Publicable únicamente como tendencia y estacionalidad de ámbito comarcal, nunca como mapa municipal. |
 | Emisiones evitadas por potencial solar | **VR** | Derivado | Cálculo derivado, no medición. Depende del potencial FV, que no es viable como serie. Debe publicarse como estimación con hipótesis explícitas o posponerse. |
@@ -78,11 +78,11 @@ partir de los campos `Anyo` y `FK_Periodo`, nunca de `Fecha`.
 
 ---
 
-## LST: por qué no se publica todavía
+## LST con Sentinel-3: por qué se descartó esa vía
 
-La temperatura superficial terrestre se trabajó en Fase 2 hasta el punto de tener el dato
-en la mano. No se publica porque no se ha logrado enmascarar la nubosidad de forma
-defendible, y el valor sin enmascarar es físicamente imposible.
+El indicador acabó publicándose con Landsat. Se conserva aquí el recorrido con Sentinel-3
+porque sigue siendo pertinente para el Bloque 4: sobre el mar, 1 km de resolución sí basta,
+y quien retome esa vía se ahorrará el camino andado.
 
 **Lo que sí quedó resuelto:**
 

@@ -79,6 +79,13 @@ indicadores:
     umbral_cobertura_escena: 70    # por debajo, la escena no representa al municipio
     salida: "data/processed/lst_municipal.json"
 
+  radiacion_solar:
+    activo: true
+    # PVGIS-SARAH3 es un reanalisis cerrado (2005-2023), no una serie viva
+    fuente: PVGIS-SARAH3
+    puntos_por_lado: 4              # rejilla interior; los de fuera del termino se descartan
+    salida: "data/processed/radiacion_solar.json"
+
 calidad:
   tamano_maximo_fichero_mb: 5
   interpolar_huecos: false              # los huecos se publican como ausencia explicita

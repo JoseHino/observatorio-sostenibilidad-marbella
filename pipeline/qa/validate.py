@@ -85,3 +85,21 @@ def validar_serie_lst(resultado: dict) -> list[str]:
         if r.get("p10") is not None and r.get("p90") is not None and r["p10"] > r["p90"]:
             fallos.append(f"{r['periodo']}: percentil 10 mayor que el 90")
     return fallos
+
+
+def validar_serie_radiacion(resultado: dict) -> list[str]:
+    """Rango plausible de irradiacion mensual en latitud mediterranea."""
+    fallos = []
+    serie = resultado.get("serie", [])
+    if not serie:
+        return ["La serie de radiacion esta vacia"]
+    for r in serie:
+        v = r["valor"]
+        if v is None:
+            continue
+        # Diciembre ronda 75 y julio 250 kWh/m2: fuera de [30, 320] hay un error de unidades
+        if not 30.0 <= v <= 320.0:
+            fallos.append(f"{r['periodo']}: irradiacion {v} kWh/m2 fuera del rango [30, 320]")
+        if r.get("minimo_espacial") is not None and r["minimo_espacial"] > r["maximo_espacial"]:
+            fallos.append(f"{r['periodo']}: minimo espacial mayor que el maximo")
+    return fallos

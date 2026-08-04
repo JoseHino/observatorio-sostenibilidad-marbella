@@ -14,5 +14,10 @@
     "n_huecos": 0,
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
+  },
+  "radiacion_solar": {
+    "hash_config": "95b9baa55964f983",
+    "n_periodos": 228,
+    "ultima_fecha_dato": "2023-12"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "indicador": "radiacion_solar",
+  "titulo": "Irradiación solar global horizontal",
+  "descripcion": "Energía solar recibida por metro cuadrado de superficie horizontal, promediada sobre una rejilla de puntos del término municipal.",
+  "fuente": "PVGIS-SARAH3, Joint Research Centre de la Comisión Europea (meteorología ERA5)",
+  "formula": "Irradiación global horizontal mensual, H(h)_m, en kWh/m²",
+  "resolucion_espacial": "9 puntos de muestreo dentro del término",
+  "resolucion_temporal": "mensual",
+  "metodo": "Se genera una rejilla regular en EPSG:25830 recortada al término municipal y se consulta PVGIS en cada punto. El valor publicado es la media entre puntos; se publican además el mínimo y el máximo espaciales de cada mes.",
+  "enmascaramiento": "No aplica: PVGIS entrega una serie ya elaborada por punto.",
+  "serie_desde": "2005-01",
+  "serie_hasta": "2023-12",
+  "n_periodos": 228,
+  "n_huecos": 0,
+  "irradiacion_anual_media_kwh_m2": 1886,
+  "limitaciones": [
+    "Es un reanálisis de recorrido cerrado: la base de radiación termina en 2023 y la serie no crece mes a mes como las de satélite.",
+    "PVGIS entrega el dato por coordenada, no por polígono: la media municipal se obtiene muestreando puntos, no integrando toda la superficie.",
+    "El cálculo incorpora el horizonte topográfico derivado de un modelo digital de elevaciones, pero no el sombreado por edificación."
+  ],
+  "valor_minimo_serie": 64.6,
+  "valor_maximo_serie": 258.3,
+  "licencia": "PVGIS, Joint Research Centre. Uso libre con atribución.",
+  "ruta_datos": "data/processed/radiacion_solar.json"
+}

@@ -16,7 +16,8 @@
       descripcion: 'Índice de vegetación de diferencia normalizada promediado sobre el término municipal, en compuesto mensual a partir de Sentinel-2.',
       unidad: '',
       decimales: 3,
-      banda: false,
+      banda: null,
+      columnas: [['Mediana', 'mediana'], ['P25', 'p25'], ['P75', 'p75']],
       notaAmplitud: 'Diferencia entre el mes más y menos verde'
     },
     {
@@ -26,8 +27,23 @@
       descripcion: 'Temperatura de la superficie del terreno promediada sobre el término municipal, a partir de los pasos de Landsat 8 y 9 hacia las 11:00 hora local. No es temperatura del aire.',
       unidad: ' °C',
       decimales: 1,
-      banda: true,
+      banda: ['p10', 'p90'],
+      notaBanda: 'La banda recoge el recorrido entre los percentiles 10 y 90 de la superficie.',
+      columnas: [['Mediana', 'mediana'], ['P10', 'p10'], ['P90', 'p90'], ['Escenas', 'n_escenas']],
       notaAmplitud: 'Diferencia entre el mes más y menos cálido'
+    },
+    {
+      clave: 'radiacion_solar',
+      bloque: 'Bloque 5 · Energía y atmósfera',
+      titulo: 'Irradiación solar global horizontal',
+      descripcion: 'Energía solar recibida por metro cuadrado de superficie horizontal, promediada sobre nueve puntos de muestreo del término municipal. Procede de un reanálisis de recorrido cerrado, no de una serie de satélite que crezca cada mes.',
+      unidad: ' kWh/m²',
+      decimales: 1,
+      banda: ['minimo_espacial', 'maximo_espacial'],
+      notaBanda: 'La banda recoge el recorrido entre los puntos de muestreo, es decir, la diferencia entre la costa y la sierra.',
+      columnas: [['Mínimo espacial', 'minimo_espacial'], ['Máximo espacial', 'maximo_espacial'], ['Puntos', 'n_puntos']],
+      notaAmplitud: 'Diferencia entre el mes más y menos soleado',
+      agregadoAnual: 'suma'   // la cifra que se maneja son los kWh/m2 acumulados en el año
     }
   ];
 
@@ -90,7 +106,7 @@
         '<figure class="figura"><figcaption>' +
           '<h3>Serie mensual completa</h3>' +
           '<p>Valor medio municipal por mes. Los meses sin observación válida se representan como discontinuidad; no se interpolan.' +
-          (ind.banda ? ' La banda recoge el recorrido entre los percentiles 10 y 90 de la superficie.' : '') +
+          (ind.notaBanda ? ' ' + ind.notaBanda : '') +
           '</p></figcaption>' +
           '<div class="lienzo"><canvas id="g-serie-' + ind.clave + '" role="img" aria-label="Serie mensual de ' + ind.titulo + '"></canvas></div>' +
         '</figure>' +
@@ -98,8 +114,10 @@
           '<figure class="figura"><figcaption><h3>Ciclo estacional medio</h3>' +
             '<p>Promedio de cada mes en el conjunto de la serie. La banda representa el recorrido entre el mínimo y el máximo observados.</p></figcaption>' +
             '<div class="lienzo lienzo-bajo"><canvas id="g-est-' + ind.clave + '" role="img" aria-label="Ciclo estacional de ' + ind.titulo + '"></canvas></div></figure>' +
-          '<figure class="figura"><figcaption><h3>Media anual</h3>' +
-            '<p>Promedio de los meses disponibles en cada año. El año en curso es parcial.</p></figcaption>' +
+          '<figure class="figura"><figcaption><h3>' + (ind.agregadoAnual === 'suma' ? 'Acumulado anual' : 'Media anual') + '</h3>' +
+            '<p>' + (ind.agregadoAnual === 'suma'
+              ? 'Suma de los meses disponibles en cada año. Un año incompleto acumula menos.'
+              : 'Promedio de los meses disponibles en cada año. El año en curso es parcial.') + '</p></figcaption>' +
             '<div class="lienzo lienzo-bajo"><canvas id="g-anual-' + ind.clave + '" role="img" aria-label="Media anual de ' + ind.titulo + '"></canvas></div></figure>' +
         '</div>' +
         '<div class="bloque-acciones">' +
@@ -133,9 +151,10 @@
     // 1. Serie mensual. Los huecos van como null y Chart.js corta la linea.
     var conjuntos = [];
     if (ind.banda) {
+      var inf = ind.banda[0], sup2 = ind.banda[1];
       conjuntos.push(
-        { label: 'P90', data: serie.map(function (r) { return r.p90; }), borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: '+1', tension: 0.25, spanGaps: false },
-        { label: 'P10', data: serie.map(function (r) { return r.p10; }), borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: false, tension: 0.25, spanGaps: false }
+        { label: 'sup', data: serie.map(function (r) { return r[sup2]; }), borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: '+1', tension: 0.25, spanGaps: false },
+        { label: 'inf', data: serie.map(function (r) { return r[inf]; }), borderColor: 'transparent', backgroundColor: suave, pointRadius: 0, fill: false, tension: 0.25, spanGaps: false }
       );
     }
     conjuntos.push({
@@ -152,8 +171,8 @@
       options: tt(null, function (ctx) {
         var r = serie[ctx.dataIndex];
         if (r.valor === null) return ctx.datasetIndex === conjuntos.length - 1 ? 'Sin observación válida' : null;
-        if (ctx.dataset.label === 'P90') return 'P90: ' + fmt(r.p90, ind);
-        if (ctx.dataset.label === 'P10') return 'P10: ' + fmt(r.p10, ind);
+        if (ctx.dataset.label === 'sup') return 'Máximo: ' + fmt(r[ind.banda[1]], ind);
+        if (ctx.dataset.label === 'inf') return 'Mínimo: ' + fmt(r[ind.banda[0]], ind);
         var l = [ind.titulo + ': ' + fmt(r.valor, ind)];
         if (r.n_escenas) l.push(r.n_escenas + ' escena(s)');
         if (r.cobertura_pct !== undefined && r.cobertura_pct !== null) l.push('Cobertura: ' + r.cobertura_pct.toFixed(1) + '%');
@@ -194,14 +213,17 @@
       var a = r.periodo.split('-')[0];
       (porAnio[a] = porAnio[a] || []).push(r.valor);
     });
+    var suma = ind.agregadoAnual === 'suma';
     var anios = Object.keys(porAnio).sort();
     var mediasAnuales = anios.map(function (a) {
-      return porAnio[a].reduce(function (x, y) { return x + y; }, 0) / porAnio[a].length;
+      var t = porAnio[a].reduce(function (x, y) { return x + y; }, 0);
+      return suma ? t : t / porAnio[a].length;
     });
 
     var opc = tt(null, function (ctx) {
       var n = porAnio[ctx.label].length;
-      return [ind.titulo + ': ' + fmt(ctx.raw, ind), n + ' meses' + (n < 12 ? ' (año parcial)' : '')];
+      var etq = suma ? 'Acumulado anual' : ind.titulo;
+      return [etq + ': ' + fmt(ctx.raw, ind), n + ' meses' + (n < 12 ? ' (año parcial)' : '')];
     });
     opc.scales.y.beginAtZero = false;
 
@@ -222,6 +244,17 @@
 
   /* ---------- KPI ---------- */
   function pintarKpis(ind, d) {
+    // Una serie cerrada se declara como tal para que no se lea como desactualizada
+    if (d.tipo_serie === 'reanalisis_cerrado') {
+      var cab = document.querySelector('#t-' + ind.clave).closest('.bloque-cabecera');
+      if (cab && !cab.querySelector('.pastilla')) {
+        var p = document.createElement('p');
+        p.innerHTML = '<span class="pastilla cerrada">Serie cerrada · termina en ' +
+                      etiquetaPeriodo(d.serie_termina_en) + '</span>';
+        p.style.margin = '12px 0 0';
+        cab.querySelector('div').appendChild(p);
+      }
+    }
     var con = d.serie.filter(function (r) { return r.valor !== null; });
     if (!con.length) return;
     var ultimo = con[con.length - 1];
@@ -249,9 +282,8 @@
 
   /* ---------- Tabla ---------- */
   function pintarTabla(ind, d) {
-    var cols = ind.banda
-      ? ['Periodo', 'Media', 'Mediana', 'P10', 'P90', 'Escenas', 'Cobertura', 'Observaciones']
-      : ['Periodo', 'Media', 'Mediana', 'P25', 'P75', 'Cobertura', 'Observaciones'];
+    var cols = ['Periodo', 'Media'].concat(ind.columnas.map(function (c) { return c[0]; }))
+                                     .concat(['Cobertura', 'Observaciones']);
     document.getElementById('cab-' + ind.clave).innerHTML =
       '<tr>' + cols.map(function (c) { return '<th scope="col">' + c + '</th>'; }).join('') + '</tr>';
 
@@ -260,12 +292,12 @@
         return '<tr><td>' + etiquetaPeriodo(r.periodo) + '</td><td colspan="' + (cols.length - 2) +
                '">Sin dato</td><td>' + (r.motivo || '') + '</td></tr>';
       }
-      var c = [etiquetaPeriodo(r.periodo), fmt(r.valor, ind), fmt(r.mediana, ind)];
-      if (ind.banda) {
-        c.push(fmt(r.p10, ind), fmt(r.p90, ind), String(r.n_escenas || ''));
-      } else {
-        c.push(fmt(r.p25, ind), fmt(r.p75, ind));
-      }
+      var c = [etiquetaPeriodo(r.periodo), fmt(r.valor, ind)];
+      ind.columnas.forEach(function (col) {
+        var v = r[col[1]];
+        // Los recuentos son enteros, no magnitudes con unidad
+        c.push(typeof v === 'number' && col[1].indexOf('n_') === 0 ? String(v) : fmt(v, ind));
+      });
       c.push((r.cobertura_pct !== undefined && r.cobertura_pct !== null ? r.cobertura_pct.toFixed(1) + '%' : '—'));
       c.push(r.aviso || (r.escenas_descartadas ? r.escenas_descartadas + ' escena(s) descartada(s)' : ''));
       return '<tr>' + c.map(function (x, i) {
@@ -300,7 +332,9 @@
   function pintarEstado(estado) {
     var claves = Object.keys(cargados);
     if (!claves.length) return;
-    var ultimos = claves.map(function (k) { return cargados[k].ultimo_periodo; }).filter(Boolean).sort();
+    var vivas = claves.filter(function (k) { return cargados[k].tipo_serie !== 'reanalisis_cerrado'; });
+    var ultimos = (vivas.length ? vivas : claves)
+      .map(function (k) { return cargados[k].ultimo_periodo; }).filter(Boolean).sort();
     var ultimo = ultimos[ultimos.length - 1];
     document.getElementById('estado-ultimo').textContent = etiquetaPeriodo(ultimo);
 

@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import manifest
 from config import DIR_METADATA, DIR_PROCESSED, ROOT, cargar_config
 from processing import lst as proc_lst
+from processing import radiacion as proc_rad
 from processing import ndvi as proc_ndvi
 from qa import validate
 from sources import cnig
@@ -145,10 +146,35 @@ def tarea_lst(cfg: dict, forzar: bool) -> list[str]:
     return fallos
 
 
+def tarea_radiacion(cfg: dict, forzar: bool) -> list[str]:
+    ind = cfg["indicadores"]["radiacion_solar"]
+    if not ind.get("activo", True):
+        return []
+    huella = manifest.hash_config(ind)
+    reproceso = forzar or manifest.requiere_reproceso("radiacion_solar", huella)
+    resultado = proc_rad.construir_serie(cfg, forzar=reproceso)
+    fallos = validate.validar_serie_radiacion(resultado)
+    proc_rad.escribir(resultado, cfg)
+    tele = resultado["_telemetria"]
+    log("radiacion", "OK",
+        f"{resultado['n_periodos']} periodos hasta {resultado['ultimo_periodo']} "
+        f"(reanalisis cerrado); {resultado['n_puntos_muestreo']} puntos, "
+        f"{tele['puntos_leidos']} consultados, {tele['puntos_reutilizados']} en cache")
+    manifest.actualizar(
+        "radiacion_solar",
+        ultima_fecha_dato=resultado["ultimo_periodo"],
+        n_periodos=resultado["n_periodos"],
+        hash_config=huella,
+    )
+    TELEMETRIA["radiacion_solar"] = {k: v for k, v in tele.items() if k != "puntos"}
+    return fallos
+
+
 TAREAS = [
     ("limite_municipal", tarea_limite),
     ("ndvi_municipal", tarea_ndvi),
     ("lst_municipal", tarea_lst),
+    ("radiacion_solar", tarea_radiacion),
 ]
 
 

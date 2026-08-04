@@ -240,6 +240,31 @@ hacia las 11:00 hora local. No es temperatura del aire, que es sensiblemente inf
 máxima diaria. La nubosidad invernal reduce el número de escenas útiles, por lo que los meses
 de invierno se apoyan en menos observaciones que los de verano.
 
+## 6 ter. Metodología del indicador de irradiación solar
+
+Fuente: **PVGIS-SARAH3** del Joint Research Centre, con meteorología ERA5. No requiere
+registro ni consume cuota alguna.
+
+**Muestreo espacial.** PVGIS entrega el dato por coordenada, no por polígono. Reducir a un
+único punto un municipio con 1.200 m de desnivel perdería el efecto del horizonte topográfico,
+que es justamente lo que diferencia la costa de la sierra. Se genera por tanto una rejilla
+regular en EPSG:25830, se descartan los puntos que caen fuera del término y se consulta cada
+uno de los nueve restantes. Se publica la media entre puntos y, como banda, el recorrido entre
+el mínimo y el máximo espaciales.
+
+La dispersión entre puntos resulta ser de 9 a 13 kWh/m² al mes, y es mayor en diciembre
+(13,5) que en septiembre (8,8): con el sol bajo, el sombreado topográfico pesa más.
+
+**Naturaleza de la serie.** PVGIS-SARAH3 es un **reanálisis de recorrido cerrado**: abarca de
+2005 a 2023 y no se amplía cada mes. El indicador lo declara explícitamente
+(`tipo_serie: reanalisis_cerrado`) y el sitio lo señala con una marca visible, de modo que no
+se lea como un indicador desactualizado. Tampoco se computa al calcular la frescura general
+del observatorio, que se determina solo con las series vivas.
+
+**Agregación anual.** A diferencia del resto de indicadores, la cifra anual con sentido físico
+es la **suma** de los meses, no su promedio: es lo que se maneja al hablar de potencial solar.
+La media municipal es de 1.886 kWh/m² al año.
+
 ## 7. Estrategia de actualización
 
 Se descarta el reprocesado íntegro de la serie. El pipeline opera por incremento, contrastando

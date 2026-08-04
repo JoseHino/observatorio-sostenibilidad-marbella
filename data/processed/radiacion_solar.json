@@ -1,0 +1,1613 @@
+{
+ "indicador": "radiacion_solar",
+ "titulo": "Irradiación solar global horizontal",
+ "unidad": "kWh/m² y mes",
+ "unidad_analisis": "municipio",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "mensual",
+ "tipo_serie": "reanalisis_cerrado",
+ "serie_termina_en": "2023-12",
+ "ultimo_periodo": "2023-12",
+ "n_periodos": 228,
+ "n_huecos": 0,
+ "n_puntos_muestreo": 9,
+ "serie": [
+  {
+   "periodo": "2005-01",
+   "valor": 82.5,
+   "minimo_espacial": 71.9,
+   "maximo_espacial": 88.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-02",
+   "valor": 100.9,
+   "minimo_espacial": 89.9,
+   "maximo_espacial": 105.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-03",
+   "valor": 127.8,
+   "minimo_espacial": 118.3,
+   "maximo_espacial": 132.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-04",
+   "valor": 197.3,
+   "minimo_espacial": 190.9,
+   "maximo_espacial": 200.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-05",
+   "valor": 228.8,
+   "minimo_espacial": 217.6,
+   "maximo_espacial": 233.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-06",
+   "valor": 244.5,
+   "minimo_espacial": 237.3,
+   "maximo_espacial": 247.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-07",
+   "valor": 250.0,
+   "minimo_espacial": 241.9,
+   "maximo_espacial": 252.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-08",
+   "valor": 221.9,
+   "minimo_espacial": 212.2,
+   "maximo_espacial": 225.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-09",
+   "valor": 178.5,
+   "minimo_espacial": 170.8,
+   "maximo_espacial": 181.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-10",
+   "valor": 123.0,
+   "minimo_espacial": 113.4,
+   "maximo_espacial": 125.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-11",
+   "valor": 89.2,
+   "minimo_espacial": 79.6,
+   "maximo_espacial": 92.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2005-12",
+   "valor": 66.9,
+   "minimo_espacial": 55.6,
+   "maximo_espacial": 71.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-01",
+   "valor": 70.3,
+   "minimo_espacial": 62.9,
+   "maximo_espacial": 72.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-02",
+   "valor": 100.6,
+   "minimo_espacial": 94.7,
+   "maximo_espacial": 103.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-03",
+   "valor": 151.1,
+   "minimo_espacial": 145.9,
+   "maximo_espacial": 154.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-04",
+   "valor": 186.2,
+   "minimo_espacial": 182.0,
+   "maximo_espacial": 189.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-05",
+   "valor": 203.4,
+   "minimo_espacial": 197.5,
+   "maximo_espacial": 205.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-06",
+   "valor": 230.9,
+   "minimo_espacial": 225.6,
+   "maximo_espacial": 233.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-07",
+   "valor": 240.8,
+   "minimo_espacial": 234.7,
+   "maximo_espacial": 243.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-08",
+   "valor": 228.0,
+   "minimo_espacial": 220.2,
+   "maximo_espacial": 231.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-09",
+   "valor": 177.5,
+   "minimo_espacial": 171.9,
+   "maximo_espacial": 180.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-10",
+   "valor": 111.5,
+   "minimo_espacial": 105.9,
+   "maximo_espacial": 114.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-11",
+   "valor": 81.2,
+   "minimo_espacial": 76.1,
+   "maximo_espacial": 83.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2006-12",
+   "valor": 76.2,
+   "minimo_espacial": 66.0,
+   "maximo_espacial": 79.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-01",
+   "valor": 89.7,
+   "minimo_espacial": 80.6,
+   "maximo_espacial": 93.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-02",
+   "valor": 96.6,
+   "minimo_espacial": 90.0,
+   "maximo_espacial": 99.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-03",
+   "valor": 163.7,
+   "minimo_espacial": 154.1,
+   "maximo_espacial": 166.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-04",
+   "valor": 160.0,
+   "minimo_espacial": 155.3,
+   "maximo_espacial": 163.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-05",
+   "valor": 221.6,
+   "minimo_espacial": 211.6,
+   "maximo_espacial": 227.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-06",
+   "valor": 246.3,
+   "minimo_espacial": 240.8,
+   "maximo_espacial": 249.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-07",
+   "valor": 255.3,
+   "minimo_espacial": 249.5,
+   "maximo_espacial": 258.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-08",
+   "valor": 208.1,
+   "minimo_espacial": 201.8,
+   "maximo_espacial": 210.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-09",
+   "valor": 158.2,
+   "minimo_espacial": 153.6,
+   "maximo_espacial": 160.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-10",
+   "valor": 130.1,
+   "minimo_espacial": 122.3,
+   "maximo_espacial": 133.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-11",
+   "valor": 86.4,
+   "minimo_espacial": 80.6,
+   "maximo_espacial": 89.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2007-12",
+   "valor": 71.6,
+   "minimo_espacial": 61.5,
+   "maximo_espacial": 75.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-01",
+   "valor": 78.8,
+   "minimo_espacial": 72.1,
+   "maximo_espacial": 81.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-02",
+   "valor": 82.0,
+   "minimo_espacial": 74.7,
+   "maximo_espacial": 84.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-03",
+   "valor": 157.2,
+   "minimo_espacial": 150.2,
+   "maximo_espacial": 160.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-04",
+   "valor": 186.5,
+   "minimo_espacial": 181.6,
+   "maximo_espacial": 190.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-05",
+   "valor": 195.8,
+   "minimo_espacial": 188.8,
+   "maximo_espacial": 201.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-06",
+   "valor": 251.0,
+   "minimo_espacial": 244.6,
+   "maximo_espacial": 254.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-07",
+   "valor": 249.7,
+   "minimo_espacial": 243.9,
+   "maximo_espacial": 252.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-08",
+   "valor": 224.0,
+   "minimo_espacial": 217.3,
+   "maximo_espacial": 227.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-09",
+   "valor": 154.6,
+   "minimo_espacial": 150.7,
+   "maximo_espacial": 156.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-10",
+   "valor": 115.5,
+   "minimo_espacial": 109.1,
+   "maximo_espacial": 118.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-11",
+   "valor": 90.1,
+   "minimo_espacial": 83.5,
+   "maximo_espacial": 93.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2008-12",
+   "valor": 69.9,
+   "minimo_espacial": 59.8,
+   "maximo_espacial": 73.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-01",
+   "valor": 70.5,
+   "minimo_espacial": 64.6,
+   "maximo_espacial": 72.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-02",
+   "valor": 97.3,
+   "minimo_espacial": 89.2,
+   "maximo_espacial": 102.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-03",
+   "valor": 145.8,
+   "minimo_espacial": 137.7,
+   "maximo_espacial": 148.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-04",
+   "valor": 184.3,
+   "minimo_espacial": 180.1,
+   "maximo_espacial": 186.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-05",
+   "valor": 238.4,
+   "minimo_espacial": 229.6,
+   "maximo_espacial": 242.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-06",
+   "valor": 233.1,
+   "minimo_espacial": 227.0,
+   "maximo_espacial": 237.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-07",
+   "valor": 244.4,
+   "minimo_espacial": 238.6,
+   "maximo_espacial": 247.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-08",
+   "valor": 215.4,
+   "minimo_espacial": 208.7,
+   "maximo_espacial": 218.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-09",
+   "valor": 161.2,
+   "minimo_espacial": 154.5,
+   "maximo_espacial": 164.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-10",
+   "valor": 139.9,
+   "minimo_espacial": 131.9,
+   "maximo_espacial": 143.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-11",
+   "valor": 95.7,
+   "minimo_espacial": 89.0,
+   "maximo_espacial": 98.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2009-12",
+   "valor": 64.6,
+   "minimo_espacial": 56.1,
+   "maximo_espacial": 66.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-01",
+   "valor": 80.1,
+   "minimo_espacial": 73.5,
+   "maximo_espacial": 83.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-02",
+   "valor": 77.1,
+   "minimo_espacial": 71.9,
+   "maximo_espacial": 79.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-03",
+   "valor": 129.6,
+   "minimo_espacial": 126.1,
+   "maximo_espacial": 131.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-04",
+   "valor": 169.1,
+   "minimo_espacial": 164.6,
+   "maximo_espacial": 172.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-05",
+   "valor": 233.8,
+   "minimo_espacial": 225.4,
+   "maximo_espacial": 238.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-06",
+   "valor": 239.5,
+   "minimo_espacial": 232.1,
+   "maximo_espacial": 244.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-07",
+   "valor": 243.2,
+   "minimo_espacial": 237.4,
+   "maximo_espacial": 246.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-08",
+   "valor": 221.1,
+   "minimo_espacial": 214.9,
+   "maximo_espacial": 223.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-09",
+   "valor": 169.0,
+   "minimo_espacial": 163.2,
+   "maximo_espacial": 172.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-10",
+   "valor": 132.8,
+   "minimo_espacial": 125.9,
+   "maximo_espacial": 135.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-11",
+   "valor": 83.4,
+   "minimo_espacial": 78.1,
+   "maximo_espacial": 86.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2010-12",
+   "valor": 65.7,
+   "minimo_espacial": 57.4,
+   "maximo_espacial": 69.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-01",
+   "valor": 73.8,
+   "minimo_espacial": 68.3,
+   "maximo_espacial": 75.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-02",
+   "valor": 110.0,
+   "minimo_espacial": 102.5,
+   "maximo_espacial": 113.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-03",
+   "valor": 126.7,
+   "minimo_espacial": 118.7,
+   "maximo_espacial": 131.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-04",
+   "valor": 166.1,
+   "minimo_espacial": 162.0,
+   "maximo_espacial": 169.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-05",
+   "valor": 206.4,
+   "minimo_espacial": 201.1,
+   "maximo_espacial": 210.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-06",
+   "valor": 228.5,
+   "minimo_espacial": 221.5,
+   "maximo_espacial": 233.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-07",
+   "valor": 246.3,
+   "minimo_espacial": 240.3,
+   "maximo_espacial": 249.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-08",
+   "valor": 219.5,
+   "minimo_espacial": 213.6,
+   "maximo_espacial": 223.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-09",
+   "valor": 172.9,
+   "minimo_espacial": 166.9,
+   "maximo_espacial": 175.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-10",
+   "valor": 131.3,
+   "minimo_espacial": 121.6,
+   "maximo_espacial": 134.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-11",
+   "valor": 86.1,
+   "minimo_espacial": 80.1,
+   "maximo_espacial": 88.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2011-12",
+   "valor": 86.4,
+   "minimo_espacial": 72.9,
+   "maximo_espacial": 89.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-01",
+   "valor": 92.4,
+   "minimo_espacial": 82.0,
+   "maximo_espacial": 95.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-02",
+   "valor": 119.1,
+   "minimo_espacial": 109.2,
+   "maximo_espacial": 122.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-03",
+   "valor": 156.4,
+   "minimo_espacial": 146.8,
+   "maximo_espacial": 161.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-04",
+   "valor": 186.9,
+   "minimo_espacial": 181.5,
+   "maximo_espacial": 191.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-05",
+   "valor": 229.0,
+   "minimo_espacial": 220.8,
+   "maximo_espacial": 233.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-06",
+   "valor": 244.9,
+   "minimo_espacial": 238.8,
+   "maximo_espacial": 248.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-07",
+   "valor": 247.1,
+   "minimo_espacial": 240.7,
+   "maximo_espacial": 250.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-08",
+   "valor": 220.2,
+   "minimo_espacial": 212.1,
+   "maximo_espacial": 224.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-09",
+   "valor": 160.9,
+   "minimo_espacial": 155.3,
+   "maximo_espacial": 163.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-10",
+   "valor": 120.9,
+   "minimo_espacial": 114.4,
+   "maximo_espacial": 123.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-11",
+   "valor": 70.2,
+   "minimo_espacial": 65.6,
+   "maximo_espacial": 72.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2012-12",
+   "valor": 80.3,
+   "minimo_espacial": 69.4,
+   "maximo_espacial": 83.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-01",
+   "valor": 88.3,
+   "minimo_espacial": 80.2,
+   "maximo_espacial": 91.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-02",
+   "valor": 104.8,
+   "minimo_espacial": 95.8,
+   "maximo_espacial": 108.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-03",
+   "valor": 120.4,
+   "minimo_espacial": 114.0,
+   "maximo_espacial": 125.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-04",
+   "valor": 179.6,
+   "minimo_espacial": 174.9,
+   "maximo_espacial": 184.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-05",
+   "valor": 218.2,
+   "minimo_espacial": 209.4,
+   "maximo_espacial": 225.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-06",
+   "valor": 242.3,
+   "minimo_espacial": 235.2,
+   "maximo_espacial": 245.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-07",
+   "valor": 249.6,
+   "minimo_espacial": 242.8,
+   "maximo_espacial": 253.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-08",
+   "valor": 224.9,
+   "minimo_espacial": 218.8,
+   "maximo_espacial": 228.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-09",
+   "valor": 169.7,
+   "minimo_espacial": 165.8,
+   "maximo_espacial": 172.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-10",
+   "valor": 137.0,
+   "minimo_espacial": 128.6,
+   "maximo_espacial": 139.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-11",
+   "valor": 97.2,
+   "minimo_espacial": 90.5,
+   "maximo_espacial": 99.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2013-12",
+   "valor": 75.5,
+   "minimo_espacial": 64.4,
+   "maximo_espacial": 78.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-01",
+   "valor": 84.1,
+   "minimo_espacial": 76.0,
+   "maximo_espacial": 86.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-02",
+   "valor": 95.8,
+   "minimo_espacial": 90.2,
+   "maximo_espacial": 98.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-03",
+   "valor": 158.3,
+   "minimo_espacial": 149.2,
+   "maximo_espacial": 161.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-04",
+   "valor": 193.7,
+   "minimo_espacial": 187.8,
+   "maximo_espacial": 197.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-05",
+   "valor": 233.7,
+   "minimo_espacial": 224.8,
+   "maximo_espacial": 237.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-06",
+   "valor": 235.1,
+   "minimo_espacial": 228.3,
+   "maximo_espacial": 238.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-07",
+   "valor": 252.1,
+   "minimo_espacial": 245.7,
+   "maximo_espacial": 255.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-08",
+   "valor": 227.6,
+   "minimo_espacial": 219.3,
+   "maximo_espacial": 230.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-09",
+   "valor": 165.3,
+   "minimo_espacial": 158.8,
+   "maximo_espacial": 169.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-10",
+   "valor": 133.0,
+   "minimo_espacial": 124.6,
+   "maximo_espacial": 136.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-11",
+   "valor": 80.5,
+   "minimo_espacial": 75.5,
+   "maximo_espacial": 82.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2014-12",
+   "valor": 76.5,
+   "minimo_espacial": 65.2,
+   "maximo_espacial": 79.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-01",
+   "valor": 93.8,
+   "minimo_espacial": 85.0,
+   "maximo_espacial": 96.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-02",
+   "valor": 103.2,
+   "minimo_espacial": 97.0,
+   "maximo_espacial": 106.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-03",
+   "valor": 146.0,
+   "minimo_espacial": 139.6,
+   "maximo_espacial": 148.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-04",
+   "valor": 165.3,
+   "minimo_espacial": 160.5,
+   "maximo_espacial": 169.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-05",
+   "valor": 228.7,
+   "minimo_espacial": 221.0,
+   "maximo_espacial": 231.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-06",
+   "valor": 234.3,
+   "minimo_espacial": 227.7,
+   "maximo_espacial": 239.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-07",
+   "valor": 250.4,
+   "minimo_espacial": 244.9,
+   "maximo_espacial": 253.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-08",
+   "valor": 206.7,
+   "minimo_espacial": 200.7,
+   "maximo_espacial": 210.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-09",
+   "valor": 170.9,
+   "minimo_espacial": 164.3,
+   "maximo_espacial": 174.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-10",
+   "valor": 112.7,
+   "minimo_espacial": 106.6,
+   "maximo_espacial": 116.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-11",
+   "valor": 94.2,
+   "minimo_espacial": 86.5,
+   "maximo_espacial": 97.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2015-12",
+   "valor": 73.3,
+   "minimo_espacial": 64.3,
+   "maximo_espacial": 75.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-01",
+   "valor": 87.1,
+   "minimo_espacial": 80.9,
+   "maximo_espacial": 89.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-02",
+   "valor": 106.4,
+   "minimo_espacial": 99.7,
+   "maximo_espacial": 109.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-03",
+   "valor": 166.8,
+   "minimo_espacial": 157.9,
+   "maximo_espacial": 169.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-04",
+   "valor": 179.0,
+   "minimo_espacial": 173.3,
+   "maximo_espacial": 183.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-05",
+   "valor": 205.0,
+   "minimo_espacial": 197.5,
+   "maximo_espacial": 208.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-06",
+   "valor": 246.0,
+   "minimo_espacial": 240.0,
+   "maximo_espacial": 249.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-07",
+   "valor": 238.3,
+   "minimo_espacial": 233.4,
+   "maximo_espacial": 241.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-08",
+   "valor": 212.7,
+   "minimo_espacial": 207.3,
+   "maximo_espacial": 216.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-09",
+   "valor": 179.6,
+   "minimo_espacial": 173.6,
+   "maximo_espacial": 182.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-10",
+   "valor": 118.0,
+   "minimo_espacial": 111.1,
+   "maximo_espacial": 119.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-11",
+   "valor": 84.0,
+   "minimo_espacial": 78.1,
+   "maximo_espacial": 86.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2016-12",
+   "valor": 66.3,
+   "minimo_espacial": 58.4,
+   "maximo_espacial": 69.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-01",
+   "valor": 90.7,
+   "minimo_espacial": 81.4,
+   "maximo_espacial": 93.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-02",
+   "valor": 90.4,
+   "minimo_espacial": 84.4,
+   "maximo_espacial": 93.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-03",
+   "valor": 153.7,
+   "minimo_espacial": 145.2,
+   "maximo_espacial": 158.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-04",
+   "valor": 183.4,
+   "minimo_espacial": 179.4,
+   "maximo_espacial": 186.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-05",
+   "valor": 232.0,
+   "minimo_espacial": 224.1,
+   "maximo_espacial": 237.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-06",
+   "valor": 244.5,
+   "minimo_espacial": 239.3,
+   "maximo_espacial": 248.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-07",
+   "valor": 239.3,
+   "minimo_espacial": 233.5,
+   "maximo_espacial": 242.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-08",
+   "valor": 212.1,
+   "minimo_espacial": 206.3,
+   "maximo_espacial": 215.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-09",
+   "valor": 178.4,
+   "minimo_espacial": 172.0,
+   "maximo_espacial": 180.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-10",
+   "valor": 135.8,
+   "minimo_espacial": 128.5,
+   "maximo_espacial": 139.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-11",
+   "valor": 97.5,
+   "minimo_espacial": 90.2,
+   "maximo_espacial": 99.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2017-12",
+   "valor": 78.7,
+   "minimo_espacial": 69.2,
+   "maximo_espacial": 82.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-01",
+   "valor": 88.0,
+   "minimo_espacial": 80.6,
+   "maximo_espacial": 91.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-02",
+   "valor": 94.9,
+   "minimo_espacial": 87.1,
+   "maximo_espacial": 97.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-03",
+   "valor": 123.2,
+   "minimo_espacial": 113.2,
+   "maximo_espacial": 130.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-04",
+   "valor": 179.6,
+   "minimo_espacial": 176.0,
+   "maximo_espacial": 182.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-05",
+   "valor": 229.7,
+   "minimo_espacial": 219.4,
+   "maximo_espacial": 235.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-06",
+   "valor": 246.1,
+   "minimo_espacial": 238.6,
+   "maximo_espacial": 250.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-07",
+   "valor": 258.3,
+   "minimo_espacial": 252.8,
+   "maximo_espacial": 262.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-08",
+   "valor": 226.7,
+   "minimo_espacial": 220.1,
+   "maximo_espacial": 229.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-09",
+   "valor": 154.2,
+   "minimo_espacial": 146.8,
+   "maximo_espacial": 156.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-10",
+   "valor": 112.6,
+   "minimo_espacial": 104.7,
+   "maximo_espacial": 115.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-11",
+   "valor": 83.2,
+   "minimo_espacial": 76.5,
+   "maximo_espacial": 86.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2018-12",
+   "valor": 83.9,
+   "minimo_espacial": 71.6,
+   "maximo_espacial": 87.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-01",
+   "valor": 90.8,
+   "minimo_espacial": 82.2,
+   "maximo_espacial": 93.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-02",
+   "valor": 102.2,
+   "minimo_espacial": 94.8,
+   "maximo_espacial": 104.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-03",
+   "valor": 152.4,
+   "minimo_espacial": 142.2,
+   "maximo_espacial": 156.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-04",
+   "valor": 178.5,
+   "minimo_espacial": 171.7,
+   "maximo_espacial": 186.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-05",
+   "valor": 245.6,
+   "minimo_espacial": 237.3,
+   "maximo_espacial": 249.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-06",
+   "valor": 244.6,
+   "minimo_espacial": 237.7,
+   "maximo_espacial": 247.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-07",
+   "valor": 243.7,
+   "minimo_espacial": 237.1,
+   "maximo_espacial": 246.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-08",
+   "valor": 223.5,
+   "minimo_espacial": 217.0,
+   "maximo_espacial": 226.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-09",
+   "valor": 162.2,
+   "minimo_espacial": 155.3,
+   "maximo_espacial": 165.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-10",
+   "valor": 142.3,
+   "minimo_espacial": 134.2,
+   "maximo_espacial": 145.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-11",
+   "valor": 87.5,
+   "minimo_espacial": 81.2,
+   "maximo_espacial": 90.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2019-12",
+   "valor": 73.2,
+   "minimo_espacial": 62.9,
+   "maximo_espacial": 76.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-01",
+   "valor": 81.7,
+   "minimo_espacial": 75.0,
+   "maximo_espacial": 84.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-02",
+   "valor": 108.9,
+   "minimo_espacial": 100.4,
+   "maximo_espacial": 111.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-03",
+   "valor": 134.6,
+   "minimo_espacial": 127.2,
+   "maximo_espacial": 137.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-04",
+   "valor": 140.2,
+   "minimo_espacial": 135.1,
+   "maximo_espacial": 144.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-05",
+   "valor": 226.5,
+   "minimo_espacial": 217.1,
+   "maximo_espacial": 230.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-06",
+   "valor": 248.4,
+   "minimo_espacial": 240.9,
+   "maximo_espacial": 252.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-07",
+   "valor": 249.8,
+   "minimo_espacial": 245.0,
+   "maximo_espacial": 254.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-08",
+   "valor": 226.7,
+   "minimo_espacial": 220.6,
+   "maximo_espacial": 230.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-09",
+   "valor": 165.4,
+   "minimo_espacial": 159.9,
+   "maximo_espacial": 167.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-10",
+   "valor": 135.7,
+   "minimo_espacial": 127.7,
+   "maximo_espacial": 138.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-11",
+   "valor": 76.4,
+   "minimo_espacial": 71.2,
+   "maximo_espacial": 78.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2020-12",
+   "valor": 79.8,
+   "minimo_espacial": 69.1,
+   "maximo_espacial": 84.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-01",
+   "valor": 83.8,
+   "minimo_espacial": 75.1,
+   "maximo_espacial": 86.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-02",
+   "valor": 90.2,
+   "minimo_espacial": 83.5,
+   "maximo_espacial": 93.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-03",
+   "valor": 145.4,
+   "minimo_espacial": 135.8,
+   "maximo_espacial": 148.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-04",
+   "valor": 144.5,
+   "minimo_espacial": 136.0,
+   "maximo_espacial": 148.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-05",
+   "valor": 220.0,
+   "minimo_espacial": 211.0,
+   "maximo_espacial": 222.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-06",
+   "valor": 232.8,
+   "minimo_espacial": 227.4,
+   "maximo_espacial": 238.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-07",
+   "valor": 245.3,
+   "minimo_espacial": 240.2,
+   "maximo_espacial": 249.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-08",
+   "valor": 205.0,
+   "minimo_espacial": 196.3,
+   "maximo_espacial": 207.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-09",
+   "valor": 159.9,
+   "minimo_espacial": 152.3,
+   "maximo_espacial": 162.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-10",
+   "valor": 130.9,
+   "minimo_espacial": 122.2,
+   "maximo_espacial": 133.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-11",
+   "valor": 93.8,
+   "minimo_espacial": 83.8,
+   "maximo_espacial": 98.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2021-12",
+   "valor": 71.6,
+   "minimo_espacial": 62.2,
+   "maximo_espacial": 73.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-01",
+   "valor": 74.6,
+   "minimo_espacial": 65.4,
+   "maximo_espacial": 78.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-02",
+   "valor": 89.0,
+   "minimo_espacial": 80.0,
+   "maximo_espacial": 91.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-03",
+   "valor": 104.6,
+   "minimo_espacial": 97.6,
+   "maximo_espacial": 109.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-04",
+   "valor": 175.5,
+   "minimo_espacial": 170.2,
+   "maximo_espacial": 178.0,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-05",
+   "valor": 236.5,
+   "minimo_espacial": 228.8,
+   "maximo_espacial": 239.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-06",
+   "valor": 239.8,
+   "minimo_espacial": 233.4,
+   "maximo_espacial": 241.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-07",
+   "valor": 240.4,
+   "minimo_espacial": 233.7,
+   "maximo_espacial": 243.4,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-08",
+   "valor": 218.4,
+   "minimo_espacial": 210.7,
+   "maximo_espacial": 220.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-09",
+   "valor": 169.0,
+   "minimo_espacial": 163.2,
+   "maximo_espacial": 170.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-10",
+   "valor": 117.6,
+   "minimo_espacial": 110.5,
+   "maximo_espacial": 120.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-11",
+   "valor": 92.1,
+   "minimo_espacial": 84.4,
+   "maximo_espacial": 94.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2022-12",
+   "valor": 67.4,
+   "minimo_espacial": 57.7,
+   "maximo_espacial": 70.6,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-01",
+   "valor": 87.5,
+   "minimo_espacial": 79.7,
+   "maximo_espacial": 91.1,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-02",
+   "valor": 91.5,
+   "minimo_espacial": 85.4,
+   "maximo_espacial": 93.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-03",
+   "valor": 167.4,
+   "minimo_espacial": 158.7,
+   "maximo_espacial": 169.5,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-04",
+   "valor": 206.8,
+   "minimo_espacial": 201.6,
+   "maximo_espacial": 208.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-05",
+   "valor": 211.0,
+   "minimo_espacial": 201.9,
+   "maximo_espacial": 214.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-06",
+   "valor": 219.3,
+   "minimo_espacial": 213.0,
+   "maximo_espacial": 221.3,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-07",
+   "valor": 242.2,
+   "minimo_espacial": 234.7,
+   "maximo_espacial": 244.8,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-08",
+   "valor": 224.0,
+   "minimo_espacial": 216.3,
+   "maximo_espacial": 225.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-09",
+   "valor": 164.7,
+   "minimo_espacial": 159.3,
+   "maximo_espacial": 169.2,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-10",
+   "valor": 121.1,
+   "minimo_espacial": 114.2,
+   "maximo_espacial": 122.7,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-11",
+   "valor": 97.9,
+   "minimo_espacial": 90.3,
+   "maximo_espacial": 100.9,
+   "n_puntos": 9
+  },
+  {
+   "periodo": "2023-12",
+   "valor": 78.8,
+   "minimo_espacial": 67.7,
+   "maximo_espacial": 81.3,
+   "n_puntos": 9
+  }
+ ]
+}
