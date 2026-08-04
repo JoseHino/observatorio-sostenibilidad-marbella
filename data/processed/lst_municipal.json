@@ -803,7 +803,7 @@
    "mediana": 37.91,
    "p10": 35.17,
    "p90": 41.35,
-   "amplitud_p10_p90": 6.18,
+   "amplitud_p10_p90": 6.19,
    "n_escenas": 4,
    "cobertura_pct": 97.1,
    "escenas_descartadas": 0
@@ -1067,7 +1067,7 @@
    "mediana": 37.75,
    "p10": 35.06,
    "p90": 41.12,
-   "amplitud_p10_p90": 6.05,
+   "amplitud_p10_p90": 6.06,
    "n_escenas": 4,
    "cobertura_pct": 98.7,
    "escenas_descartadas": 0
