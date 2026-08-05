@@ -21,6 +21,11 @@
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
   },
+  "no2_troposferico": {
+    "hash_config": "3579400d02a9e53f",
+    "n_periodos": 91,
+    "ultima_fecha_dato": "2026-07"
+  },
   "presion_turistica": {
     "hash_config": "01b2769e515ec285",
     "n_periodos": 115,

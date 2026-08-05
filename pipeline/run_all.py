@@ -28,7 +28,7 @@ from processing import radiacion as proc_rad
 from processing import calidad_agua as proc_agua
 from processing import indices_s2
 from processing import no2 as proc_no2
-from qa import validate
+from qa import no_empobrecer, validate
 from sources import buffer_marino, cnig
 
 WEB_DATA = ROOT / "web" / "data"
@@ -93,6 +93,10 @@ def tarea_indice_s2(clave: str):
 
         resultado = indices_s2.construir_serie(cfg, clave, forzar=reproceso)
         fallos = validate.validar_serie_indice(resultado)
+        permite, motivo = no_empobrecer.permite_escribir(clave, resultado, forzar)
+        if not permite:
+            log(clave, "AVISO", motivo)
+            return fallos
         indices_s2.escribir(resultado, cfg, clave)
 
         tele = resultado["_telemetria"]
@@ -128,6 +132,10 @@ def tarea_lst(cfg: dict, forzar: bool) -> list[str]:
 
     resultado = proc_lst.construir_serie(cfg, forzar=reproceso)
     fallos = validate.validar_serie_lst(resultado)
+    permite, motivo = no_empobrecer.permite_escribir("lst_municipal", resultado, forzar)
+    if not permite:
+        log("lst", "AVISO", motivo)
+        return fallos
     proc_lst.escribir(resultado, cfg)
 
     tele = resultado["_telemetria"]
@@ -234,6 +242,10 @@ def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
     else:
         resultado = proc_agua.construir_serie(cfg, forzar=reproceso)
     fallos = validate.validar_serie_clorofila(resultado)
+    permite, motivo = no_empobrecer.permite_escribir("clorofila_litoral", resultado, forzar)
+    if not permite:
+        log("clorofila", "AVISO", motivo)
+        return fallos
     proc_agua.escribir(resultado, cfg)
     log("clorofila", "OK",
         f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
