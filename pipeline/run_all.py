@@ -26,7 +26,10 @@ from processing import lst as proc_lst
 from processing import presion_turistica as proc_presion
 from processing import radiacion as proc_rad
 from processing import calidad_agua as proc_agua
+from processing import clima_aemet as proc_aemet
+from processing import fenologia as proc_fenologia
 from processing import indices_s2
+from processing import gases_s5p
 from processing import no2 as proc_no2
 from qa import no_empobrecer, validate
 from sources import buffer_marino, cnig
@@ -256,15 +259,83 @@ def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
     return fallos
 
 
+def tarea_gas_s5p(clave: str):
+    """Fabrica la tarea de un gas o aerosol de Sentinel-5P."""
+    def tarea(cfg: dict, forzar: bool) -> list[str]:
+        ind = cfg["indicadores"][clave]
+        if not ind.get("activo", True):
+            return []
+        huella = manifest.hash_config(ind)
+        reproceso = forzar or manifest.requiere_reproceso(clave, huella)
+        resultado = gases_s5p.construir_serie(cfg, clave, forzar=reproceso)
+        permite, motivo = no_empobrecer.permite_escribir(clave, resultado, forzar)
+        if not permite:
+            log(clave, "AVISO", motivo)
+            return []
+        gases_s5p.escribir(resultado, cfg, clave)
+        log(clave, "OK",
+            f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
+            f"hasta {resultado['ultimo_periodo']}, "
+            f"{resultado['_telemetria']['pu_consumidas']} PU")
+        manifest.actualizar(clave, ultima_fecha_dato=resultado["ultimo_periodo"],
+                            n_periodos=resultado["n_periodos"], hash_config=huella)
+        TELEMETRIA[clave] = resultado["_telemetria"]
+        return []
+    return tarea
+
+
+def tarea_fenologia(cfg: dict, forzar: bool) -> list[str]:
+    resultado = proc_fenologia.construir(cfg)
+    if not resultado["serie"]:
+        log("fenologia", "AVISO", "no hay anos vegetativos completos suficientes")
+        return []
+    proc_fenologia.escribir(resultado, cfg)
+    log("fenologia", "OK",
+        f"{resultado['n_periodos']} anos vegetativos, hasta {resultado['ultimo_periodo']}")
+    manifest.actualizar("fenologia_vegetacion",
+                        ultima_fecha_dato=resultado["ultimo_periodo"],
+                        n_periodos=resultado["n_periodos"])
+    return []
+
+
+def tarea_aemet(cfg: dict, forzar: bool) -> list[str]:
+    # Sin clave la tarea se salta y lo declara: el resto del pipeline sigue funcionando
+    if not proc_aemet.hay_clave():
+        log("clima_aemet", "OMITIDO", "falta AEMET_API_KEY; alta gratuita en opendata.aemet.es")
+        return []
+    resultado = proc_aemet.construir(cfg, forzar=forzar)
+    permite, motivo = no_empobrecer.permite_escribir("clima_aemet", resultado, forzar)
+    if not permite:
+        log("clima_aemet", "AVISO", motivo)
+        return []
+    proc_aemet.escribir(resultado, cfg)
+    e = resultado["estacion"]
+    log("clima_aemet", "OK",
+        f"{resultado['n_periodos']} periodos hasta {resultado['ultimo_periodo']}; "
+        f"estacion {e['indicativo']} ({e['nombre']}) a {e['distancia_km']} km")
+    manifest.actualizar("clima_aemet", ultima_fecha_dato=resultado["ultimo_periodo"],
+                        n_periodos=resultado["n_periodos"], estacion=e["indicativo"])
+    TELEMETRIA["clima_aemet"] = resultado["_telemetria"]
+    return []
+
+
 TAREAS = [
     ("limite_municipal", tarea_limite),
     ("buffer_marino", tarea_buffer_marino),
     ("ndvi_municipal", tarea_indice_s2("ndvi_municipal")),
     ("ndbi_municipal", tarea_indice_s2("ndbi_municipal")),
+    ("ndmi_municipal", tarea_indice_s2("ndmi_municipal")),
+    ("nbr_municipal", tarea_indice_s2("nbr_municipal")),
+    ("ndwi_municipal", tarea_indice_s2("ndwi_municipal")),
     ("lst_municipal", tarea_lst),
     ("no2_troposferico", tarea_no2),
+    ("ozono_troposferico", tarea_gas_s5p("ozono_troposferico")),
+    ("aerosoles", tarea_gas_s5p("aerosoles")),
+    ("monoxido_carbono", tarea_gas_s5p("monoxido_carbono")),
     ("clorofila_litoral", tarea_clorofila),
     ("radiacion_solar", tarea_radiacion),
+    ("fenologia_vegetacion", tarea_fenologia),
+    ("clima_aemet", tarea_aemet),
     ("presion_turistica", tarea_presion),
 ]
 

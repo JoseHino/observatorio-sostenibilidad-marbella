@@ -1,0 +1,25 @@
+{
+  "indicador": "clima_aemet",
+  "titulo": "Temperatura del aire y precipitación",
+  "descripcion": "Temperatura media mensual del aire y precipitación acumulada, medidas en la estación de AEMET más próxima al municipio (MARBELLA, a 5.8 km, 2 m de altitud).",
+  "fuente": "Agencia Estatal de Meteorología, AEMET OpenData, estación 6083X",
+  "formula": "Valores climatológicos mensuales publicados por AEMET",
+  "resolucion_espacial": "puntual: una estación",
+  "resolucion_temporal": "mensual",
+  "metodo": "Se selecciona la estación de la red de AEMET más próxima al punto representativo del término y se descargan sus valores climatológicos mensuales.",
+  "enmascaramiento": "No aplica: es dato medido en estación.",
+  "serie_desde": "2017-01",
+  "serie_hasta": "2026-07",
+  "n_periodos": 120,
+  "n_huecos": 25,
+  "limitaciones": [
+    "Es una medida PUNTUAL de una estación, no un promedio del término. En un municipio con 1.200 m de desnivel entre la costa y Sierra Blanca, una sola estación no representa todo el ámbito.",
+    "NO debe confundirse con la temperatura superficial terrestre publicada en el Bloque 2: aquella mide la piel del terreno a media mañana y en verano supera con holgura a la del aire. Son magnitudes distintas.",
+    "Los meses sin registro de la estación se publican como hueco. No se interpolan.",
+    "La serie presenta lagunas importantes en 2018 y 2020, y un escalón entre 2019 y 2021 que no puede atribuirse con seguridad al clima: con 2020 casi entero ausente, cabe que responda a un cambio en el registro de la estación. Debe leerse con cautela y contrastarse con la temperatura superficial de Landsat, que no muestra ese escalón."
+  ],
+  "valor_minimo_serie": 13.1,
+  "valor_maximo_serie": 27.6,
+  "licencia": "Elaboración propia a partir de datos de la Agencia Estatal de Meteorología",
+  "ruta_datos": "data/processed/clima_aemet.json"
+}

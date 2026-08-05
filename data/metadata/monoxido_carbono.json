@@ -1,0 +1,25 @@
+{
+  "indicador": "monoxido_carbono",
+  "titulo": "Monóxido de carbono en columna",
+  "descripcion": "Columna total de monóxido de carbono. Procede de combustión incompleta, tanto de tráfico e industria como de incendios, y puede llegar transportado desde lejos.",
+  "fuente": "Copernicus Sentinel-5P Nivel 2, banda CO, vía Sentinel Hub (CDSE)",
+  "formula": "Media zonal de CO sobre el término, expresada en mmol/m²",
+  "resolucion_espacial": "aproximadamente 5,5 × 3,5 km",
+  "resolucion_temporal": "mensual",
+  "metodo": "Agregación zonal en servidor sobre el polígono municipal.",
+  "enmascaramiento": "El producto de nivel 2 incorpora sus propios filtros de calidad.",
+  "serie_desde": "2019-01",
+  "serie_hasta": "2026-07",
+  "n_periodos": 91,
+  "n_huecos": 20,
+  "limitaciones": [
+    "La resolución del sensor es muy inferior al tamaño del municipio: sobre 117 km² caben del orden de 14 valores, y la huella de cada uno desborda el término. La serie describe tendencia y estacionalidad de ámbito comarcal, no la calidad del aire de un punto concreto.",
+    "No es representable como mapa municipal ni por barrios.",
+    "La serie arranca en 2019: Sentinel-5P no ofrece producto consolidado antes.",
+    "Los meses sin observación válida se publican como hueco. No se interpolan."
+  ],
+  "valor_minimo_serie": 23.89,
+  "valor_maximo_serie": 48.103,
+  "licencia": "Contiene datos modificados de Copernicus Sentinel",
+  "ruta_datos": "data/processed/monoxido_carbono.json"
+}

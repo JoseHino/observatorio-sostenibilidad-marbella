@@ -1,0 +1,91 @@
+{
+ "indicador": "fenologia_vegetacion",
+ "titulo": "Fenología de la vegetación",
+ "unidad": "días desde el 1 de julio",
+ "unidad_analisis": "municipio",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "anual (año vegetativo julio-junio)",
+ "ultimo_periodo": "2025",
+ "n_periodos": 7,
+ "n_huecos": 0,
+ "serie": [
+  {
+   "periodo": "2018",
+   "valor": 120,
+   "fecha_inicio": "2017-10-29",
+   "fecha_pico": "2018-01-15",
+   "dias_hasta_pico": 198,
+   "amplitud_ndvi": 0.1942,
+   "ndvi_minimo": 0.3763,
+   "ndvi_maximo": 0.5705,
+   "meses_disponibles": 12
+  },
+  {
+   "periodo": "2020",
+   "valor": 73,
+   "fecha_inicio": "2019-09-12",
+   "fecha_pico": "2020-02-15",
+   "dias_hasta_pico": 229,
+   "amplitud_ndvi": 0.2113,
+   "ndvi_minimo": 0.3478,
+   "ndvi_maximo": 0.5591,
+   "meses_disponibles": 12
+  },
+  {
+   "periodo": "2021",
+   "valor": 134,
+   "fecha_inicio": "2020-11-12",
+   "fecha_pico": "2021-02-15",
+   "dias_hasta_pico": 229,
+   "amplitud_ndvi": 0.1646,
+   "ndvi_minimo": 0.4049,
+   "ndvi_maximo": 0.5695,
+   "meses_disponibles": 12
+  },
+  {
+   "periodo": "2022",
+   "valor": 127,
+   "fecha_inicio": "2021-11-05",
+   "fecha_pico": "2022-03-15",
+   "dias_hasta_pico": 257,
+   "amplitud_ndvi": 0.1446,
+   "ndvi_minimo": 0.3703,
+   "ndvi_maximo": 0.5149,
+   "meses_disponibles": 12
+  },
+  {
+   "periodo": "2023",
+   "valor": 150,
+   "fecha_inicio": "2022-11-28",
+   "fecha_pico": "2023-01-15",
+   "dias_hasta_pico": 198,
+   "amplitud_ndvi": 0.1738,
+   "ndvi_minimo": 0.3815,
+   "ndvi_maximo": 0.5553,
+   "meses_disponibles": 12
+  },
+  {
+   "periodo": "2024",
+   "valor": 98,
+   "fecha_inicio": "2023-10-07",
+   "fecha_pico": "2024-04-15",
+   "dias_hasta_pico": 289,
+   "amplitud_ndvi": 0.1271,
+   "ndvi_minimo": 0.387,
+   "ndvi_maximo": 0.5141,
+   "meses_disponibles": 12
+  },
+  {
+   "periodo": "2025",
+   "valor": 96,
+   "fecha_inicio": "2024-10-05",
+   "fecha_pico": "2025-01-15",
+   "dias_hasta_pico": 198,
+   "amplitud_ndvi": 0.255,
+   "ndvi_minimo": 0.3376,
+   "ndvi_maximo": 0.5926,
+   "meses_disponibles": 12
+  }
+ ]
+}

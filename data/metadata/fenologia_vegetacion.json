@@ -1,0 +1,26 @@
+{
+  "indicador": "fenologia_vegetacion",
+  "titulo": "Fenología de la vegetación",
+  "descripcion": "Momento en que arranca cada año la estación de crecimiento de la vegetación del municipio, medido en días transcurridos desde el 1 de julio.",
+  "fuente": "Derivado de la serie de NDVI de este observatorio (Copernicus Sentinel-2 L2A). No procede del producto CLMS de fenología: sobre este ámbito solo ofrece tres fechas en trece años, insuficientes para leer evolución alguna.",
+  "formula": "Inicio de estación = instante en que el NDVI cruza el 50 % de la amplitud anual en la rama ascendente, interpolado entre los dos meses que enmarcan el cruce",
+  "resolucion_espacial": "municipio",
+  "resolucion_temporal": "anual, sobre año vegetativo de julio a junio",
+  "metodo": "Extracción por cruce de umbral, procedimiento estándar en teledetección de la vegetación. Se emplea año vegetativo julio-junio y no año natural porque en clima mediterráneo la vegetación rebrota con las lluvias de otoño y se agosta en verano: el año natural partiría la estación en dos.",
+  "enmascaramiento": "Hereda el de la serie de NDVI de la que se deriva.",
+  "serie_desde": "2018",
+  "serie_hasta": "2025",
+  "n_periodos": 7,
+  "n_huecos": 0,
+  "conclusion": "NO se detecta adelanto ni retraso de la estación de crecimiento. La tendencia medida es de -0.21 días por año sobre 7 años, mientras el inicio oscila entre septiembre y noviembre según cuándo lleguen las lluvias de otoño. Esa variabilidad entre años es muy superior a la tendencia y a la propia precisión del método, de modo que la serie todavía no permite responder si la primavera se adelanta en Marbella. Hará falta más recorrido temporal.",
+  "limitaciones": [
+    "Con los años disponibles y una precisión de ±15 días, NO puede afirmarse tendencia alguna: la variabilidad entre años la supera con holgura.",
+    "La serie de partida es mensual, de modo que la fecha de inicio se interpola entre dos meses consecutivos: la precisión es del orden de ±15 días. Sirve para leer la evolución entre años, no para fechar el rebrote de un año concreto.",
+    "Es un indicador derivado, no una medida directa: describe el comportamiento del NDVI medio municipal, que mezcla monte, cultivo, jardín urbano y campo de golf.",
+    "Los años vegetativos con menos de diez meses observados se descartan, porque sin ellos no puede localizarse el mínimo ni el máximo con garantía."
+  ],
+  "valor_minimo_serie": 73,
+  "valor_maximo_serie": 150,
+  "licencia": "Contiene datos modificados de Copernicus Sentinel",
+  "ruta_datos": "data/processed/fenologia_vegetacion.json"
+}

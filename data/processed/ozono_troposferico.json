@@ -1,0 +1,560 @@
+{
+ "indicador": "ozono_troposferico",
+ "titulo": "Ozono en columna total",
+ "unidad": "DU",
+ "unidad_analisis": "municipio (lectura de ámbito comarcal)",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "mensual",
+ "ultimo_periodo": "2026-07",
+ "n_periodos": 91,
+ "n_huecos": 0,
+ "serie": [
+  {
+   "periodo": "2019-01",
+   "valor": 286.283,
+   "mediana": 286.024,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-02",
+   "valor": 321.172,
+   "mediana": 321.946,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-03",
+   "valor": 341.458,
+   "mediana": 342.373,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-04",
+   "valor": 343.187,
+   "mediana": 343.824,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-05",
+   "valor": 340.236,
+   "mediana": 340.261,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-06",
+   "valor": 294.81,
+   "mediana": 294.905,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-07",
+   "valor": 323.842,
+   "mediana": 324.407,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-08",
+   "valor": 313.396,
+   "mediana": 313.388,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-09",
+   "valor": 281.464,
+   "mediana": 281.807,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-10",
+   "valor": 263.452,
+   "mediana": 263.34,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-11",
+   "valor": 277.383,
+   "mediana": 277.919,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-12",
+   "valor": 287.812,
+   "mediana": 288.511,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-01",
+   "valor": 298.269,
+   "mediana": 298.066,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-02",
+   "valor": 331.041,
+   "mediana": 330.002,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-03",
+   "valor": 353.88,
+   "mediana": 353.494,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-04",
+   "valor": 333.464,
+   "mediana": 333.3,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-05",
+   "valor": 322.265,
+   "mediana": 322.485,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-06",
+   "valor": 297.841,
+   "mediana": 297.488,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-07",
+   "valor": 284.461,
+   "mediana": 283.978,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-08",
+   "valor": 294.563,
+   "mediana": 294.757,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-09",
+   "valor": 290.172,
+   "mediana": 289.986,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-10",
+   "valor": 304.163,
+   "mediana": 304.588,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-11",
+   "valor": 301.584,
+   "mediana": 301.442,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-12",
+   "valor": 335.404,
+   "mediana": 335.47,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-01",
+   "valor": 295.07,
+   "mediana": 295.429,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-02",
+   "valor": 317.07,
+   "mediana": 316.954,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-03",
+   "valor": 300.75,
+   "mediana": 300.598,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-04",
+   "valor": 359.117,
+   "mediana": 359.366,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-05",
+   "valor": 331.259,
+   "mediana": 330.696,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-06",
+   "valor": 299.031,
+   "mediana": 299.345,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-07",
+   "valor": 326.756,
+   "mediana": 327.084,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-08",
+   "valor": 307.043,
+   "mediana": 306.614,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-09",
+   "valor": 289.372,
+   "mediana": 289.348,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-10",
+   "valor": 285.881,
+   "mediana": 287.708,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-11",
+   "valor": 308.91,
+   "mediana": 308.935,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-12",
+   "valor": 270.136,
+   "mediana": 270.112,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-01",
+   "valor": 347.265,
+   "mediana": 348.094,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-02",
+   "valor": 324.787,
+   "mediana": 325.299,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-03",
+   "valor": 372.086,
+   "mediana": 373.786,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-04",
+   "valor": 361.406,
+   "mediana": 362.035,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-05",
+   "valor": 322.349,
+   "mediana": 322.004,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-06",
+   "valor": 333.403,
+   "mediana": 333.435,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-07",
+   "valor": 303.087,
+   "mediana": 303.624,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-08",
+   "valor": 293.026,
+   "mediana": 292.598,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-09",
+   "valor": 315.192,
+   "mediana": 314.668,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-10",
+   "valor": 279.71,
+   "mediana": 279.456,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-11",
+   "valor": 303.875,
+   "mediana": 303.59,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-12",
+   "valor": 301.128,
+   "mediana": 301.829,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-01",
+   "valor": 355.219,
+   "mediana": 355.157,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-02",
+   "valor": 363.005,
+   "mediana": 363.212,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-03",
+   "valor": 301.915,
+   "mediana": 303.06,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-04",
+   "valor": 335.439,
+   "mediana": 335.33,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-05",
+   "valor": 352.545,
+   "mediana": 352.205,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-06",
+   "valor": 308.272,
+   "mediana": 308.023,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-07",
+   "valor": 296.635,
+   "mediana": 297.376,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-08",
+   "valor": 315.317,
+   "mediana": 316.018,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-09",
+   "valor": 275.222,
+   "mediana": 275.042,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-10",
+   "valor": 276.617,
+   "mediana": 276.903,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-11",
+   "valor": 293.418,
+   "mediana": 293.188,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-12",
+   "valor": 305.158,
+   "mediana": 306.301,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-01",
+   "valor": 320.735,
+   "mediana": 320.968,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-02",
+   "valor": 306.09,
+   "mediana": 305.808,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-03",
+   "valor": 384.327,
+   "mediana": 384.5,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-04",
+   "valor": 377.785,
+   "mediana": 378.125,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-05",
+   "valor": 361.707,
+   "mediana": 361.276,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-06",
+   "valor": 334.011,
+   "mediana": 333.949,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-07",
+   "valor": 299.295,
+   "mediana": 299.731,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-08",
+   "valor": 321.161,
+   "mediana": 321.751,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-09",
+   "valor": 294.112,
+   "mediana": 294.342,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-10",
+   "valor": 302.032,
+   "mediana": 301.496,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-11",
+   "valor": 300.224,
+   "mediana": 299.95,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-12",
+   "valor": 333.293,
+   "mediana": 333.705,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-01",
+   "valor": 355.18,
+   "mediana": 356.159,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-02",
+   "valor": 396.506,
+   "mediana": 396.836,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-03",
+   "valor": 327.887,
+   "mediana": 327.127,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-04",
+   "valor": 326.144,
+   "mediana": 326.577,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-05",
+   "valor": 332.28,
+   "mediana": 332.939,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-06",
+   "valor": 302.767,
+   "mediana": 303.089,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-07",
+   "valor": 309.916,
+   "mediana": 310.012,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-08",
+   "valor": 302.455,
+   "mediana": 302.831,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-09",
+   "valor": 286.724,
+   "mediana": 286.376,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-10",
+   "valor": 292.002,
+   "mediana": 291.677,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-11",
+   "valor": 362.517,
+   "mediana": 363.115,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-12",
+   "valor": 318.571,
+   "mediana": 318.895,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-01",
+   "valor": 302.001,
+   "mediana": 302.521,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-02",
+   "valor": 359.859,
+   "mediana": 360.027,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-03",
+   "valor": 324.117,
+   "mediana": 324.188,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-04",
+   "valor": 344.453,
+   "mediana": 344.804,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-05",
+   "valor": 351.867,
+   "mediana": 352.092,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-06",
+   "valor": 319.674,
+   "mediana": 319.564,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-07",
+   "valor": 300.725,
+   "mediana": 301.197,
+   "pixeles_validos": 18
+  }
+ ]
+}

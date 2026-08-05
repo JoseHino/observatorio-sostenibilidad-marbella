@@ -1,0 +1,540 @@
+{
+ "indicador": "monoxido_carbono",
+ "titulo": "Monóxido de carbono en columna",
+ "unidad": "mmol/m²",
+ "unidad_analisis": "municipio (lectura de ámbito comarcal)",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "mensual",
+ "ultimo_periodo": "2026-07",
+ "n_periodos": 91,
+ "n_huecos": 20,
+ "serie": [
+  {
+   "periodo": "2019-01",
+   "valor": 28.626,
+   "mediana": 28.707,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-02",
+   "valor": 31.736,
+   "mediana": 32.404,
+   "pixeles_validos": 12
+  },
+  {
+   "periodo": "2019-03",
+   "valor": 31.528,
+   "mediana": 31.564,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2019-04",
+   "valor": 34.197,
+   "mediana": 33.037,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-05",
+   "valor": 31.097,
+   "mediana": 31.336,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-06",
+   "valor": 26.59,
+   "mediana": 26.817,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-07",
+   "valor": 27.62,
+   "mediana": 28.73,
+   "pixeles_validos": 17
+  },
+  {
+   "periodo": "2019-08",
+   "valor": 28.124,
+   "mediana": 27.991,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-09",
+   "valor": 25.448,
+   "mediana": 25.448,
+   "pixeles_validos": 3
+  },
+  {
+   "periodo": "2019-10",
+   "valor": 23.89,
+   "mediana": 23.927,
+   "pixeles_validos": 17
+  },
+  {
+   "periodo": "2019-11",
+   "valor": 27.266,
+   "mediana": 28.702,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2019-12",
+   "valor": 29.597,
+   "mediana": 29.668,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-01",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2020-02",
+   "valor": 32.854,
+   "mediana": 33.144,
+   "pixeles_validos": 10
+  },
+  {
+   "periodo": "2020-03",
+   "valor": 30.573,
+   "mediana": 30.359,
+   "pixeles_validos": 5
+  },
+  {
+   "periodo": "2020-04",
+   "valor": 33.216,
+   "mediana": 33.275,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-05",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2020-06",
+   "valor": 29.257,
+   "mediana": 28.237,
+   "pixeles_validos": 12
+  },
+  {
+   "periodo": "2020-07",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2020-08",
+   "valor": 30.494,
+   "mediana": 30.421,
+   "pixeles_validos": 17
+  },
+  {
+   "periodo": "2020-09",
+   "valor": 29.98,
+   "mediana": 30.593,
+   "pixeles_validos": 4
+  },
+  {
+   "periodo": "2020-10",
+   "valor": 29.714,
+   "mediana": 29.817,
+   "pixeles_validos": 14
+  },
+  {
+   "periodo": "2020-11",
+   "valor": 32.221,
+   "mediana": 32.245,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-12",
+   "valor": 28.876,
+   "mediana": 28.403,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2021-01",
+   "valor": 30.547,
+   "mediana": 29.264,
+   "pixeles_validos": 7
+  },
+  {
+   "periodo": "2021-02",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2021-03",
+   "valor": 34.344,
+   "mediana": 34.588,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-04",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2021-05",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2021-06",
+   "valor": 28.229,
+   "mediana": 28.426,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-07",
+   "valor": 40.959,
+   "mediana": 40.89,
+   "pixeles_validos": 17
+  },
+  {
+   "periodo": "2021-08",
+   "valor": 33.151,
+   "mediana": 32.901,
+   "pixeles_validos": 17
+  },
+  {
+   "periodo": "2021-09",
+   "valor": 33.871,
+   "mediana": 32.467,
+   "pixeles_validos": 11
+  },
+  {
+   "periodo": "2021-10",
+   "valor": 28.426,
+   "mediana": 27.258,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-11",
+   "valor": 31.32,
+   "mediana": 31.456,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2021-12",
+   "valor": 29.293,
+   "mediana": 29.054,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-01",
+   "valor": 29.532,
+   "mediana": 29.532,
+   "pixeles_validos": 5
+  },
+  {
+   "periodo": "2022-02",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2022-03",
+   "valor": 33.019,
+   "mediana": 33.283,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-04",
+   "valor": 31.995,
+   "mediana": 32.712,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-05",
+   "valor": 31.615,
+   "mediana": 30.711,
+   "pixeles_validos": 11
+  },
+  {
+   "periodo": "2022-06",
+   "valor": 27.464,
+   "mediana": 27.298,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2022-07",
+   "valor": 29.401,
+   "mediana": 30.162,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-08",
+   "valor": 24.367,
+   "mediana": 26.317,
+   "pixeles_validos": 3
+  },
+  {
+   "periodo": "2022-09",
+   "valor": 27.294,
+   "mediana": 26.3,
+   "pixeles_validos": 14
+  },
+  {
+   "periodo": "2022-10",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2022-11",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2022-12",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2023-01",
+   "valor": 32.685,
+   "mediana": 32.255,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2023-02",
+   "valor": 32.987,
+   "mediana": 32.067,
+   "pixeles_validos": 14
+  },
+  {
+   "periodo": "2023-03",
+   "valor": 33.649,
+   "mediana": 34.389,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2023-04",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2023-05",
+   "valor": 32.327,
+   "mediana": 32.165,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-06",
+   "valor": 48.103,
+   "mediana": 48.001,
+   "pixeles_validos": 5
+  },
+  {
+   "periodo": "2023-07",
+   "valor": 30.463,
+   "mediana": 30.296,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-08",
+   "valor": 34.125,
+   "mediana": 33.75,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2023-09",
+   "valor": 27.18,
+   "mediana": 27.142,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2023-10",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2023-11",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2023-12",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2024-01",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2024-02",
+   "valor": 33.018,
+   "mediana": 32.098,
+   "pixeles_validos": 11
+  },
+  {
+   "periodo": "2024-03",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2024-04",
+   "valor": 30.048,
+   "mediana": 31.61,
+   "pixeles_validos": 8
+  },
+  {
+   "periodo": "2024-05",
+   "valor": 32.545,
+   "mediana": 32.815,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-06",
+   "valor": 27.934,
+   "mediana": 27.322,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2024-07",
+   "valor": 33.267,
+   "mediana": 33.8,
+   "pixeles_validos": 12
+  },
+  {
+   "periodo": "2024-08",
+   "valor": 34.347,
+   "mediana": 33.319,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2024-09",
+   "valor": 31.693,
+   "mediana": 32.723,
+   "pixeles_validos": 14
+  },
+  {
+   "periodo": "2024-10",
+   "valor": 28.5,
+   "mediana": 28.037,
+   "pixeles_validos": 14
+  },
+  {
+   "periodo": "2024-11",
+   "valor": 34.122,
+   "mediana": 34.052,
+   "pixeles_validos": 6
+  },
+  {
+   "periodo": "2024-12",
+   "valor": 29.79,
+   "mediana": 28.471,
+   "pixeles_validos": 13
+  },
+  {
+   "periodo": "2025-01",
+   "valor": 34.361,
+   "mediana": 34.368,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2025-02",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2025-03",
+   "valor": 32.628,
+   "mediana": 32.593,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2025-04",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2025-05",
+   "valor": 30.76,
+   "mediana": 30.279,
+   "pixeles_validos": 15
+  },
+  {
+   "periodo": "2025-06",
+   "valor": 31.328,
+   "mediana": 31.275,
+   "pixeles_validos": 14
+  },
+  {
+   "periodo": "2025-07",
+   "valor": 29.302,
+   "mediana": 28.646,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2025-08",
+   "valor": 29.976,
+   "mediana": 31.376,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-09",
+   "valor": 29.959,
+   "mediana": 28.843,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2025-10",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2025-11",
+   "valor": 24.549,
+   "mediana": 24.184,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-12",
+   "valor": 26.227,
+   "mediana": 26.556,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-01",
+   "valor": 33.225,
+   "mediana": 33.364,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2026-02",
+   "valor": null,
+   "motivo": "sin píxel válido en el mes"
+  },
+  {
+   "periodo": "2026-03",
+   "valor": 34.371,
+   "mediana": 35.567,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2026-04",
+   "valor": 29.247,
+   "mediana": 27.87,
+   "pixeles_validos": 10
+  },
+  {
+   "periodo": "2026-05",
+   "valor": 29.39,
+   "mediana": 28.707,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2026-06",
+   "valor": 28.815,
+   "mediana": 27.445,
+   "pixeles_validos": 16
+  },
+  {
+   "periodo": "2026-07",
+   "valor": 31.283,
+   "mediana": 31.283,
+   "pixeles_validos": 5
+  }
+ ]
+}

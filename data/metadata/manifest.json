@@ -1,4 +1,23 @@
 {
+  "aerosoles": {
+    "hash_config": "aaa58ed96199bfaf",
+    "n_periodos": 91,
+    "ultima_fecha_dato": "2026-07"
+  },
+  "clima_aemet": {
+    "estacion": "6083X",
+    "n_periodos": 120,
+    "ultima_fecha_dato": "2026-07"
+  },
+  "clorofila_litoral": {
+    "hash_config": "64664145ebfbe092",
+    "n_periodos": 116,
+    "ultima_fecha_dato": "2026-08"
+  },
+  "fenologia_vegetacion": {
+    "n_periodos": 7,
+    "ultima_fecha_dato": "2025"
+  },
   "limite_municipal": {
     "fuente": "CNIG WFS INSPIRE",
     "superficie_ha": 11714.2
@@ -9,8 +28,13 @@
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
   },
-  "ndbi_municipal": {
-    "hash_config": "ab76f07b9d3a0714",
+  "monoxido_carbono": {
+    "hash_config": "f9157e9d2c468673",
+    "n_periodos": 91,
+    "ultima_fecha_dato": "2026-07"
+  },
+  "ndmi_municipal": {
+    "hash_config": "81fe86934e766d64",
     "n_huecos": 0,
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
@@ -21,8 +45,19 @@
     "n_periodos": 115,
     "ultima_fecha_dato": "2026-07"
   },
+  "ndwi_municipal": {
+    "hash_config": "dd192c6fef4b74f6",
+    "n_huecos": 0,
+    "n_periodos": 115,
+    "ultima_fecha_dato": "2026-07"
+  },
   "no2_troposferico": {
     "hash_config": "3579400d02a9e53f",
+    "n_periodos": 91,
+    "ultima_fecha_dato": "2026-07"
+  },
+  "ozono_troposferico": {
+    "hash_config": "0323337b6a7ca176",
     "n_periodos": 91,
     "ultima_fecha_dato": "2026-07"
   },

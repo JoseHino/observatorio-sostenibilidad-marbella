@@ -11,72 +11,116 @@
   var INDICADORES = [
     {
       clave: 'ndvi_municipal',
-      bloque: 'Bloque 1 · Vegetación y espacios verdes',
+      bloque: 'Bloque 1 \u00b7 Vegetaci\u00f3n y espacios verdes',
       titulo: 'NDVI medio municipal',
-      descripcion: 'Índice de vegetación de diferencia normalizada promediado sobre el término municipal, en compuesto mensual a partir de Sentinel-2.',
-      unidad: '',
-      decimales: 3,
-      banda: null,
+      descripcion: '\u00cdndice de vegetaci\u00f3n de diferencia normalizada promediado sobre el t\u00e9rmino municipal, en compuesto mensual a partir de Sentinel-2.',
+      unidad: '', decimales: 3, banda: null,
       columnas: [['Mediana', 'mediana'], ['P25', 'p25'], ['P75', 'p75']],
-      notaAmplitud: 'Diferencia entre el mes más y menos verde'
+      notaAmplitud: 'Diferencia entre el mes m\u00e1s y menos verde'
+    },
+    {
+      clave: 'ndmi_municipal',
+      bloque: 'Bloque 1 \u00b7 Vegetaci\u00f3n y espacios verdes',
+      titulo: 'NDMI, humedad de la vegetaci\u00f3n',
+      descripcion: 'Contenido de agua de la masa foliar. Cae cuando la vegetaci\u00f3n entra en estr\u00e9s h\u00eddrico, antes de que el NDVI acuse la p\u00e9rdida de verdor, de modo que es un indicador temprano de sequ\u00eda y de riesgo de incendio.',
+      unidad: '', decimales: 3, banda: null,
+      columnas: [['Mediana', 'mediana'], ['P25', 'p25'], ['P75', 'p75']],
+      notaAmplitud: 'Diferencia entre el mes m\u00e1s h\u00famedo y m\u00e1s seco'
+    },
+    {
+      clave: 'clima_aemet',
+      bloque: 'Bloque 2 \u00b7 Clima urbano',
+      titulo: 'Temperatura del aire y precipitaci\u00f3n',
+      descripcion: 'Medidas en la estaci\u00f3n de AEMET de Marbella, a 2 m de altitud. No confundir con la temperatura superficial: aquella mide la piel del terreno a media ma\u00f1ana y en agosto la supera en m\u00e1s de doce grados.',
+      unidad: ' \u00b0C', decimales: 1, banda: ['temperatura_minima_media', 'temperatura_maxima_media'],
+      notaBanda: 'La banda recoge el recorrido entre la media de las m\u00ednimas y la de las m\u00e1ximas.',
+      columnas: [['M\u00ednima media', 'temperatura_minima_media'], ['M\u00e1xima media', 'temperatura_maxima_media'], ['Precipitaci\u00f3n mm', 'precipitacion_mm']],
+      notaAmplitud: 'Diferencia entre el mes m\u00e1s y menos c\u00e1lido'
+    },
+    {
+      clave: 'fenologia_vegetacion',
+      bloque: 'Bloque 1 \u00b7 Vegetaci\u00f3n y espacios verdes',
+      titulo: 'Fenolog\u00eda de la vegetaci\u00f3n',
+      descripcion: 'D\u00eda en que arranca cada a\u00f1o la estaci\u00f3n de crecimiento, contado desde el 1 de julio. Se emplea a\u00f1o vegetativo julio-junio porque en clima mediterr\u00e1neo la vegetaci\u00f3n rebrota con las lluvias de oto\u00f1o.',
+      unidad: ' d\u00edas', decimales: 0, banda: null, anual: true,
+      columnas: [['Fecha de inicio', 'fecha_inicio'], ['Fecha del pico', 'fecha_pico'], ['Amplitud NDVI', 'amplitud_ndvi']],
+      notaMin: 'Arranque m\u00e1s temprano de la serie',
+      notaMax: 'Arranque m\u00e1s tard\u00edo de la serie'
     },
     {
       clave: 'lst_municipal',
-      bloque: 'Bloque 2 · Clima urbano',
+      bloque: 'Bloque 2 \u00b7 Clima urbano',
       titulo: 'Temperatura superficial terrestre',
-      descripcion: 'Temperatura de la superficie del terreno promediada sobre el término municipal, a partir de los pasos de Landsat 8 y 9 hacia las 11:00 hora local. No es temperatura del aire.',
-      unidad: ' °C',
-      decimales: 1,
-      banda: ['p10', 'p90'],
+      descripcion: 'Temperatura de la superficie del terreno promediada sobre el t\u00e9rmino municipal, a partir de los pasos de Landsat 8 y 9 hacia las 11:00 hora local. No es temperatura del aire.',
+      unidad: ' \u00b0C', decimales: 1, banda: ['p10', 'p90'],
       notaBanda: 'La banda recoge el recorrido entre los percentiles 10 y 90 de la superficie.',
       columnas: [['Mediana', 'mediana'], ['P10', 'p10'], ['P90', 'p90'], ['Escenas', 'n_escenas']],
-      notaAmplitud: 'Diferencia entre el mes más y menos cálido'
-    },
-    {
-      clave: 'ndbi_municipal',
-      bloque: 'Bloque 3 · Suelo y urbanización',
-      titulo: 'NDBI, índice de superficie construida',
-      descripcion: 'Índice normalizado de superficie construida. Crece con el sellado del suelo y el material urbano, y decrece con la vegetación. Debe leerse comparando el mismo mes entre años: en verano el agostamiento del suelo lo eleva sin que haya urbanización nueva.',
-      unidad: '',
-      decimales: 3,
-      banda: null,
-      columnas: [['Mediana', 'mediana'], ['P25', 'p25'], ['P75', 'p75']],
-      notaAmplitud: 'Diferencia entre el mes de índice más alto y más bajo'
+      notaAmplitud: 'Diferencia entre el mes m\u00e1s y menos c\u00e1lido'
     },
     {
       clave: 'clorofila_litoral',
-      bloque: 'Bloque 4 · Litoral y aguas',
+      bloque: 'Bloque 4 \u00b7 Litoral y aguas',
       titulo: 'Clorofila-a en aguas litorales',
-      descripcion: 'Concentración de clorofila-a en la franja marina de 2 km frente a la costa, a partir del producto oficial de Sentinel-3. Los productos oceánicos pierden fiabilidad cerca de la costa: la serie sirve para leer estacionalidad y tendencia, no como medida absoluta.',
-      unidad: ' mg/m³',
-      decimales: 3,
-      banda: null,
-      columnas: [],
-      notaAmplitud: 'Diferencia entre el mes de mayor y menor concentración'
+      descripcion: 'Concentraci\u00f3n de clorofila-a en la franja marina de 2 km frente a la costa, a partir del producto oficial de Sentinel-3. Los productos oce\u00e1nicos pierden fiabilidad cerca de la costa: la serie sirve para leer estacionalidad y tendencia, no como medida absoluta.',
+      unidad: ' mg/m\u00b3', decimales: 3, banda: null, columnas: [],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor concentraci\u00f3n'
     },
     {
-      clave: 'no2_troposferico',
-      bloque: 'Bloque 5 · Energía y atmósfera',
-      titulo: 'Dióxido de nitrógeno troposférico',
-      descripcion: 'Columna troposférica de NO₂ sobre el municipio. El píxel de Sentinel-5P mide unos 5,5 × 3,5 km, de modo que sobre las 11.714 ha del término caben apenas una veintena de valores: la serie describe tendencia y estacionalidad de ámbito comarcal, no la calidad del aire de un punto concreto.',
-      unidad: ' µmol/m²',
-      decimales: 1,
-      banda: null,
-      columnas: [['Mediana', 'mediana'], ['Píxeles', 'pixeles_validos']],
-      notaAmplitud: 'Diferencia entre el mes de mayor y menor columna'
+      clave: 'ndwi_municipal',
+      bloque: 'Bloque 4 \u00b7 Litoral y aguas',
+      titulo: 'NDWI, superficie de agua',
+      descripcion: 'Realza las l\u00e1minas de agua libre del t\u00e9rmino, embalses y cauces incluidos. Es un \u00edndice medio sobre todo el municipio: sirve para la evoluci\u00f3n relativa, no para cuantificar volumen embalsado.',
+      unidad: '', decimales: 3, banda: null,
+      columnas: [['Mediana', 'mediana'], ['P25', 'p25'], ['P75', 'p75']],
+      notaAmplitud: 'Diferencia entre el mes de \u00edndice m\u00e1s alto y m\u00e1s bajo'
     },
     {
       clave: 'radiacion_solar',
-      bloque: 'Bloque 5 · Energía y atmósfera',
-      titulo: 'Irradiación solar global horizontal',
-      descripcion: 'Energía solar recibida por metro cuadrado de superficie horizontal, promediada sobre nueve puntos de muestreo del término municipal. Procede de un reanálisis de recorrido cerrado, no de una serie de satélite que crezca cada mes.',
-      unidad: ' kWh/m²',
-      decimales: 1,
+      bloque: 'Bloque 5 \u00b7 Energ\u00eda y atm\u00f3sfera',
+      titulo: 'Irradiaci\u00f3n solar global horizontal',
+      descripcion: 'Energ\u00eda solar recibida por metro cuadrado de superficie horizontal, promediada sobre nueve puntos de muestreo del t\u00e9rmino municipal. Procede de un rean\u00e1lisis de recorrido cerrado, no de una serie de sat\u00e9lite que crezca cada mes.',
+      unidad: ' kWh/m\u00b2', decimales: 1,
       banda: ['minimo_espacial', 'maximo_espacial'],
       notaBanda: 'La banda recoge el recorrido entre los puntos de muestreo, es decir, la diferencia entre la costa y la sierra.',
-      columnas: [['Mínimo espacial', 'minimo_espacial'], ['Máximo espacial', 'maximo_espacial'], ['Puntos', 'n_puntos']],
-      notaAmplitud: 'Diferencia entre el mes más y menos soleado',
-      agregadoAnual: 'suma'   // la cifra que se maneja son los kWh/m2 acumulados en el año
+      columnas: [['M\u00ednimo espacial', 'minimo_espacial'], ['M\u00e1ximo espacial', 'maximo_espacial'], ['Puntos', 'n_puntos']],
+      notaAmplitud: 'Diferencia entre el mes m\u00e1s y menos soleado',
+      agregadoAnual: 'suma'
+    },
+    {
+      clave: 'no2_troposferico',
+      bloque: 'Bloque 5 \u00b7 Energ\u00eda y atm\u00f3sfera',
+      titulo: 'Di\u00f3xido de nitr\u00f3geno troposf\u00e9rico',
+      descripcion: 'Columna troposf\u00e9rica de NO\u2082. El p\u00edxel de Sentinel-5P mide unos 5,5 \u00d7 3,5 km, de modo que sobre las 11.714 ha del t\u00e9rmino caben apenas una veintena de valores: la serie describe tendencia y estacionalidad de \u00e1mbito comarcal, no la calidad del aire de un punto concreto.',
+      unidad: ' \u00b5mol/m\u00b2', decimales: 1, banda: null,
+      columnas: [['Mediana', 'mediana'], ['P\u00edxeles', 'pixeles_validos']],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor columna'
+    },
+    {
+      clave: 'ozono_troposferico',
+      bloque: 'Bloque 5 \u00b7 Energ\u00eda y atm\u00f3sfera',
+      titulo: 'Ozono en columna total',
+      descripcion: 'Columna total de ozono sobre el municipio, en unidades Dobson. Su ciclo responde a la din\u00e1mica atmosf\u00e9rica de latitudes medias, con m\u00e1ximo en primavera. Comparte la limitaci\u00f3n de escala del resto de productos de Sentinel-5P.',
+      unidad: ' DU', decimales: 1, banda: null,
+      columnas: [['Mediana', 'mediana'], ['P\u00edxeles', 'pixeles_validos']],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor columna'
+    },
+    {
+      clave: 'aerosoles',
+      bloque: 'Bloque 5 \u00b7 Energ\u00eda y atm\u00f3sfera',
+      titulo: '\u00cdndice de aerosoles',
+      descripcion: 'Se eleva con la presencia de part\u00edculas absorbentes en altura, se\u00f1aladamente polvo sahariano, frecuente en el litoral andaluz. No mide part\u00edculas en superficie ni equivale a PM10 o PM2,5.',
+      unidad: '', decimales: 3, banda: null,
+      columnas: [['Mediana', 'mediana'], ['P\u00edxeles', 'pixeles_validos']],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor \u00edndice'
+    },
+    {
+      clave: 'monoxido_carbono',
+      bloque: 'Bloque 5 \u00b7 Energ\u00eda y atm\u00f3sfera',
+      titulo: 'Mon\u00f3xido de carbono en columna',
+      descripcion: 'Procede de combusti\u00f3n incompleta, tanto de tr\u00e1fico e industria como de incendios, y puede llegar transportado desde lejos. Comparte la limitaci\u00f3n de escala del resto de productos de Sentinel-5P.',
+      unidad: ' mmol/m\u00b2', decimales: 2, banda: null,
+      columnas: [['Mediana', 'mediana'], ['P\u00edxeles', 'pixeles_validos']],
+      notaAmplitud: 'Diferencia entre el mes de mayor y menor columna'
     }
   ];
 
@@ -88,6 +132,8 @@
   }
 
   function etiquetaPeriodo(p) {
+    // Una serie anual trae solo el ano; una mensual, ano y mes
+    if (p.indexOf('-') === -1) return p;
     var t = p.split('-');
     return MESES[parseInt(t[1], 10) - 1] + ' ' + t[0];
   }
@@ -143,16 +189,17 @@
           '</p></figcaption>' +
           '<div class="lienzo"><canvas id="g-serie-' + ind.clave + '" role="img" aria-label="Serie mensual de ' + ind.titulo + '"></canvas></div>' +
         '</figure>' +
-        '<div class="rejilla-dos">' +
+        (ind.anual ? '' : '<div class="rejilla-dos">' +
           '<figure class="figura"><figcaption><h3>Ciclo estacional medio</h3>' +
             '<p>Promedio de cada mes en el conjunto de la serie. La banda representa el recorrido entre el mínimo y el máximo observados.</p></figcaption>' +
             '<div class="lienzo lienzo-bajo"><canvas id="g-est-' + ind.clave + '" role="img" aria-label="Ciclo estacional de ' + ind.titulo + '"></canvas></div></figure>' +
           '<figure class="figura"><figcaption><h3>' + (ind.agregadoAnual === 'suma' ? 'Acumulado anual' : 'Media anual') + '</h3>' +
             '<p>' + (ind.agregadoAnual === 'suma'
               ? 'Suma de los meses disponibles en cada año. Un año incompleto acumula menos.'
-              : 'Promedio de los meses disponibles en cada año. El año en curso es parcial.') + '</p></figcaption>' +
+              : 'Ajustada por anomalías respecto al ciclo mensual, de modo que los años a los que les faltan meses sigan siendo comparables. Los años con menos de seis meses observados se omiten.') +
+            '<span id="omitidos-' + ind.clave + '"></span></p></figcaption>' +
             '<div class="lienzo lienzo-bajo"><canvas id="g-anual-' + ind.clave + '" role="img" aria-label="Media anual de ' + ind.titulo + '"></canvas></div></figure>' +
-        '</div>' +
+        '</div>') +
         '<div class="bloque-acciones">' +
           '<button type="button" class="btn" data-tabla="' + ind.clave + '" aria-expanded="false" aria-controls="tabla-' + ind.clave + '">Ver los datos en tabla</button> ' +
           '<button type="button" class="btn" data-ficha="' + ind.clave + '" aria-expanded="false" aria-controls="ficha-' + ind.clave + '">Ver la ficha del indicador</button>' +
@@ -214,6 +261,8 @@
       })
     }));
 
+    if (ind.anual) return;   // una serie anual no tiene ciclo estacional ni media anual
+
     // 2. Ciclo estacional con banda de recorrido minimo-maximo
     var porMes = MESES.map(function () { return []; });
     serie.forEach(function (r) {
@@ -247,18 +296,69 @@
       (porAnio[a] = porAnio[a] || []).push(r.valor);
     });
     var suma = ind.agregadoAnual === 'suma';
-    var anios = Object.keys(porAnio).sort();
+
+    // Un ano al que le faltan meses NO es comparable con uno completo si se promedia a
+    // secas: si los meses presentes son de invierno, la media anual sale artificialmente
+    // baja. Se observo con la estacion de AEMET, cuyo 2020 son cuatro meses y los cuatro
+    // invernales: su media cruda sugeria un salto termico que no existe.
+    //
+    // Se calcula por tanto la media anual por ANOMALIAS: para cada mes se resta la media
+    // de ese mes en toda la serie, se promedian las anomalias de los meses disponibles y
+    // se devuelve la media general mas esa anomalia. Es el procedimiento habitual en
+    // climatologia y hace comparables los anos incompletos.
+    var climatologia = {};
+    MESES.forEach(function (_, i) { climatologia[i] = []; });
+    serie.forEach(function (r) {
+      if (r.valor !== null && r.periodo.indexOf('-') > 0) {
+        climatologia[parseInt(r.periodo.split('-')[1], 10) - 1].push(r.valor);
+      }
+    });
+    Object.keys(climatologia).forEach(function (m) {
+      var v = climatologia[m];
+      climatologia[m] = v.length ? v.reduce(function (a, b) { return a + b; }, 0) / v.length : null;
+    });
+    var todos = serie.filter(function (r) { return r.valor !== null; }).map(function (r) { return r.valor; });
+    var mediaGeneral = todos.reduce(function (a, b) { return a + b; }, 0) / todos.length;
+
+    var mesesPorAnio = {};
+    serie.forEach(function (r) {
+      if (r.valor === null || r.periodo.indexOf('-') === -1) return;
+      var a = r.periodo.split('-')[0];
+      (mesesPorAnio[a] = mesesPorAnio[a] || []).push(parseInt(r.periodo.split('-')[1], 10) - 1);
+    });
+
+    // Con menos de seis meses la anomalia no es estimable con garantia y el ano se omite
+    var anios = Object.keys(porAnio).sort().filter(function (a) {
+      return suma || (mesesPorAnio[a] || []).length >= 6;
+    });
+    var omitidos = Object.keys(porAnio).length - anios.length;
+
     var mediasAnuales = anios.map(function (a) {
-      var t = porAnio[a].reduce(function (x, y) { return x + y; }, 0);
-      return suma ? t : t / porAnio[a].length;
+      if (suma) return porAnio[a].reduce(function (x, y) { return x + y; }, 0);
+      var anom = [];
+      serie.forEach(function (r) {
+        if (r.valor === null || r.periodo.split('-')[0] !== a) return;
+        var m = parseInt(r.periodo.split('-')[1], 10) - 1;
+        if (climatologia[m] !== null) anom.push(r.valor - climatologia[m]);
+      });
+      return mediaGeneral + anom.reduce(function (x, y) { return x + y; }, 0) / anom.length;
     });
 
     var opc = tt(null, function (ctx) {
       var n = porAnio[ctx.label].length;
       var etq = suma ? 'Acumulado anual' : ind.titulo;
-      return [etq + ': ' + fmt(ctx.raw, ind), n + ' meses' + (n < 12 ? ' (año parcial)' : '')];
+      var l = [etq + ': ' + fmt(ctx.raw, ind), n + ' meses observados'];
+      if (!suma && n < 12) l.push('Año incompleto: valor ajustado por anomalías');
+      return l;
     });
     opc.scales.y.beginAtZero = false;
+
+    var avisoOmit = document.getElementById('omitidos-' + ind.clave);
+    if (avisoOmit) {
+      avisoOmit.textContent = omitidos
+        ? ' En esta serie se omite ' + omitidos + ' año' + (omitidos > 1 ? 's' : '') + ' por ese motivo.'
+        : '';
+    }
 
     graficos.push(new Chart(document.getElementById('g-anual-' + ind.clave), {
       type: 'line',
@@ -301,7 +401,12 @@
     var amplitud = Math.max.apply(null, mediasMes) - Math.min.apply(null, mediasMes);
     var maximo = con.reduce(function (a, b) { return a.valor > b.valor ? a : b; });
 
-    var kpis = [
+    var kpis = ind.anual ? [
+      { e: 'Último año', v: fmt(ultimo.valor, ind), n: ultimo.fecha_inicio || etiquetaPeriodo(ultimo.periodo) },
+      { e: 'Media de la serie', v: fmt(vals.reduce(function (a, b) { return a + b; }, 0) / vals.length, ind), n: con.length + ' años observados' },
+      { e: 'Más temprano', v: fmt(Math.min.apply(null, vals), ind), n: ind.notaMin || '' },
+      { e: 'Más tardío', v: fmt(Math.max.apply(null, vals), ind), n: ind.notaMax || '' }
+    ] : [
       { e: 'Último valor', v: fmt(ultimo.valor, ind), n: etiquetaPeriodo(ultimo.periodo) },
       { e: 'Media de la serie', v: fmt(vals.reduce(function (a, b) { return a + b; }, 0) / vals.length, ind), n: con.length + ' meses observados' },
       { e: 'Amplitud estacional', v: fmt(amplitud, ind), n: ind.notaAmplitud },
@@ -328,8 +433,14 @@
       var c = [etiquetaPeriodo(r.periodo), fmt(r.valor, ind)];
       ind.columnas.forEach(function (col) {
         var v = r[col[1]];
-        // Los recuentos son enteros, no magnitudes con unidad
-        c.push(typeof v === 'number' && col[1].indexOf('n_') === 0 ? String(v) : fmt(v, ind));
+        if (typeof v === 'string') { c.push(v); return; }          // fechas y textos
+        if (typeof v === 'number' && col[1].indexOf('n_') === 0) { c.push(String(v)); return; }
+        // Las columnas con unidad propia no heredan la del indicador
+        if (col[1] === 'precipitacion_mm' || col[1] === 'amplitud_ndvi') {
+          c.push(v === null || v === undefined ? '\u2014' : v.toFixed(col[1] === 'precipitacion_mm' ? 1 : 3));
+          return;
+        }
+        c.push(fmt(v, ind));
       });
       c.push((r.cobertura_pct !== undefined && r.cobertura_pct !== null ? r.cobertura_pct.toFixed(1) + '%' : '—'));
       c.push(r.aviso || (r.escenas_descartadas ? r.escenas_descartadas + ' escena(s) descartada(s)' : ''));
@@ -341,6 +452,17 @@
 
   /* ---------- Ficha ---------- */
   function pintarFicha(ind, f) {
+    // Si la ficha trae una conclusion explicita, se muestra antes que la tabla de metadatos
+    if (f.conclusion) {
+      var cab = document.querySelector('#t-' + ind.clave).closest('.bloque-cabecera');
+      if (cab && !cab.querySelector('.hallazgo')) {
+        var p = document.createElement('p');
+        p.className = 'hallazgo';
+        p.style.margin = '16px 0 0';
+        p.textContent = f.conclusion;
+        cab.querySelector('div').appendChild(p);
+      }
+    }
     var filas = [
       ['Fuente', f.fuente],
       ['Fórmula', '<code>' + f.formula + '</code>'],
@@ -570,6 +692,9 @@
     });
 
     var cont = document.getElementById('indicadores');
+    // Se ordenan por bloque en el momento de pintar, de modo que anadir un indicador
+    // nuevo al array no obliga a colocarlo en su sitio a mano
+    INDICADORES.sort(function (a, b) { return a.bloque.localeCompare(b.bloque, 'es'); });
     cont.innerHTML = INDICADORES.map(plantillaBloque).join('');
 
     // Un unico delegado: no hay onclick en el HTML

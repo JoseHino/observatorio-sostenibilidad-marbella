@@ -1,0 +1,560 @@
+{
+ "indicador": "aerosoles",
+ "titulo": "Índice de aerosoles",
+ "unidad": "adimensional",
+ "unidad_analisis": "municipio (lectura de ámbito comarcal)",
+ "municipio": "Marbella",
+ "codigo_ine": "29069",
+ "periodicidad": "mensual",
+ "ultimo_periodo": "2026-07",
+ "n_periodos": 91,
+ "n_huecos": 0,
+ "serie": [
+  {
+   "periodo": "2019-01",
+   "valor": -1.128,
+   "mediana": -1.092,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-02",
+   "valor": -0.487,
+   "mediana": -0.484,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-03",
+   "valor": -1.22,
+   "mediana": -1.321,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-04",
+   "valor": 0.236,
+   "mediana": 0.244,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-05",
+   "valor": 0.74,
+   "mediana": 0.759,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-06",
+   "valor": 0.839,
+   "mediana": 1.016,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-07",
+   "valor": -0.164,
+   "mediana": -0.129,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-08",
+   "valor": 0.305,
+   "mediana": 0.346,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-09",
+   "valor": -0.76,
+   "mediana": -0.658,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-10",
+   "valor": -1.268,
+   "mediana": -1.317,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-11",
+   "valor": 0.106,
+   "mediana": 0.149,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2019-12",
+   "valor": 0.499,
+   "mediana": 0.443,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-01",
+   "valor": -0.187,
+   "mediana": -0.064,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-02",
+   "valor": 0.461,
+   "mediana": 0.452,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-03",
+   "valor": -1.361,
+   "mediana": -1.01,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-04",
+   "valor": -1.13,
+   "mediana": -1.08,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-05",
+   "valor": 0.09,
+   "mediana": 0.092,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-06",
+   "valor": 0.721,
+   "mediana": 0.723,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-07",
+   "valor": 1.122,
+   "mediana": 1.018,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-08",
+   "valor": -0.135,
+   "mediana": -0.119,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-09",
+   "valor": -0.469,
+   "mediana": -0.45,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-10",
+   "valor": 0.186,
+   "mediana": 0.173,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-11",
+   "valor": 0.248,
+   "mediana": 0.239,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2020-12",
+   "valor": -0.14,
+   "mediana": -0.133,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-01",
+   "valor": -0.367,
+   "mediana": -0.313,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-02",
+   "valor": 0.675,
+   "mediana": 0.809,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-03",
+   "valor": 1.694,
+   "mediana": 1.779,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-04",
+   "valor": -0.385,
+   "mediana": -0.327,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-05",
+   "valor": 1.023,
+   "mediana": 1.011,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-06",
+   "valor": -0.138,
+   "mediana": -0.149,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-07",
+   "valor": -0.055,
+   "mediana": -0.042,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-08",
+   "valor": 0.444,
+   "mediana": 0.523,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-09",
+   "valor": -0.821,
+   "mediana": -0.738,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-10",
+   "valor": -1.241,
+   "mediana": -1.24,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-11",
+   "valor": -0.086,
+   "mediana": -0.085,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2021-12",
+   "valor": -0.075,
+   "mediana": -0.065,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-01",
+   "valor": 1.643,
+   "mediana": 1.676,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-02",
+   "valor": 0.329,
+   "mediana": 0.304,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-03",
+   "valor": 0.895,
+   "mediana": 0.992,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-04",
+   "valor": 0.036,
+   "mediana": -0.17,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-05",
+   "valor": -0.119,
+   "mediana": -0.071,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-06",
+   "valor": 0.402,
+   "mediana": 0.409,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-07",
+   "valor": -0.113,
+   "mediana": -0.029,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-08",
+   "valor": 0.228,
+   "mediana": 0.233,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-09",
+   "valor": -0.182,
+   "mediana": -0.191,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-10",
+   "valor": 0.584,
+   "mediana": 0.517,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-11",
+   "valor": -1.015,
+   "mediana": -1.039,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2022-12",
+   "valor": -0.497,
+   "mediana": -0.492,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-01",
+   "valor": -0.292,
+   "mediana": -0.276,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-02",
+   "valor": -0.778,
+   "mediana": -0.707,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-03",
+   "valor": -0.743,
+   "mediana": -0.686,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-04",
+   "valor": 0.894,
+   "mediana": 0.796,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-05",
+   "valor": -0.973,
+   "mediana": -0.972,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-06",
+   "valor": -0.199,
+   "mediana": -0.181,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-07",
+   "valor": -0.147,
+   "mediana": -0.122,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-08",
+   "valor": -0.425,
+   "mediana": -0.395,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-09",
+   "valor": -0.418,
+   "mediana": -0.329,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-10",
+   "valor": -0.888,
+   "mediana": -0.875,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-11",
+   "valor": -0.239,
+   "mediana": -0.235,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2023-12",
+   "valor": 0.999,
+   "mediana": 0.946,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-01",
+   "valor": -0.222,
+   "mediana": -0.239,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-02",
+   "valor": -0.239,
+   "mediana": -0.193,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-03",
+   "valor": 0.166,
+   "mediana": 0.193,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-04",
+   "valor": -0.852,
+   "mediana": -0.795,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-05",
+   "valor": 0.248,
+   "mediana": 0.243,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-06",
+   "valor": -0.051,
+   "mediana": -0.036,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-07",
+   "valor": 1.447,
+   "mediana": 1.506,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-08",
+   "valor": 0.185,
+   "mediana": 0.142,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-09",
+   "valor": -0.138,
+   "mediana": -0.159,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-10",
+   "valor": -0.301,
+   "mediana": -0.27,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-11",
+   "valor": 0.158,
+   "mediana": 0.238,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2024-12",
+   "valor": -0.575,
+   "mediana": -0.934,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-01",
+   "valor": -0.405,
+   "mediana": -0.334,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-02",
+   "valor": -0.381,
+   "mediana": -0.275,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-03",
+   "valor": -0.187,
+   "mediana": -0.233,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-04",
+   "valor": 0.078,
+   "mediana": 0.096,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-05",
+   "valor": 0.967,
+   "mediana": 0.985,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-06",
+   "valor": -0.572,
+   "mediana": -0.443,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-07",
+   "valor": -0.173,
+   "mediana": -0.197,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-08",
+   "valor": 0.02,
+   "mediana": 0.037,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-09",
+   "valor": -1.0,
+   "mediana": -1.117,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-10",
+   "valor": -1.297,
+   "mediana": -1.383,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-11",
+   "valor": 0.367,
+   "mediana": 0.397,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2025-12",
+   "valor": 0.382,
+   "mediana": 0.452,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-01",
+   "valor": 0.1,
+   "mediana": 0.21,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-02",
+   "valor": 1.381,
+   "mediana": 1.402,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-03",
+   "valor": 0.752,
+   "mediana": 0.827,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-04",
+   "valor": -1.104,
+   "mediana": -1.194,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-05",
+   "valor": 0.174,
+   "mediana": 0.223,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-06",
+   "valor": 0.397,
+   "mediana": 0.403,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-07",
+   "valor": 1.117,
+   "mediana": 1.084,
+   "pixeles_validos": 18
+  }
+ ]
+}

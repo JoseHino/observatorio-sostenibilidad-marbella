@@ -85,7 +85,10 @@ indicadores:
     salida: "data/processed/ndvi_municipal.json"
 
   ndbi_municipal:
-    activo: true
+    activo: false    # Retirado: NDBI = -NDMI exactamente (mismas bandas, orden invertido). Se comprobo
+    # sobre la serie real: r = -1,0000 y la suma de ambos da 0,000000. Publicar los dos
+    # seria el mismo numero dos veces. Se conserva el NDMI, cuyo nombre describe lo que
+    # el numero mide de verdad. Para urbanizacion hace falta CLMS Land Cover a 10 m.
     titulo: NDBI, índice de superficie construida
     descripcion: >-
       Índice normalizado de superficie construida, que crece con el sellado del suelo y el
@@ -134,6 +137,112 @@ indicadores:
     coleccion: sentinel-5p-l2
     resolucion_m: 3500
     salida: "data/processed/no2_troposferico.json"
+
+  ndmi_municipal:
+    activo: true
+    titulo: NDMI, humedad de la vegetación
+    descripcion: >-
+      Índice de humedad de la vegetación. Mide el contenido de agua de la masa foliar, de modo
+      que cae cuando la vegetación entra en estrés hídrico. Es un indicador temprano de sequía
+      y de riesgo de incendio, anterior a que el NDVI acuse la pérdida de verdor.
+    coleccion: sentinel-2-l2a
+    bandas_indice: [B08, B11]           # infrarrojo cercano y de onda corta
+    resolucion_m: 20
+    intervalo: P1M
+    mosaico: leastCC
+    scl_validas: [4, 5, 7]
+    limitaciones:
+      - >-
+        Responde al agua de la hoja, no a la del suelo: en zonas sin cubierta vegetal el
+        índice pierde significado.
+      - El valor mensual es un compuesto, no una observación de fecha única.
+      - Los meses sin observación válida se publican como hueco. No se interpolan.
+    salida: "data/processed/ndmi_municipal.json"
+
+  nbr_municipal:
+    activo: false    # Retirado: r = 0,99 con el NDMI como media municipal, es decir, sin informacion
+    # independiente. El NBR es la herramienta correcta para CARTOGRAFIAR cicatrices de
+    # incendio pixel a pixel, no para una media sobre 11.714 ha.
+    titulo: NBR, índice de área quemada
+    descripcion: >-
+      Índice normalizado de área quemada. Desciende bruscamente tras un incendio y se recupera
+      con la revegetación, por lo que sirve para detectar y seguir cicatrices de fuego en
+      Sierra Blanca y el resto del monte del término.
+    coleccion: sentinel-2-l2a
+    bandas_indice: [B08, B12]           # infrarrojo cercano y de onda corta larga
+    resolucion_m: 20
+    intervalo: P1M
+    mosaico: leastCC
+    scl_validas: [4, 5, 7]
+    limitaciones:
+      - >-
+        La media municipal diluye incendios pequeños: un fuego de pocas hectáreas apenas mueve
+        el valor sobre 11.714 ha. Detecta episodios de cierta entidad, no cualquier conato.
+      - >-
+        El índice también desciende con el agostamiento estival, de modo que un mínimo de
+        verano no implica incendio. Debe compararse el mismo mes entre años.
+      - Los meses sin observación válida se publican como hueco. No se interpolan.
+    salida: "data/processed/nbr_municipal.json"
+
+  ndwi_municipal:
+    activo: true
+    titulo: NDWI, superficie de agua
+    descripcion: >-
+      Índice normalizado de agua. Realza las láminas de agua libre del término, embalses y
+      cauces incluidos, y desciende cuando se reducen.
+    coleccion: sentinel-2-l2a
+    bandas_indice: [B03, B08]           # verde e infrarrojo cercano
+    resolucion_m: 20
+    intervalo: P1M
+    mosaico: leastCC
+    scl_validas: [4, 5, 6, 7]           # aqui SI se incluye la clase agua: es lo que se mide
+    limitaciones:
+      - >-
+        Es un índice medio sobre todo el término, no una superficie de agua en hectáreas.
+        Sirve para leer la evolución relativa, no para cuantificar volumen embalsado.
+      - El valor mensual es un compuesto, no una observación de fecha única.
+      - Los meses sin observación válida se publican como hueco. No se interpolan.
+    salida: "data/processed/ndwi_municipal.json"
+
+  ozono_troposferico:
+    activo: true
+    titulo: Ozono en columna total
+    descripcion: >-
+      Columna total de ozono sobre el municipio. Su ciclo anual responde a la dinámica
+      atmosférica de latitudes medias, con máximo en primavera.
+    banda: O3
+    unidad: DU
+    factor_escala: 2241.4               # de mol/m2 a unidades Dobson
+    resolucion_m: 3500
+    salida: "data/processed/ozono_troposferico.json"
+
+  aerosoles:
+    activo: true
+    titulo: Índice de aerosoles
+    descripcion: >-
+      Índice de aerosoles ultravioleta. Se eleva con la presencia de partículas absorbentes en
+      la atmósfera, señaladamente polvo sahariano, frecuente en el litoral andaluz.
+    banda: AER_AI_340_380
+    unidad: adimensional
+    factor_escala: 1
+    resolucion_m: 3500
+    limitaciones_extra:
+      - >-
+        Detecta aerosoles absorbentes en altura, sobre todo polvo mineral y humo. No mide
+        partículas en superficie ni equivale a PM10 o PM2,5.
+    salida: "data/processed/aerosoles.json"
+
+  monoxido_carbono:
+    activo: true
+    titulo: Monóxido de carbono en columna
+    descripcion: >-
+      Columna total de monóxido de carbono. Procede de combustión incompleta, tanto de tráfico
+      e industria como de incendios, y puede llegar transportado desde lejos.
+    banda: CO
+    unidad: mmol/m²
+    factor_escala: 1000                 # de mol/m2 a milimol/m2
+    resolucion_m: 3500
+    salida: "data/processed/monoxido_carbono.json"
 
   clorofila_litoral:
     activo: true

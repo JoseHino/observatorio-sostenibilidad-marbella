@@ -1,9 +1,9 @@
 {
-  "indicador": "ndbi_municipal",
-  "titulo": "NDBI, índice de superficie construida",
-  "descripcion": "Índice normalizado de superficie construida, que crece con el sellado del suelo y el material urbano y decrece con la vegetación.",
+  "indicador": "ndmi_municipal",
+  "titulo": "NDMI, humedad de la vegetación",
+  "descripcion": "Índice de humedad de la vegetación. Mide el contenido de agua de la masa foliar, de modo que cae cuando la vegetación entra en estrés hídrico. Es un indicador temprano de sequía y de riesgo de incendio, anterior a que el NDVI acuse la pérdida de verdor.",
   "fuente": "Copernicus Sentinel-2 L2A vía Sentinel Hub Statistical API (CDSE)",
-  "formula": "(B11 − B08) / (B11 + B08)",
+  "formula": "(B08 − B11) / (B08 + B11)",
   "resolucion_espacial": "20 m",
   "resolucion_temporal": "mensual (compuesto)",
   "metodo": "Agregación zonal en servidor sobre el polígono municipal. Mosaico mensual con criterio leastCC: para cada píxel se toma la observación menos nubosa del mes.",
@@ -15,12 +15,12 @@
   "n_periodos": 115,
   "n_huecos": 0,
   "limitaciones": [
-    "El NDBI no distingue suelo desnudo de superficie construida: en verano, el agostamiento del suelo eleva el índice sin que haya urbanización nueva. Debe leerse por comparación entre el mismo mes de años distintos, nunca mes a mes.",
+    "Responde al agua de la hoja, no a la del suelo: en zonas sin cubierta vegetal el índice pierde significado.",
     "El valor mensual es un compuesto, no una observación de fecha única.",
     "Los meses sin observación válida se publican como hueco. No se interpolan."
   ],
-  "valor_minimo_serie": -0.202,
-  "valor_maximo_serie": -0.002,
+  "valor_minimo_serie": 0.002,
+  "valor_maximo_serie": 0.202,
   "licencia": "Contiene datos modificados de Copernicus Sentinel",
-  "ruta_datos": "data/processed/ndbi_municipal.json"
+  "ruta_datos": "data/processed/ndmi_municipal.json"
 }
