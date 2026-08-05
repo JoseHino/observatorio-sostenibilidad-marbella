@@ -46,9 +46,15 @@ jobs:
             data/raw/pvgis
             data/raw/ine
             data/raw/cnig_unidades_administrativas.gml
-          key: sh-stats-${{ hashFiles('pipeline/config.yaml') }}-${{ github.run_id }}
+          # La clave NO depende de config.yaml a proposito. Atarla al hash del fichero
+          # invalidaba toda la cache al anadir un indicador nuevo, obligando a rebajar de
+          # nuevo las 316 escenas de Landsat y los 19 trimestres de clorofila, que cuestan
+          # horas. La invalidacion correcta ya la hace el pipeline por indicador, con
+          # hash_config en el manifiesto: si cambia el calculo de un indicador, solo ese se
+          # recalcula. Subir el numero de version fuerza una purga manual si hiciera falta.
+          key: datos-crudos-v1-${{ github.run_id }}
           restore-keys: |
-            sh-stats-${{ hashFiles('pipeline/config.yaml') }}-
+            datos-crudos-v1-
 
       - name: Instalar dependencias
         run: pip install -r pipeline/requirements.txt

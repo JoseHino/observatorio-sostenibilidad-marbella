@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import sys
 import traceback
@@ -225,7 +226,13 @@ def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
         return []
     huella = manifest.hash_config(ind)
     reproceso = forzar or manifest.requiere_reproceso("clorofila_litoral", huella)
-    resultado = proc_agua.construir_serie(cfg, forzar=reproceso)
+    # La carga historica de esta fuente lleva horas. En una ejecucion desatendida no se
+    # intenta: se compone con lo que haya en cache y los meses que falten quedan como hueco
+    # declarado. El relleno se lanza aparte con pipeline/processing/rellenar_clorofila.py.
+    if os.environ.get("CI") and not reproceso:
+        resultado = proc_agua.componer_desde_cache(cfg)
+    else:
+        resultado = proc_agua.construir_serie(cfg, forzar=reproceso)
     proc_agua.escribir(resultado, cfg)
     log("clorofila", "OK",
         f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
