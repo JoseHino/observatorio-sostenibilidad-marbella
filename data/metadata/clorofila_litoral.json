@@ -11,7 +11,7 @@
   "serie_desde": "2017-01",
   "serie_hasta": "2026-08",
   "n_periodos": 116,
-  "n_huecos": 21,
+  "n_huecos": 6,
   "limitaciones": [
     "El valor publicado es una media geométrica, no aritmética, por la naturaleza log-normal de la variable. No es comparable sin más con medias aritméticas de otras fuentes.",
     "Los productos oceánicos estándar pierden fiabilidad cerca de la costa, por reflexión del fondo en aguas someras y por aportes terrestres. La serie sirve para leer estacionalidad y tendencia, no como medida absoluta de concentración.",
@@ -19,7 +19,7 @@
     "Los meses sin observación válida se publican como hueco. No se interpolan."
   ],
   "valor_minimo_serie": 0.459,
-  "valor_maximo_serie": 1.8258,
+  "valor_maximo_serie": 2.1507,
   "licencia": "Contiene datos modificados de Copernicus Sentinel",
   "ruta_datos": "data/processed/clorofila_litoral.json"
 }

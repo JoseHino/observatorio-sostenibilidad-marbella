@@ -8,7 +8,7 @@
  "periodicidad": "mensual",
  "ultimo_periodo": "2026-08",
  "n_periodos": 116,
- "n_huecos": 21,
+ "n_huecos": 6,
  "serie": [
   {
    "periodo": "2017-01",
@@ -228,18 +228,15 @@
   },
   {
    "periodo": "2021-07",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.3284
   },
   {
    "periodo": "2021-08",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.6511
   },
   {
    "periodo": "2021-09",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 0.8938
   },
   {
    "periodo": "2021-10",
@@ -258,63 +255,51 @@
   },
   {
    "periodo": "2022-01",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.2038
   },
   {
    "periodo": "2022-02",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.1715
   },
   {
    "periodo": "2022-03",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 0.8966
   },
   {
    "periodo": "2022-04",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.2342
   },
   {
    "periodo": "2022-05",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 0.9575
   },
   {
    "periodo": "2022-06",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.7656
   },
   {
    "periodo": "2022-07",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 0.9703
   },
   {
    "periodo": "2022-08",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.487
   },
   {
    "periodo": "2022-09",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.6664
   },
   {
    "periodo": "2022-10",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 2.1507
   },
   {
    "periodo": "2022-11",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.1994
   },
   {
    "periodo": "2022-12",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.4177
   },
   {
    "periodo": "2023-01",
