@@ -233,6 +233,7 @@ def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
         resultado = proc_agua.componer_desde_cache(cfg)
     else:
         resultado = proc_agua.construir_serie(cfg, forzar=reproceso)
+    fallos = validate.validar_serie_clorofila(resultado)
     proc_agua.escribir(resultado, cfg)
     log("clorofila", "OK",
         f"{resultado['n_periodos']} periodos, {resultado['n_huecos']} huecos, "
@@ -240,7 +241,7 @@ def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
     manifest.actualizar("clorofila_litoral", ultima_fecha_dato=resultado["ultimo_periodo"],
                         n_periodos=resultado["n_periodos"], hash_config=huella)
     TELEMETRIA["clorofila_litoral"] = resultado["_telemetria"]
-    return []
+    return fallos
 
 
 TAREAS = [

@@ -8,7 +8,7 @@
  "periodicidad": "mensual",
  "ultimo_periodo": "2026-08",
  "n_periodos": 116,
- "n_huecos": 6,
+ "n_huecos": 3,
  "serie": [
   {
    "periodo": "2017-01",
@@ -240,18 +240,15 @@
   },
   {
    "periodo": "2021-10",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 0.779
   },
   {
    "periodo": "2021-11",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.2352
   },
   {
    "periodo": "2021-12",
-   "valor": null,
-   "motivo": "sin observación válida en el mes"
+   "valor": 1.6453
   },
   {
    "periodo": "2022-01",

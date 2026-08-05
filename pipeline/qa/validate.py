@@ -103,3 +103,28 @@ def validar_serie_radiacion(resultado: dict) -> list[str]:
         if r.get("minimo_espacial") is not None and r["minimo_espacial"] > r["maximo_espacial"]:
             fallos.append(f"{r['periodo']}: minimo espacial mayor que el maximo")
     return fallos
+
+
+def validar_serie_clorofila(resultado: dict) -> list[str]:
+    """Rango fisicamente admisible de clorofila en aguas costeras mediterraneas.
+
+    La comprobacion clave es el signo: CHL_NN se distribuye en log10(mg/m3) y, si no se
+    deshace la escala, la serie sale con valores negativos. Una concentracion negativa es
+    imposible, asi que basta ese control para detectar el error de unidades.
+    """
+    fallos = []
+    serie = resultado.get("serie", [])
+    if not serie:
+        return ["La serie de clorofila esta vacia"]
+    for r in serie:
+        v = r["valor"]
+        if v is None:
+            continue
+        if v <= 0:
+            fallos.append(
+                f"{r['periodo']}: clorofila {v} mg/m3 no positiva. Probable escala "
+                f"logaritmica sin deshacer"
+            )
+        elif v > 100:
+            fallos.append(f"{r['periodo']}: clorofila {v} mg/m3 fuera de lo plausible")
+    return fallos
