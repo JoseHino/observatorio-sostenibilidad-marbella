@@ -1,0 +1,25 @@
+{
+  "indicador": "clorofila_litoral",
+  "titulo": "Clorofila-a en aguas litorales",
+  "descripcion": "Concentración de clorofila-a promediada sobre la franja marina de 2 km frente a la costa del término municipal.",
+  "fuente": "Copernicus Sentinel-3 OLCI Nivel 2 Water, banda CHL_NN, vía openEO (CDSE)",
+  "formula": "10^(media zonal y temporal de CHL_NN), es decir, media geométrica en mg/m³",
+  "resolucion_espacial": "300 m",
+  "resolucion_temporal": "mensual",
+  "metodo": "Se emplea CHL_NN y no CHL_OC4ME: el algoritmo OC4Me está concebido para aguas oceánicas de tipo 1, mientras que la red neuronal es la recomendada para aguas costeras de tipo 2. La agregación temporal y zonal se ejecuta en el servidor de openEO; no se descarga ningún ráster. La banda se distribuye en log10(mg/m³), de modo que el promedio se calcula en escala logarítmica y se deshace después: el resultado es la media geométrica, que es el estadístico convencional para la clorofila por tratarse de una variable log-normal.",
+  "enmascaramiento": "El producto de nivel 2 incorpora sus propios indicadores de calidad.",
+  "serie_desde": "2017-01",
+  "serie_hasta": "2026-08",
+  "n_periodos": 116,
+  "n_huecos": 21,
+  "limitaciones": [
+    "El valor publicado es una media geométrica, no aritmética, por la naturaleza log-normal de la variable. No es comparable sin más con medias aritméticas de otras fuentes.",
+    "Los productos oceánicos estándar pierden fiabilidad cerca de la costa, por reflexión del fondo en aguas someras y por aportes terrestres. La serie sirve para leer estacionalidad y tendencia, no como medida absoluta de concentración.",
+    "La franja marina se deriva del límite administrativo terrestre, no de la línea de costa cartografiada a detalle.",
+    "Los meses sin observación válida se publican como hueco. No se interpolan."
+  ],
+  "valor_minimo_serie": 0.459,
+  "valor_maximo_serie": 1.8258,
+  "licencia": "Contiene datos Copernicus modificados",
+  "ruta_datos": "data/processed/clorofila_litoral.json"
+}

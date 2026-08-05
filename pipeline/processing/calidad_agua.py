@@ -44,6 +44,21 @@ def _grafo(fc: dict, bbox, desde: str, hasta: str) -> dict:
     }}
 
 
+def componer_desde_cache(cfg: dict) -> dict:
+    """Compone la serie con lo que haya en cache, SIN lanzar ninguna peticion.
+
+    La carga historica de esta fuente lleva horas. Esto permite publicar en cualquier momento
+    el tramo ya obtenido, con los meses que falten declarados como hueco, mientras el relleno
+    continua por separado.
+    """
+    intervalos = []
+    destino = DIR_RAW / "openeo"
+    if destino.exists():
+        for f in sorted(destino.glob("chl_*.json")):
+            intervalos.append(json.loads(f.read_text(encoding="utf-8")))
+    return _empaquetar(cfg, _componer(intervalos), [])
+
+
 def construir_serie(cfg: dict, forzar: bool = False) -> dict:
     ruta = DIR_PROCESSED / "buffer_marino.geojson"
     if not ruta.exists():
@@ -63,7 +78,13 @@ def construir_serie(cfg: dict, forzar: bool = False) -> dict:
     # colgadas de forma sistematica en esta coleccion, mientras que las de tres meses
     # responden con fiabilidad. El tramo mas pequeno tambien limita lo que se pierde si
     # una peticion falla.
-    for anio in range(inicio, hoy.year + 1):
+    #
+    # Y se recorre del presente hacia atras: la carga historica completa lleva horas, de modo
+    # que si se interrumpe, lo ya obtenido es el tramo RECIENTE, que es el que interesa
+    # publicar. Recorriendo en orden cronologico, una interrupcion dejaria una serie que
+    # termina hace anios. La composicion final reordena, asi que el orden de descarga no
+    # afecta al resultado.
+    for anio in range(hoy.year, inicio - 1, -1):
         # Se conserva la cache anual de ejecuciones anteriores para no repetir trabajo
         anual = None if forzar else oeo.leer_cache(f"chl_{anio}")
         if anual is not None:
@@ -86,7 +107,10 @@ def construir_serie(cfg: dict, forzar: bool = False) -> dict:
                 tramos_leidos.append(nombre)
             intervalos.append(cache)
 
-    serie = _componer(intervalos)
+    return _empaquetar(cfg, _componer(intervalos), tramos_leidos)
+
+
+def _empaquetar(cfg: dict, serie: list[dict], tramos_leidos: list) -> dict:
     con_dato = [r for r in serie if r["valor"] is not None]
     return {
         "indicador": "clorofila_litoral",
@@ -110,8 +134,17 @@ def _componer(intervalos: list[dict]) -> list[dict]:
         for k, v in bloque.items():
             periodo = k[:7]
             c = v[0][0] if v and v[0] and v[0][0] is not None else None
-            if c is not None:
-                valores[periodo] = round(float(c), 4)
+            if c is None:
+                continue
+            # CHL_NN se distribuye en log10(mg/m3), no en mg/m3: el propio catalogo lo
+            # declara asi. Sin deshacer la escala, la serie publicada saldria con valores
+            # negativos, que en una concentracion son imposibles.
+            #
+            # Promediar en logaritmo y despues exponenciar equivale a la media geometrica,
+            # que es justamente el estadistico convencional para la clorofila por ser una
+            # variable log-normal. La agregacion de openEO opera por tanto en el espacio
+            # correcto; aqui solo se deshace la escala.
+            valores[periodo] = round(10 ** float(c), 4)
 
     if not valores:
         return []
@@ -146,14 +179,17 @@ def escribir(resultado: dict, cfg: dict) -> None:
             "la costa del término municipal."
         ),
         "fuente": "Copernicus Sentinel-3 OLCI Nivel 2 Water, banda CHL_NN, vía openEO (CDSE)",
-        "formula": "Media zonal de CHL_NN sobre la franja marina",
+        "formula": "10^(media zonal y temporal de CHL_NN), es decir, media geométrica en mg/m³",
         "resolucion_espacial": "300 m",
         "resolucion_temporal": "mensual",
         "metodo": (
             "Se emplea CHL_NN y no CHL_OC4ME: el algoritmo OC4Me está concebido para aguas "
             "oceánicas de tipo 1, mientras que la red neuronal es la recomendada para aguas "
             "costeras de tipo 2. La agregación temporal y zonal se ejecuta en el servidor de "
-            "openEO; no se descarga ningún ráster."
+            "openEO; no se descarga ningún ráster. La banda se distribuye en log10(mg/m³), "
+            "de modo que el promedio se calcula en escala logarítmica y se deshace después: "
+            "el resultado es la media geométrica, que es el estadístico convencional para la "
+            "clorofila por tratarse de una variable log-normal."
         ),
         "enmascaramiento": "El producto de nivel 2 incorpora sus propios indicadores de calidad.",
         "serie_desde": resultado["serie"][0]["periodo"] if resultado["serie"] else None,
@@ -161,6 +197,9 @@ def escribir(resultado: dict, cfg: dict) -> None:
         "n_periodos": resultado["n_periodos"],
         "n_huecos": resultado["n_huecos"],
         "limitaciones": [
+            "El valor publicado es una media geométrica, no aritmética, por la naturaleza "
+            "log-normal de la variable. No es comparable sin más con medias aritméticas de "
+            "otras fuentes.",
             "Los productos oceánicos estándar pierden fiabilidad cerca de la costa, por "
             "reflexión del fondo en aguas someras y por aportes terrestres. La serie sirve "
             "para leer estacionalidad y tendencia, no como medida absoluta de concentración.",
