@@ -267,3 +267,10 @@ tbody td.marcado { color: var(--aviso); font-weight: 600; }
 }
 .leyenda-item { display: inline-flex; align-items: center; gap: 8px; }
 .leyenda-marca { width: 14px; height: 3px; border-radius: 2px; flex: none; }
+
+/* Aclaracion de la formula de atribucion de Copernicus */
+.pie-nota {
+  margin: 0 0 12px; padding: 12px 16px; max-width: 90ch;
+  font-size: 12.5px; color: var(--tinta-2);
+  background: var(--plano); border-left: 2px solid var(--borde); border-radius: 6px;
+}

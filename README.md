@@ -123,5 +123,5 @@ El detalle completo está en [`docs/matriz-viabilidad.md`](docs/matriz-viabilida
 Código bajo licencia MIT. Datos elaborados bajo CC BY 4.0, sin perjuicio de las condiciones
 propias de cada fuente de origen, recogidas en [`docs/fuentes.md`](docs/fuentes.md).
 
-Contiene datos Copernicus modificados 2026 · CC BY 4.0 scne.es · Instituto Nacional de
+Contiene datos modificados de Copernicus Sentinel 2026 · CC BY 4.0 scne.es · Instituto Nacional de
 Estadística · REDIAM, Junta de Andalucía · PVGIS, Joint Research Centre · Landsat, USGS

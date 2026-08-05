@@ -20,6 +20,6 @@
   ],
   "valor_minimo_serie": 12.87,
   "valor_maximo_serie": 139.11,
-  "licencia": "Contiene datos Copernicus modificados",
+  "licencia": "Contiene datos modificados de Copernicus Sentinel",
   "ruta_datos": "data/processed/no2_troposferico.json"
 }

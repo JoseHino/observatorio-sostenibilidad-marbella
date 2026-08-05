@@ -21,6 +21,9 @@
   ],
   "epsg_calculo": 25830,
   "metodo": "Descarga por bbox y filtrado local por nationalCode",
-  "limitaciones": "El servicio no admite CQL_FILTER (responde 504).",
+  "limitaciones": [
+    "El servicio del IGN no admite CQL_FILTER (responde 504): la descarga se hace por bbox y el filtrado por nationalCode se resuelve en local.",
+    "La geometría es el límite administrativo, no la línea de costa cartografiada a escala de detalle."
+  ],
   "licencia": "CC BY 4.0 scne.es"
 }

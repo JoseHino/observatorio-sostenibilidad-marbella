@@ -180,7 +180,7 @@ def escribir(resultado: dict, cfg: dict, clave: str) -> None:
         "limitaciones": ind["limitaciones"],
         "valor_minimo_serie": min(r["valor"] for r in con_dato) if con_dato else None,
         "valor_maximo_serie": max(r["valor"] for r in con_dato) if con_dato else None,
-        "licencia": "Contiene datos Copernicus modificados",
+        "licencia": "Contiene datos modificados de Copernicus Sentinel",
         "ruta_datos": f"data/processed/{clave}.json",
     }
     (DIR_METADATA / f"{clave}.json").write_text(

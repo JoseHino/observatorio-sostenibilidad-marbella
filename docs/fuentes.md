@@ -78,7 +78,7 @@ Consumo medido del indicador NDVI: 5,1 PU por mes de serie.
 
 **Copernicus.** Datos gratuitos y abiertos conforme al Reglamento Delegado (UE) n.º 1159/2013
 y al Reglamento (UE) n.º 377/2014. Atribución requerida:
-*«Contiene datos Copernicus modificados [año]»*.
+*«Contiene datos modificados de Copernicus Sentinel [año]»*.
 
 **CNIG / Instituto Geográfico Nacional.** Los productos digitales de descarga libre se rigen
 por la licencia CC BY 4.0. Atribución requerida:

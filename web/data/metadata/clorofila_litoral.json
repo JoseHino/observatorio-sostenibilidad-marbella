@@ -20,6 +20,6 @@
   ],
   "valor_minimo_serie": 0.459,
   "valor_maximo_serie": 1.8258,
-  "licencia": "Contiene datos Copernicus modificados",
+  "licencia": "Contiene datos modificados de Copernicus Sentinel",
   "ruta_datos": "data/processed/clorofila_litoral.json"
 }

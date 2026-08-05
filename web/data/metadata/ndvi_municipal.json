@@ -23,6 +23,6 @@
   ],
   "valor_minimo_serie": 0.3376,
   "valor_maximo_serie": 0.6043,
-  "licencia": "Contiene datos Copernicus modificados",
+  "licencia": "Contiene datos modificados de Copernicus Sentinel",
   "ruta_datos": "data/processed/ndvi_municipal.json"
 }
