@@ -44,6 +44,15 @@ def _grafo(fc: dict, bbox, desde: str, hasta: str) -> dict:
     }}
 
 
+def _lee_cache_completa() -> list[dict]:
+    intervalos = []
+    destino = DIR_RAW / "openeo"
+    if destino.exists():
+        for f in sorted(destino.glob("chl_*.json")):
+            intervalos.append(json.loads(f.read_text(encoding="utf-8")))
+    return intervalos
+
+
 def componer_desde_cache(cfg: dict) -> dict:
     """Compone la serie con lo que haya en cache, SIN lanzar ninguna peticion.
 
@@ -51,12 +60,43 @@ def componer_desde_cache(cfg: dict) -> dict:
     el tramo ya obtenido, con los meses que falten declarados como hueco, mientras el relleno
     continua por separado.
     """
-    intervalos = []
-    destino = DIR_RAW / "openeo"
-    if destino.exists():
-        for f in sorted(destino.glob("chl_*.json")):
-            intervalos.append(json.loads(f.read_text(encoding="utf-8")))
-    return _empaquetar(cfg, _componer(intervalos), [])
+    return _empaquetar(cfg, _componer(_lee_cache_completa()), [])
+
+
+def actualizar_trimestre_en_curso(cfg: dict) -> dict:
+    """Trae SOLO el trimestre en curso y compone el resto desde cache.
+
+    Es lo que debe hacer una ejecucion desatendida. Componer unicamente desde cache dejaria
+    el indicador congelado, porque los meses nuevos no entrarian nunca; y pedir la serie
+    entera bloquearia el job casi una hora. Pedir el trimestre en curso cuesta unos minutos
+    y basta, porque es el unico tramo que puede haber crecido desde la ultima pasada.
+    """
+    ruta = DIR_PROCESSED / "buffer_marino.geojson"
+    if not ruta.exists():
+        return componer_desde_cache(cfg)
+
+    hoy = date.today()
+    trimestre = (hoy.month - 1) // 3
+    mes_ini = trimestre * 3 + 1
+    desde = f"{hoy.year}-{mes_ini:02d}-01"
+    fa, fm = (hoy.year, mes_ini + 3) if mes_ini + 3 <= 12 else (hoy.year + 1, 1)
+    hasta = min(f"{fa}-{fm:02d}-01", hoy.isoformat())
+
+    if hasta > desde:
+        g = gpd.read_file(ruta)
+        simple = gpd.GeoSeries(
+            [g.to_crs(32630).geometry.iloc[0].simplify(150)], crs=32630
+        ).to_crs(4326)
+        try:
+            datos = oeo.ejecutar(_grafo(json.loads(simple.to_json()), simple.total_bounds,
+                                        desde, hasta), reintentos=2)
+            oeo.cachear(f"chl_{hoy.year}T{trimestre + 1}", datos)
+        except Exception:
+            # Si el trimestre en curso no se puede traer, se publica lo que ya hay:
+            # el indicador nunca queda peor que antes
+            pass
+
+    return _empaquetar(cfg, _componer(_lee_cache_completa()), [])
 
 
 def construir_serie(cfg: dict, forzar: bool = False) -> dict:

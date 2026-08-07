@@ -240,12 +240,12 @@ def tarea_clorofila(cfg: dict, forzar: bool) -> list[str]:
     # La carga historica de esta fuente lleva horas. En una ejecucion desatendida no se
     # intenta: se compone con lo que haya en cache y los meses que falten quedan como hueco
     # declarado. El relleno se lanza aparte con pipeline/processing/rellenar_clorofila.py.
-    # En CI se compone SIEMPRE desde cache, tambien si el manifiesto viene frio: la carga
-    # historica de esta fuente lleva casi una hora y es una operacion deliberada, no algo
-    # que deba dispararse en una ejecucion desatendida. Antes la condicion incluia
-    # "not reproceso" y con el manifiesto vacio el guardia no se aplicaba.
+    # En CI se trae SOLO el trimestre en curso y el resto se compone desde cache. Componer
+    # unicamente desde cache dejaria el indicador congelado, porque los meses nuevos no
+    # entrarian nunca; y pedir la serie entera bloquearia el job casi una hora, como se
+    # comprobo. El trimestre en curso es el unico tramo que puede haber crecido.
     if os.environ.get("CI"):
-        resultado = proc_agua.componer_desde_cache(cfg)
+        resultado = proc_agua.actualizar_trimestre_en_curso(cfg)
     else:
         resultado = proc_agua.construir_serie(cfg, forzar=reproceso)
     fallos = validate.validar_serie_clorofila(resultado)
