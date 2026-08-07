@@ -79,7 +79,15 @@ jobs:
             echo "hubo_cambio=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "data: actualización automática $(date -u +%Y-%m-%d)"
-            git push
+            # El pipeline puede tardar una hora larga y entretanto alguien puede haber
+            # empujado: sin rebase el push se rechaza por non-fast-forward y el commit se
+            # pierde, ademas de saltarse el despliegue. Se reintenta rebasando.
+            for intento in 1 2 3; do
+              if git push; then break; fi
+              echo "push rechazado, rebasando (intento $intento)"
+              git pull --rebase --strategy-option=theirs origin main || exit 1
+              sleep 5
+            done
             echo "hubo_cambio=true" >> "$GITHUB_OUTPUT"
           fi
 
