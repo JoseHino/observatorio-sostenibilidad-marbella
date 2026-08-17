@@ -10,7 +10,7 @@
   "enmascaramiento": "No aplica.",
   "serie_desde": "2017-01",
   "serie_hasta": "2026-06",
-  "n_periodos": 115,
+  "n_periodos": 116,
   "n_huecos": 0,
   "limitaciones": [
     "La correlación NO implica causalidad. Dos series con ciclo anual marcado correlacionan por el mero hecho de compartir estacionalidad; lo informativo es el signo y el desfase, no la atribución de causa.",
