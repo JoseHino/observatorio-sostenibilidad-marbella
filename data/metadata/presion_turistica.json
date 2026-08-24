@@ -9,7 +9,7 @@
   "metodo": "El periodo se construye con los campos Anyo y FK_Periodo de la API Tempus3, nunca con el campo Fecha, que viene en hora de Madrid y desplaza la serie un mes si se interpreta como UTC. Los perfiles estacionales se normalizan a escala 0-1 para poder superponer magnitudes que no son comparables entre sí.",
   "enmascaramiento": "No aplica.",
   "serie_desde": "2017-01",
-  "serie_hasta": "2026-06",
+  "serie_hasta": "2026-07",
   "n_periodos": 116,
   "n_huecos": 0,
   "limitaciones": [
@@ -18,8 +18,8 @@
     "La EOH cubre establecimientos hoteleros. No recoge vivienda turística ni apartamentos, que en Marbella representan una parte relevante de la oferta, de modo que la presión real es superior a la que refleja este indicador.",
     "Los meses más recientes son datos provisionales del INE y pueden revisarse."
   ],
-  "correlacion_pernoctaciones_ndvi": -0.699,
-  "correlacion_pernoctaciones_lst": 0.84,
+  "correlacion_pernoctaciones_ndvi": -0.701,
+  "correlacion_pernoctaciones_lst": 0.843,
   "licencia": "Instituto Nacional de Estadística. Reutilización libre citando la fuente.",
   "ruta_datos": "data/processed/presion_turistica.json"
 }
