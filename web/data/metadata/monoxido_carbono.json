@@ -9,8 +9,8 @@
   "metodo": "Agregación zonal en servidor sobre el polígono municipal.",
   "enmascaramiento": "El producto de nivel 2 incorpora sus propios filtros de calidad.",
   "serie_desde": "2019-01",
-  "serie_hasta": "2026-07",
-  "n_periodos": 91,
+  "serie_hasta": "2026-08",
+  "n_periodos": 92,
   "n_huecos": 20,
   "limitaciones": [
     "La resolución del sensor es muy inferior al tamaño del municipio: sobre 117 km² caben del orden de 14 valores, y la huella de cada uno desborda el término. La serie describe tendencia y estacionalidad de ámbito comarcal, no la calidad del aire de un punto concreto.",

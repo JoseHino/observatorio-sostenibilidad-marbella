@@ -9,9 +9,9 @@
   "metodo": "Se selecciona la estación de la red de AEMET más próxima al punto representativo del término y se descargan sus valores climatológicos mensuales.",
   "enmascaramiento": "No aplica: es dato medido en estación.",
   "serie_desde": "2017-01",
-  "serie_hasta": "2026-07",
+  "serie_hasta": "2026-08",
   "n_periodos": 120,
-  "n_huecos": 25,
+  "n_huecos": 24,
   "limitaciones": [
     "Es una medida PUNTUAL de una estación, no un promedio del término. En un municipio con 1.200 m de desnivel entre la costa y Sierra Blanca, una sola estación no representa todo el ámbito.",
     "NO debe confundirse con la temperatura superficial terrestre publicada en el Bloque 2: aquella mide la piel del terreno a media mañana y en verano supera con holgura a la del aire. Son magnitudes distintas.",

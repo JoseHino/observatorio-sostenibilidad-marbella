@@ -11,8 +11,8 @@
   "epsg_peticion": 32630,
   "epsg_calculo": 25830,
   "serie_desde": "2017-01",
-  "serie_hasta": "2026-07",
-  "n_periodos": 115,
+  "serie_hasta": "2026-08",
+  "n_periodos": 116,
   "n_huecos": 0,
   "limitaciones": [
     "Es un índice medio sobre todo el término, no una superficie de agua en hectáreas. Sirve para leer la evolución relativa, no para cuantificar volumen embalsado.",

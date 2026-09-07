@@ -11,8 +11,8 @@
   "epsg_peticion": 32630,
   "epsg_calculo": 25830,
   "serie_desde": "2017-01",
-  "serie_hasta": "2026-07",
-  "n_periodos": 115,
+  "serie_hasta": "2026-08",
+  "n_periodos": 116,
   "n_huecos": 0,
   "limitaciones": [
     "El valor mensual es un compuesto, no una observación de fecha única.",

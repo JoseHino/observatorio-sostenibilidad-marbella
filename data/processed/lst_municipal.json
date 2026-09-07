@@ -1195,13 +1195,13 @@
   },
   {
    "periodo": "2026-08",
-   "valor": 37.92,
-   "mediana": 37.76,
-   "p10": 34.99,
-   "p90": 41.09,
-   "amplitud_p10_p90": 6.1,
-   "n_escenas": 2,
-   "cobertura_pct": 99.8,
+   "valor": 37.18,
+   "mediana": 36.97,
+   "p10": 34.24,
+   "p90": 40.41,
+   "amplitud_p10_p90": 6.17,
+   "n_escenas": 4,
+   "cobertura_pct": 99.7,
    "escenas_descartadas": 0
   }
  ]

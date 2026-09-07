@@ -6,8 +6,8 @@
  "municipio": "Marbella",
  "codigo_ine": "29069",
  "periodicidad": "mensual",
- "ultimo_periodo": "2026-07",
- "n_periodos": 91,
+ "ultimo_periodo": "2026-08",
+ "n_periodos": 92,
  "n_huecos": 0,
  "serie": [
   {
@@ -554,6 +554,12 @@
    "periodo": "2026-07",
    "valor": 300.725,
    "mediana": 301.197,
+   "pixeles_validos": 18
+  },
+  {
+   "periodo": "2026-08",
+   "valor": 309.812,
+   "mediana": 310.424,
    "pixeles_validos": 18
   }
  ]
