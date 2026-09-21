@@ -6,7 +6,7 @@
  "codigo_ine": "29069",
  "periodicidad": "mensual",
  "ultimo_periodo": "2026-07",
- "n_periodos": 116,
+ "n_periodos": 117,
  "cruces": [
   {
    "variable": "ndvi",
@@ -14,7 +14,7 @@
    "n_meses_comunes": 101,
    "desde": "2018-01",
    "hasta": "2026-07",
-   "correlacion_pearson": -0.701
+   "correlacion_pearson": -0.705
   },
   {
    "variable": "lst",
@@ -22,7 +22,7 @@
    "n_meses_comunes": 89,
    "desde": "2018-01",
    "hasta": "2026-07",
-   "correlacion_pearson": 0.843
+   "correlacion_pearson": 0.842
   }
  ],
  "perfil_estacional_normalizado": {
@@ -37,7 +37,7 @@
    1.0,
    0.6761,
    0.5648,
-   0.0903,
+   0.0927,
    0.0
   ],
   "ndvi": [
@@ -52,7 +52,7 @@
    0.2254,
    0.3496,
    0.6993,
-   0.8982
+   0.9154
   ],
   "lst": [
    0.0,
@@ -63,7 +63,7 @@
    0.9163,
    0.9955,
    1.0,
-   0.7731,
+   0.7819,
    0.5103,
    0.2051,
    0.0406
@@ -80,8 +80,8 @@
    310962.2222,
    345763.0,
    258630.0,
-   228687.5,
-   101062.5,
+   228688.625,
+   101687.625,
    76763.25
   ],
   "ndvi": [
@@ -96,7 +96,7 @@
    0.4298,
    0.4486,
    0.5015,
-   0.5316
+   0.5342
   ],
   "lst": [
    17.057,
@@ -107,7 +107,7 @@
    36.6544,
    38.349,
    38.4444,
-   33.5917,
+   33.78,
    27.97,
    21.4443,
    17.9263
@@ -640,7 +640,7 @@
    "pernoctaciones": 78032.0,
    "viajeros": 29970.0,
    "plazas": 8455.0,
-   "ndvi": 0.465,
+   "ndvi": 0.488,
    "lst": 18.76,
    "pernoctaciones_por_plaza_dia": 0.304
   },
@@ -1038,8 +1038,7 @@
    "plazas": 15477.0,
    "ndvi": 0.4058,
    "lst": 37.94,
-   "pernoctaciones_por_plaza_dia": 0.745,
-   "provisional": true
+   "pernoctaciones_por_plaza_dia": 0.745
   },
   {
    "periodo": "2025-09",
@@ -1048,28 +1047,25 @@
    "plazas": 15787.0,
    "ndvi": 0.4218,
    "lst": 36.63,
-   "pernoctaciones_por_plaza_dia": 0.566,
-   "provisional": true
+   "pernoctaciones_por_plaza_dia": 0.566
   },
   {
    "periodo": "2025-10",
-   "pernoctaciones": 246233.0,
-   "viajeros": 68421.0,
+   "pernoctaciones": 246242.0,
+   "viajeros": 67642.0,
    "plazas": 14522.0,
    "ndvi": 0.4305,
    "lst": 29.42,
-   "pernoctaciones_por_plaza_dia": 0.558,
-   "provisional": true
+   "pernoctaciones_por_plaza_dia": 0.558
   },
   {
    "periodo": "2025-11",
-   "pernoctaciones": 135320.0,
-   "viajeros": 42091.0,
+   "pernoctaciones": 140321.0,
+   "viajeros": 43062.0,
    "plazas": 11911.0,
    "ndvi": 0.5252,
    "lst": 22.69,
-   "pernoctaciones_por_plaza_dia": 0.374,
-   "provisional": true
+   "pernoctaciones_por_plaza_dia": 0.388
   },
   {
    "periodo": "2025-12",
@@ -1078,8 +1074,7 @@
    "plazas": 9738.0,
    "ndvi": 0.543,
    "lst": 17.27,
-   "pernoctaciones_por_plaza_dia": 0.288,
-   "provisional": true
+   "pernoctaciones_por_plaza_dia": 0.288
   },
   {
    "periodo": "2026-01",
@@ -1158,6 +1153,14 @@
    "plazas": null,
    "ndvi": 0.4371,
    "lst": 37.18
+  },
+  {
+   "periodo": "2026-09",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": null,
+   "ndvi": null,
+   "lst": 34.91
   }
  ]
 }

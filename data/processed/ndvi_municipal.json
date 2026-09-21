@@ -604,13 +604,13 @@
   },
   {
    "periodo": "2021-12",
-   "valor": 0.465,
-   "mediana": 0.4781,
-   "p25": 0.3103,
-   "p75": 0.6328,
-   "desviacion": 0.2157,
-   "pixeles_validos": 287576,
-   "cobertura_pct": 98.2
+   "valor": 0.488,
+   "mediana": 0.5119,
+   "p25": 0.3309,
+   "p75": 0.6661,
+   "desviacion": 0.2243,
+   "pixeles_validos": 287426,
+   "cobertura_pct": 98.1
   },
   {
    "periodo": "2022-01",

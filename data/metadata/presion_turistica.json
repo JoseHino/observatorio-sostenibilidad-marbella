@@ -10,7 +10,7 @@
   "enmascaramiento": "No aplica.",
   "serie_desde": "2017-01",
   "serie_hasta": "2026-07",
-  "n_periodos": 116,
+  "n_periodos": 117,
   "n_huecos": 0,
   "limitaciones": [
     "La correlación NO implica causalidad. Dos series con ciclo anual marcado correlacionan por el mero hecho de compartir estacionalidad; lo informativo es el signo y el desfase, no la atribución de causa.",
@@ -18,8 +18,8 @@
     "La EOH cubre establecimientos hoteleros. No recoge vivienda turística ni apartamentos, que en Marbella representan una parte relevante de la oferta, de modo que la presión real es superior a la que refleja este indicador.",
     "Los meses más recientes son datos provisionales del INE y pueden revisarse."
   ],
-  "correlacion_pernoctaciones_ndvi": -0.701,
-  "correlacion_pernoctaciones_lst": 0.843,
+  "correlacion_pernoctaciones_ndvi": -0.705,
+  "correlacion_pernoctaciones_lst": 0.842,
   "licencia": "Instituto Nacional de Estadística. Reutilización libre citando la fuente.",
   "ruta_datos": "data/processed/presion_turistica.json"
 }
