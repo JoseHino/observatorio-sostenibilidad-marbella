@@ -7,8 +7,8 @@
  "codigo_ine": "29069",
  "periodicidad": "mensual",
  "ultimo_periodo": "2026-09",
- "n_periodos": 117,
- "n_huecos": 14,
+ "n_periodos": 118,
+ "n_huecos": 15,
  "resolucion_m": 30,
  "hora_paso": "hacia las 11:00 hora local",
  "serie": [
@@ -1206,14 +1206,19 @@
   },
   {
    "periodo": "2026-09",
-   "valor": 34.91,
-   "mediana": 34.7,
-   "p10": 32.21,
-   "p90": 37.93,
-   "amplitud_p10_p90": 5.72,
-   "n_escenas": 1,
-   "cobertura_pct": 99.7,
+   "valor": 34.68,
+   "mediana": 34.52,
+   "p10": 31.86,
+   "p90": 37.76,
+   "amplitud_p10_p90": 5.9,
+   "n_escenas": 3,
+   "cobertura_pct": 94.6,
    "escenas_descartadas": 0
+  },
+  {
+   "periodo": "2026-10",
+   "valor": null,
+   "motivo": "sin escena válida: 1 descartada(s) por cobertura insuficiente"
   }
  ]
 }

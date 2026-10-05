@@ -13,9 +13,9 @@
   "altitud_m": "2",
   "distancia_km": 5.8
  },
- "ultimo_periodo": "2026-08",
+ "ultimo_periodo": "2026-09",
  "n_periodos": 120,
- "n_huecos": 24,
+ "n_huecos": 23,
  "serie": [
   {
    "periodo": "2017-01",
@@ -823,8 +823,10 @@
   },
   {
    "periodo": "2026-09",
-   "valor": null,
-   "motivo": "la estación no registró dato ese mes"
+   "valor": 24.9,
+   "temperatura_maxima_media": 27.3,
+   "temperatura_minima_media": 22.4,
+   "precipitacion_mm": 5.6
   },
   {
    "periodo": "2026-10",

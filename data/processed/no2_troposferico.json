@@ -6,9 +6,9 @@
  "municipio": "Marbella",
  "codigo_ine": "29069",
  "periodicidad": "mensual",
- "ultimo_periodo": "2026-08",
- "n_periodos": 92,
- "n_huecos": 21,
+ "ultimo_periodo": "2026-09",
+ "n_periodos": 85,
+ "n_huecos": 19,
  "serie": [
   {
    "periodo": "2019-01",
@@ -496,50 +496,10 @@
    "motivo": "sin píxel válido en el mes"
   },
   {
-   "periodo": "2026-01",
-   "valor": 22.11,
-   "mediana": 24.99,
-   "pixeles_validos": 18
-  },
-  {
-   "periodo": "2026-02",
-   "valor": null,
-   "motivo": "sin píxel válido en el mes"
-  },
-  {
-   "periodo": "2026-03",
-   "valor": 30.2,
-   "mediana": 31.8,
-   "pixeles_validos": 18
-  },
-  {
-   "periodo": "2026-04",
-   "valor": null,
-   "motivo": "sin píxel válido en el mes"
-  },
-  {
-   "periodo": "2026-05",
-   "valor": 39.98,
-   "mediana": 43.14,
-   "pixeles_validos": 18
-  },
-  {
-   "periodo": "2026-06",
-   "valor": 12.87,
-   "mediana": 10.57,
-   "pixeles_validos": 18
-  },
-  {
-   "periodo": "2026-07",
-   "valor": 38.52,
-   "mediana": 36.05,
-   "pixeles_validos": 18
-  },
-  {
-   "periodo": "2026-08",
-   "valor": 19.43,
-   "mediana": 22.89,
-   "pixeles_validos": 18
+   "periodo": "2026-09",
+   "valor": 30.67,
+   "mediana": 35.03,
+   "pixeles_validos": 12
   }
  ]
 }
