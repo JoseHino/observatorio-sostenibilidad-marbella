@@ -1,8 +1,8 @@
 {
   "aerosoles": {
     "hash_config": "aaa58ed96199bfaf",
-    "n_periodos": 92,
-    "ultima_fecha_dato": "2026-08"
+    "n_periodos": 93,
+    "ultima_fecha_dato": "2026-09"
   },
   "clima_aemet": {
     "estacion": "6083X",
@@ -30,7 +30,7 @@
   },
   "monoxido_carbono": {
     "hash_config": "f9157e9d2c468673",
-    "n_periodos": 92,
+    "n_periodos": 93,
     "ultima_fecha_dato": "2026-08"
   },
   "ndmi_municipal": {
@@ -53,13 +53,13 @@
   },
   "no2_troposferico": {
     "hash_config": "3579400d02a9e53f",
-    "n_periodos": 85,
+    "n_periodos": 93,
     "ultima_fecha_dato": "2026-09"
   },
   "ozono_troposferico": {
     "hash_config": "0323337b6a7ca176",
-    "n_periodos": 92,
-    "ultima_fecha_dato": "2026-08"
+    "n_periodos": 93,
+    "ultima_fecha_dato": "2026-09"
   },
   "presion_turistica": {
     "hash_config": "01b2769e515ec285",
