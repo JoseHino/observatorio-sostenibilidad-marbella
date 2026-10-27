@@ -200,6 +200,7 @@
             '<span id="omitidos-' + ind.clave + '"></span></p></figcaption>' +
             '<div class="lienzo lienzo-bajo"><canvas id="g-anual-' + ind.clave + '" role="img" aria-label="Media anual de ' + ind.titulo + '"></canvas></div></figure>' +
         '</div>') +
+        '<p class="fuente-graf" id="fuente-' + ind.clave + '"></p>' +
         '<div class="bloque-acciones">' +
           '<button type="button" class="btn" data-tabla="' + ind.clave + '" aria-expanded="false" aria-controls="tabla-' + ind.clave + '">Ver los datos en tabla</button> ' +
           '<button type="button" class="btn" data-ficha="' + ind.clave + '" aria-expanded="false" aria-controls="ficha-' + ind.clave + '">Ver la ficha del indicador</button>' +
@@ -450,8 +451,27 @@
     }).join('');
   }
 
+  /* ---------- Fuente bajo las gráficas ---------- */
+  var ENLACES_FUENTE = [
+    [/Sentinel-2/, 'https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2'],
+    [/Sentinel-5P/, 'https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-5p'],
+    [/Sentinel-3/, 'https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-3'],
+    [/Landsat/, 'https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products'],
+    [/AEMET/, 'https://opendata.aemet.es/centrodedescargas/inicio'],
+    [/PVGIS/, 'https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis_en'],
+    [/Encuesta de Ocupaci/, 'https://www.ine.es/dynt3/inebase/es/index.htm?padre=238'],
+    [/CNIG/, 'https://centrodedescargas.cnig.es/CentroDescargas/index.jsp']
+  ];
+  function pintarFuente(id, texto) {
+    var p = document.getElementById(id);
+    if (!p || !texto) return;
+    var e = ENLACES_FUENTE.filter(function (x) { return x[0].test(texto); })[0];
+    p.innerHTML = 'Fuente: ' + (e ? '<a href="' + e[1] + '" target="_blank" rel="noopener">' + texto + '</a>' : texto);
+  }
+
   /* ---------- Ficha ---------- */
   function pintarFicha(ind, f) {
+    pintarFuente('fuente-' + ind.clave, f.fuente);
     // Si la ficha trae una conclusion explicita, se muestra antes que la tabla de metadatos
     if (f.conclusion) {
       var cab = document.querySelector('#t-' + ind.clave).closest('.bloque-cabecera');
@@ -490,6 +510,7 @@
   var COLORES_CRUCE = { pernoctaciones: '--serie-1', ndvi: '--serie-3', lst: '--serie-2' };
 
   function pintarCruce(d, ficha) {
+    if (ficha) pintarFuente('fuente-cruce', ficha.fuente);
     var perf = d.perfil_estacional_normalizado;
     var crudo = d.perfil_estacional_crudo;
     var sup = css('--superficie');
