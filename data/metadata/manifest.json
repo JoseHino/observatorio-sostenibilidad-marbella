@@ -1,8 +1,8 @@
 {
   "aerosoles": {
     "hash_config": "aaa58ed96199bfaf",
-    "n_periodos": 93,
-    "ultima_fecha_dato": "2026-09"
+    "n_periodos": 94,
+    "ultima_fecha_dato": "2026-10"
   },
   "clima_aemet": {
     "estacion": "6083X",
@@ -24,46 +24,46 @@
   },
   "lst_municipal": {
     "hash_config": "60aaf2784c9f4102",
-    "n_huecos": 15,
+    "n_huecos": 14,
     "n_periodos": 118,
-    "ultima_fecha_dato": "2026-09"
+    "ultima_fecha_dato": "2026-10"
   },
   "monoxido_carbono": {
     "hash_config": "f9157e9d2c468673",
-    "n_periodos": 93,
-    "ultima_fecha_dato": "2026-08"
+    "n_periodos": 94,
+    "ultima_fecha_dato": "2026-10"
   },
   "ndmi_municipal": {
     "hash_config": "81fe86934e766d64",
     "n_huecos": 0,
-    "n_periodos": 117,
-    "ultima_fecha_dato": "2026-09"
+    "n_periodos": 118,
+    "ultima_fecha_dato": "2026-10"
   },
   "ndvi_municipal": {
     "hash_config": "1c2bf7a14a7b7099",
     "n_huecos": 0,
-    "n_periodos": 117,
-    "ultima_fecha_dato": "2026-09"
+    "n_periodos": 118,
+    "ultima_fecha_dato": "2026-10"
   },
   "ndwi_municipal": {
     "hash_config": "dd192c6fef4b74f6",
     "n_huecos": 0,
-    "n_periodos": 117,
-    "ultima_fecha_dato": "2026-09"
+    "n_periodos": 118,
+    "ultima_fecha_dato": "2026-10"
   },
   "no2_troposferico": {
     "hash_config": "3579400d02a9e53f",
-    "n_periodos": 93,
-    "ultima_fecha_dato": "2026-09"
+    "n_periodos": 94,
+    "ultima_fecha_dato": "2026-10"
   },
   "ozono_troposferico": {
     "hash_config": "0323337b6a7ca176",
-    "n_periodos": 93,
-    "ultima_fecha_dato": "2026-09"
+    "n_periodos": 94,
+    "ultima_fecha_dato": "2026-10"
   },
   "presion_turistica": {
     "hash_config": "01b2769e515ec285",
-    "n_periodos": 117,
+    "n_periodos": 118,
     "ultima_fecha_dato": "2026-07"
   },
   "radiacion_solar": {
