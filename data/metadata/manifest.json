@@ -7,7 +7,7 @@
   "clima_aemet": {
     "estacion": "6083X",
     "n_periodos": 120,
-    "ultima_fecha_dato": "2026-09"
+    "ultima_fecha_dato": "2026-10"
   },
   "clorofila_litoral": {
     "hash_config": "64664145ebfbe092",
@@ -25,8 +25,8 @@
   "lst_municipal": {
     "hash_config": "60aaf2784c9f4102",
     "n_huecos": 14,
-    "n_periodos": 118,
-    "ultima_fecha_dato": "2026-10"
+    "n_periodos": 119,
+    "ultima_fecha_dato": "2026-11"
   },
   "monoxido_carbono": {
     "hash_config": "f9157e9d2c468673",
@@ -63,7 +63,7 @@
   },
   "presion_turistica": {
     "hash_config": "01b2769e515ec285",
-    "n_periodos": 118,
+    "n_periodos": 119,
     "ultima_fecha_dato": "2026-07"
   },
   "radiacion_solar": {

@@ -6,7 +6,7 @@
  "codigo_ine": "29069",
  "periodicidad": "mensual",
  "ultimo_periodo": "2026-07",
- "n_periodos": 118,
+ "n_periodos": 119,
  "cruces": [
   {
    "variable": "ndvi",
@@ -65,7 +65,7 @@
    1.0,
    0.7804,
    0.5042,
-   0.2051,
+   0.2322,
    0.0406
   ]
  },
@@ -109,7 +109,7 @@
    38.4444,
    33.7471,
    27.8411,
-   21.4443,
+   22.0225,
    17.9263
   ]
  },
@@ -1169,6 +1169,14 @@
    "plazas": null,
    "ndvi": 0.4956,
    "lst": 26.81
+  },
+  {
+   "periodo": "2026-11",
+   "pernoctaciones": null,
+   "viajeros": null,
+   "plazas": null,
+   "ndvi": null,
+   "lst": 26.07
   }
  ]
 }
